@@ -1,0 +1,344 @@
+<!-- list.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究动态 | SCIENCE ORG 科研机构</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a2e4a',
+                        accent: '#00a8b5',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .nav-link:hover { color: #00a8b5; }
+        .banner-overlay { background: rgba(26, 46, 74, 0.7); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: block; }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-primary tracking-tighter">SCIENCE <span class="text-accent">ORG</span></a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="list.html" class="nav-link text-sm font-medium text-accent transition-colors">研究</a>
+                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">教育</a>
+                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">创新</a>
+                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">关于我们</a>
+                    <div class="flex items-center space-x-2 ml-4 border-l pl-6 border-gray-200">
+                        <button class="text-xs font-bold text-accent">中</button>
+                        <span class="text-gray-300">|</span>
+                        <button class="text-xs font-medium text-gray-500 hover:text-accent">EN</button>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-primary p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-2">
+            <a href="list.html" class="block py-2 text-base font-medium text-accent">研究</a>
+            <a href="#" class="block py-2 text-base font-medium text-primary">教育</a>
+            <a href="#" class="block py-2 text-base font-medium text-primary">创新</a>
+            <a href="#" class="block py-2 text-base font-medium text-primary">关于我们</a>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="relative h-[280px] flex items-center overflow-hidden pt-20">
+        <img src="https://placehold.co/1440x400/1a2e4a/ffffff?text=Research+News" alt="Banner" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 banner-overlay"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+            <h1 class="text-4xl font-bold mb-4">研究动态</h1>
+            <nav class="flex text-sm font-medium text-gray-300 space-x-2">
+                <a href="index.html" class="hover:text-white">首页</a>
+                <span>/</span>
+                <a href="#" class="hover:text-white">研究</a>
+                <span>/</span>
+                <span class="text-accent">研究动态</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-12">
+                
+                <!-- Left: Article List -->
+                <div class="lg:w-2/3 space-y-10">
+                    <!-- Article Item 1 -->
+                    <article class="flex flex-col md:flex-row gap-6 group">
+                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
+                            <a href="article.html">
+                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+1" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </a>
+                        </div>
+                        <div class="md:w-2/3 space-y-3">
+                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">生命科学</span>
+                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
+                                <a href="article.html">解码人类大脑：神经元网络映射的新突破</a>
+                            </h2>
+                            <p class="text-gray-400 text-sm">2026年3月12日</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                我们的研究团队利用先进的高分辨率成像技术，成功绘制了迄今为止最详细的大脑皮层神经元连接图谱，为理解认知功能提供了关键数据。
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Article Item 2 -->
+                    <article class="flex flex-col md:flex-row gap-6 group">
+                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
+                            <a href="article.html">
+                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+2" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </a>
+                        </div>
+                        <div class="md:w-2/3 space-y-3">
+                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">物理学</span>
+                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
+                                <a href="article.html">拓扑绝缘体在量子计算中的潜在应用研究</a>
+                            </h2>
+                            <p class="text-gray-400 text-sm">2026年3月08日</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                物理学部最新发表的论文探讨了如何利用拓扑绝缘体的边缘态来构建更稳定的量子比特，这可能彻底改变未来量子计算机的设计。
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Article Item 3 -->
+                    <article class="flex flex-col md:flex-row gap-6 group">
+                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
+                            <a href="article.html">
+                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+3" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </a>
+                        </div>
+                        <div class="md:w-2/3 space-y-3">
+                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">环境科学</span>
+                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
+                                <a href="article.html">深海生态系统对全球变暖的响应机制分析</a>
+                            </h2>
+                            <p class="text-gray-400 text-sm">2026年3月01日</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                经过长达五年的深海监测，研究人员发现海洋底层温度的微小变化正在显著影响底栖生物的代谢速率与种群结构。
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Article Item 4 -->
+                    <article class="flex flex-col md:flex-row gap-6 group">
+                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
+                            <a href="article.html">
+                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+4" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </a>
+                        </div>
+                        <div class="md:w-2/3 space-y-3">
+                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">人工智能</span>
+                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
+                                <a href="article.html">可解释 AI：让深度学习模型不再是“黑盒”</a>
+                            </h2>
+                            <p class="text-gray-400 text-sm">2026年2月25日</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                计算机科学团队开发了一套新的可视化框架，能够清晰展示卷积神经网络在进行图像识别时的决策逻辑，提升了 AI 的透明度。
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Article Item 5 -->
+                    <article class="flex flex-col md:flex-row gap-6 group">
+                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
+                            <a href="article.html">
+                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+5" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </a>
+                        </div>
+                        <div class="md:w-2/3 space-y-3">
+                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">化学</span>
+                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
+                                <a href="article.html">绿色合成：利用太阳能驱动的二氧化碳转化</a>
+                            </h2>
+                            <p class="text-gray-400 text-sm">2026年2月18日</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                化学家们设计出一种仿生光合系统，能高效地将大气中的二氧化碳转化为高附加值的化学原料，为碳中和目标提供了新路径。
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Article Item 6 -->
+                    <article class="flex flex-col md:flex-row gap-6 group">
+                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
+                            <a href="article.html">
+                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+6" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </a>
+                        </div>
+                        <div class="md:w-2/3 space-y-3">
+                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">材料科学</span>
+                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
+                                <a href="article.html">超轻质陶瓷气凝胶的极端环境稳定性测试</a>
+                            </h2>
+                            <p class="text-gray-400 text-sm">2026年2月10日</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                这种新型材料在 1000°C 以上的高温下仍能保持其结构完整性与隔热性能，在航空航天热防护领域具有广阔前景。
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Pagination -->
+                    <div class="pt-12 flex justify-center">
+                        <nav class="flex space-x-2">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-accent hover:text-accent">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-accent text-white font-bold">1</a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-accent hover:text-accent">2</a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-accent hover:text-accent">3</a>
+                            <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-accent hover:text-accent">12</a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-accent hover:text-accent">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Right: Sidebar -->
+                <aside class="lg:w-1/3 space-y-12">
+                    <!-- Categories -->
+                    <div class="bg-gray-50 p-8">
+                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">分类筛选</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>全部动态</span> <span class="text-gray-400">(42)</span></a></li>
+                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>生命科学</span> <span class="text-gray-400">(12)</span></a></li>
+                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>物理学</span> <span class="text-gray-400">(8)</span></a></li>
+                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>人工智能</span> <span class="text-gray-400">(10)</span></a></li>
+                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>环境与海洋</span> <span class="text-gray-400">(6)</span></a></li>
+                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>材料科学</span> <span class="text-gray-400">(6)</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Latest Articles -->
+                    <div>
+                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">最新文章</h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=L1" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
+                                <div>
+                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">我院科学家荣获年度国际物理学大奖</a>
+                                    <p class="text-xs text-gray-400 mt-1">2026.03.14</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=L2" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
+                                <div>
+                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">关于举办夏季国际学术交流周的通知</a>
+                                    <p class="text-xs text-gray-400 mt-1">2026.03.13</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=L3" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
+                                <div>
+                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">新型超导材料研究取得阶段性进展</a>
+                                    <p class="text-xs text-gray-400 mt-1">2026.03.11</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tag Cloud -->
+                    <div>
+                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">标签云</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">量子计算</a>
+                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">气候变化</a>
+                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">基因组学</a>
+                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">可持续发展</a>
+                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">深度学习</a>
+                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">纳米技术</a>
+                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">国际会议</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html" class="text-2xl font-bold tracking-tighter mb-6 block">SCIENCE <span class="text-accent">ORG</span></a>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        致力于通过卓越的研究与教育，推动科学进步，造福人类社会。
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-6">快速链接</h5>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">研究领域</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">招生信息</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">校园生活</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">媒体中心</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-6">加入我们</h5>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">教职招聘</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">博士后研究</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">行政岗位</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">实习机会</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-6">联系我们</h5>
+                    <p class="text-gray-400 text-sm mb-4">
+                        地址：某市科技园区科学大道 88 号<br>
+                        邮编：100000
+                    </p>
+                    <p class="text-gray-400 text-sm">
+                        电话：+86 (0)10 1234 5678<br>
+                        邮箱：info@scienceorg.edu
+                    </p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
+                <p>&copy; 2026 SCIENCE ORG. 保留所有权利。</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">隐私政策</a>
+                    <a href="#" class="hover:text-white">使用条款</a>
+                    <a href="#" class="hover:text-white">网站地图</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
