@@ -1,1 +1,68 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  
+  --color-oist-red: #9e0b0f;
+  --color-oist-dark: #1a1a1a;
+  --color-oist-gray: #f4f4f4;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-oist-dark antialiased;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative h-full flex items-center text-[11px] font-bold uppercase tracking-[0.2em] text-oist-dark hover:text-oist-red transition-colors cursor-pointer;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-0 w-full h-0.5 bg-oist-red scale-x-0 transition-transform duration-300 origin-left;
+  }
+  
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply scale-x-100;
+  }
+
+  .mega-menu {
+    @apply absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl py-16 opacity-0 invisible translate-y-2 transition-all duration-300 z-50;
+  }
+  
+  .mega-menu.active {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  .mega-menu h3 {
+    @apply text-[10px] font-bold uppercase tracking-widest text-oist-red mb-6;
+  }
+
+  .mega-menu ul li {
+    @apply mb-3;
+  }
+
+  .mega-menu ul li a {
+    @apply text-sm text-gray-600 hover:text-oist-red transition-colors;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9e0b0f;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7a080b;
+}
