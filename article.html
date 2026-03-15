@@ -12,8 +12,9 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1a2e4a',
-                        accent: '#00a8b5',
+                        primary: '#111111',
+                        accent: '#005bac',
+                        'accent-light': '#e8f0fa',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -23,18 +24,48 @@
         }
     </script>
     <style>
-        .nav-link:hover { color: #00a8b5; }
-        .mobile-menu { display: none; }
-        .mobile-menu.active { display: block; }
+        .nav-transition { transition: all 300ms ease-in-out; }
+        
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+        }
+        #mobile-menu.active {
+            max-height: 400px;
+            opacity: 1;
+        }
+        
+        /* Overlay */
+        #menu-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 300ms ease-in-out;
+        }
+        #menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Header Scrolled State for List/Article */
+        header.scrolled {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
         .article-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #374151; }
-        .article-content h2 { font-size: 1.5rem; font-weight: 700; color: #1a2e4a; margin-top: 2.5rem; margin-bottom: 1.25rem; border-left: 4px solid #00a8b5; padding-left: 1rem; }
+        .article-content h2 { font-size: 1.5rem; font-weight: 700; color: #111111; margin-top: 2.5rem; margin-bottom: 1.25rem; border-left: 4px solid #005bac; padding-left: 1rem; }
         blockquote { border-left: 4px solid #e5e7eb; padding-left: 1.5rem; font-style: italic; color: #4b5563; margin: 2rem 0; }
     </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
 
+    <!-- Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40"></div>
+
     <!-- Header -->
-    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <header id="main-header" class="fixed w-full z-50 nav-transition bg-white border-b border-gray-100">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center">
@@ -42,9 +73,9 @@
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="list.html" class="nav-link text-sm font-medium text-accent transition-colors">研究</a>
-                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">教育</a>
-                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">创新</a>
-                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">关于我们</a>
+                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">教育</a>
+                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">创新</a>
+                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">关于我们</a>
                     <div class="flex items-center space-x-2 ml-4 border-l pl-6 border-gray-200">
                         <button class="text-xs font-bold text-accent">中</button>
                         <span class="text-gray-300">|</span>
@@ -52,19 +83,23 @@
                     </div>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-primary p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button id="mobile-menu-button" class="text-primary p-2 focus:outline-none">
+                        <svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
         </nav>
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-2">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white px-4 py-4 space-y-2 border-b border-gray-100">
             <a href="list.html" class="block py-2 text-base font-medium text-accent">研究</a>
-            <a href="#" class="block py-2 text-base font-medium text-primary">教育</a>
-            <a href="#" class="block py-2 text-base font-medium text-primary">创新</a>
-            <a href="#" class="block py-2 text-base font-medium text-primary">关于我们</a>
+            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">教育</a>
+            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">创新</a>
+            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">关于我们</a>
         </div>
     </header>
 
@@ -91,12 +126,12 @@
                     作者：陈明远 博士
                 </div>
                 <div class="flex items-center">
-                    <span class="px-2 py-0.5 bg-gray-100 text-accent text-[10px] font-bold rounded uppercase">生命科学</span>
+                    <span class="px-2 py-0.5 bg-accent-light text-accent text-[10px] font-bold rounded uppercase">生命科学</span>
                 </div>
             </div>
 
             <div class="w-full aspect-[21/9] overflow-hidden rounded-sm shadow-lg">
-                <img src="https://placehold.co/1200x480/1a2e4a/ffffff?text=Brain+Mapping+Technology" alt="Featured Image" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1200&h=480&q=80" alt="Featured Image" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
@@ -123,7 +158,7 @@
                         </p>
 
                         <div class="my-10">
-                            <img src="https://placehold.co/800x500/f3f4f6/1a2e4a?text=Microscopic+View" alt="Inline Image" class="w-full rounded-sm mb-3">
+                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&h=500&q=80" alt="Inline Image" class="w-full rounded-sm mb-3">
                             <p class="text-center text-xs text-gray-400 italic">图 1：通过 MS-EMS 技术捕获的神经元突触连接细节图。</p>
                         </div>
 
@@ -183,7 +218,7 @@
                     <!-- Author Card -->
                     <div class="bg-primary text-white p-8 rounded-sm">
                         <div class="flex items-center gap-4 mb-6">
-                            <img src="https://placehold.co/100x100/00a8b5/ffffff?text=Dr.+Chen" alt="Author" class="w-16 h-16 rounded-full border-2 border-accent">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80" alt="Author" class="w-16 h-16 rounded-full border-2 border-accent">
                             <div>
                                 <h3 class="text-lg font-bold">陈明远 博士</h3>
                                 <p class="text-xs text-accent font-medium">首席研究员 / 神经科学</p>
@@ -200,24 +235,17 @@
                         <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">相关文章</h3>
                         <div class="space-y-6">
                             <div class="flex gap-4">
-                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=R1" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=80&h=80&q=80" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
                                 <div>
                                     <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">利用 AI 自动识别神经元形态的新算法</a>
                                     <p class="text-xs text-gray-400 mt-1">2026.02.20</p>
                                 </div>
                             </div>
                             <div class="flex gap-4">
-                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=R2" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=80&h=80&q=80" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
                                 <div>
                                     <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">神经退行性疾病的早期结构性标志研究</a>
                                     <p class="text-xs text-gray-400 mt-1">2026.01.15</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=R3" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
-                                <div>
-                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">高分辨率电子显微镜在生物学中的应用</a>
-                                    <p class="text-xs text-gray-400 mt-1">2025.12.10</p>
                                 </div>
                             </div>
                         </div>
@@ -228,7 +256,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-primary text-white py-20">
+    <footer class="bg-[#111111] text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-1">
@@ -279,10 +307,42 @@
     </footer>
 
     <script>
-        const btn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('active');
+        const header = document.getElementById('main-header');
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        // Scroll Effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') && !header.contains(e.target)) {
+                toggleMenu();
+            }
         });
     </script>
 </body>

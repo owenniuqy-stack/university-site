@@ -12,8 +12,9 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1a2e4a',
-                        accent: '#00a8b5',
+                        primary: '#111111',
+                        accent: '#005bac',
+                        'accent-light': '#e8f0fa',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -23,16 +24,44 @@
         }
     </script>
     <style>
-        .nav-link:hover { color: #00a8b5; }
-        .banner-overlay { background: rgba(26, 46, 74, 0.7); }
-        .mobile-menu { display: none; }
-        .mobile-menu.active { display: block; }
+        .nav-transition { transition: all 300ms ease-in-out; }
+        
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+        }
+        #mobile-menu.active {
+            max-height: 400px;
+            opacity: 1;
+        }
+        
+        /* Overlay */
+        #menu-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 300ms ease-in-out;
+        }
+        #menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Header Scrolled State for List/Article */
+        header.scrolled {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
 
+    <!-- Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40"></div>
+
     <!-- Header -->
-    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <header id="main-header" class="fixed w-full z-50 nav-transition bg-white border-b border-gray-100">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center">
@@ -40,9 +69,9 @@
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="list.html" class="nav-link text-sm font-medium text-accent transition-colors">研究</a>
-                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">教育</a>
-                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">创新</a>
-                    <a href="#" class="nav-link text-sm font-medium text-primary transition-colors">关于我们</a>
+                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">教育</a>
+                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">创新</a>
+                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">关于我们</a>
                     <div class="flex items-center space-x-2 ml-4 border-l pl-6 border-gray-200">
                         <button class="text-xs font-bold text-accent">中</button>
                         <span class="text-gray-300">|</span>
@@ -50,231 +79,150 @@
                     </div>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-primary p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button id="mobile-menu-button" class="text-primary p-2 focus:outline-none">
+                        <svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
         </nav>
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-2">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white px-4 py-4 space-y-2 border-b border-gray-100">
             <a href="list.html" class="block py-2 text-base font-medium text-accent">研究</a>
-            <a href="#" class="block py-2 text-base font-medium text-primary">教育</a>
-            <a href="#" class="block py-2 text-base font-medium text-primary">创新</a>
-            <a href="#" class="block py-2 text-base font-medium text-primary">关于我们</a>
+            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">教育</a>
+            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">创新</a>
+            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">关于我们</a>
         </div>
     </header>
 
     <!-- Page Banner -->
     <section class="relative h-[280px] flex items-center overflow-hidden pt-20">
-        <img src="https://placehold.co/1440x400/1a2e4a/ffffff?text=Research+News" alt="Banner" class="absolute inset-0 w-full h-full object-cover">
-        <div class="absolute inset-0 banner-overlay"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
-            <h1 class="text-4xl font-bold mb-4">研究动态</h1>
-            <nav class="flex text-sm font-medium text-gray-300 space-x-2">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1440&h=400&q=80" alt="Banner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+            <nav class="flex text-xs font-medium text-gray-300 space-x-2 mb-4 uppercase tracking-wider">
                 <a href="index.html" class="hover:text-white">首页</a>
                 <span>/</span>
-                <a href="#" class="hover:text-white">研究</a>
-                <span>/</span>
-                <span class="text-accent">研究动态</span>
+                <span class="text-white">研究动态</span>
             </nav>
+            <h1 class="text-4xl font-bold uppercase tracking-tight">研究动态</h1>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="py-16 bg-white">
+    <main class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-12">
                 
                 <!-- Left: Article List -->
-                <div class="lg:w-2/3 space-y-10">
-                    <!-- Article Item 1 -->
-                    <article class="flex flex-col md:flex-row gap-6 group">
-                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
-                            <a href="article.html">
-                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+1" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </a>
+                <div class="lg:w-2/3 space-y-12">
+                    <!-- Article 1 -->
+                    <div class="flex flex-col md:flex-row gap-8 group">
+                        <div class="md:w-1/3 aspect-[3/2] overflow-hidden flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&h=400&q=80" alt="Research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <div class="md:w-2/3 space-y-3">
-                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">生命科学</span>
-                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
-                                <a href="article.html">解码人类大脑：神经元网络映射的新突破</a>
-                            </h2>
-                            <p class="text-gray-400 text-sm">2026年3月12日</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                我们的研究团队利用先进的高分辨率成像技术，成功绘制了迄今为止最详细的大脑皮层神经元连接图谱，为理解认知功能提供了关键数据。
-                            </p>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="px-2 py-0.5 bg-accent-light text-accent text-[10px] font-bold rounded uppercase">生命科学</span>
+                                <span class="text-xs text-gray-400">2026.03.12</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-primary group-hover:text-accent transition-colors mb-4"><a href="article.html">解码人类大脑：神经元网络映射的新突破</a></h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">人类大脑由约 860 亿个神经元组成，它们通过数万亿个突触相互连接。近日，我院神经科学研究中心在这一领域取得了里程碑式的进展...</p>
+                            <a href="article.html" class="text-xs font-bold text-accent uppercase tracking-widest hover:underline">阅读更多 &rarr;</a>
                         </div>
-                    </article>
+                    </div>
+                    
+                    <!-- Article 2 -->
+                    <div class="flex flex-col md:flex-row gap-8 group">
+                        <div class="md:w-1/3 aspect-[3/2] overflow-hidden flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=600&h=400&q=80" alt="Research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="px-2 py-0.5 bg-accent-light text-accent text-[10px] font-bold rounded uppercase">环境科学</span>
+                                <span class="text-xs text-gray-400">2026.03.08</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-primary group-hover:text-accent transition-colors mb-4"><a href="#">全球气候变化监测网络正式启动</a></h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">SCIENCE ORG 与 12 家国际顶尖机构联合发起的全球海洋与大气监测网络今日在日内瓦宣布正式运行...</p>
+                            <a href="#" class="text-xs font-bold text-accent uppercase tracking-widest hover:underline">阅读更多 &rarr;</a>
+                        </div>
+                    </div>
 
-                    <!-- Article Item 2 -->
-                    <article class="flex flex-col md:flex-row gap-6 group">
-                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
-                            <a href="article.html">
-                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+2" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </a>
+                    <!-- Article 3 -->
+                    <div class="flex flex-col md:flex-row gap-8 group">
+                        <div class="md:w-1/3 aspect-[3/2] overflow-hidden flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1532187863486-abf51ad9f69d?auto=format&fit=crop&w=600&h=400&q=80" alt="Research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <div class="md:w-2/3 space-y-3">
-                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">物理学</span>
-                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
-                                <a href="article.html">拓扑绝缘体在量子计算中的潜在应用研究</a>
-                            </h2>
-                            <p class="text-gray-400 text-sm">2026年3月08日</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                物理学部最新发表的论文探讨了如何利用拓扑绝缘体的边缘态来构建更稳定的量子比特，这可能彻底改变未来量子计算机的设计。
-                            </p>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="px-2 py-0.5 bg-accent-light text-accent text-[10px] font-bold rounded uppercase">教育动态</span>
+                                <span class="text-xs text-gray-400">2026.03.05</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-primary group-hover:text-accent transition-colors mb-4"><a href="#">2026 年度博士研究生招生计划发布</a></h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">我院今年将进一步扩大跨学科博士项目的招生规模，重点支持量子计算与生物工程领域的交叉研究...</p>
+                            <a href="#" class="text-xs font-bold text-accent uppercase tracking-widest hover:underline">阅读更多 &rarr;</a>
                         </div>
-                    </article>
-
-                    <!-- Article Item 3 -->
-                    <article class="flex flex-col md:flex-row gap-6 group">
-                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
-                            <a href="article.html">
-                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+3" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </a>
-                        </div>
-                        <div class="md:w-2/3 space-y-3">
-                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">环境科学</span>
-                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
-                                <a href="article.html">深海生态系统对全球变暖的响应机制分析</a>
-                            </h2>
-                            <p class="text-gray-400 text-sm">2026年3月01日</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                经过长达五年的深海监测，研究人员发现海洋底层温度的微小变化正在显著影响底栖生物的代谢速率与种群结构。
-                            </p>
-                        </div>
-                    </article>
-
-                    <!-- Article Item 4 -->
-                    <article class="flex flex-col md:flex-row gap-6 group">
-                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
-                            <a href="article.html">
-                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+4" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </a>
-                        </div>
-                        <div class="md:w-2/3 space-y-3">
-                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">人工智能</span>
-                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
-                                <a href="article.html">可解释 AI：让深度学习模型不再是“黑盒”</a>
-                            </h2>
-                            <p class="text-gray-400 text-sm">2026年2月25日</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                计算机科学团队开发了一套新的可视化框架，能够清晰展示卷积神经网络在进行图像识别时的决策逻辑，提升了 AI 的透明度。
-                            </p>
-                        </div>
-                    </article>
-
-                    <!-- Article Item 5 -->
-                    <article class="flex flex-col md:flex-row gap-6 group">
-                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
-                            <a href="article.html">
-                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+5" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </a>
-                        </div>
-                        <div class="md:w-2/3 space-y-3">
-                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">化学</span>
-                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
-                                <a href="article.html">绿色合成：利用太阳能驱动的二氧化碳转化</a>
-                            </h2>
-                            <p class="text-gray-400 text-sm">2026年2月18日</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                化学家们设计出一种仿生光合系统，能高效地将大气中的二氧化碳转化为高附加值的化学原料，为碳中和目标提供了新路径。
-                            </p>
-                        </div>
-                    </article>
-
-                    <!-- Article Item 6 -->
-                    <article class="flex flex-col md:flex-row gap-6 group">
-                        <div class="md:w-1/3 overflow-hidden aspect-[4/3]">
-                            <a href="article.html">
-                                <img src="https://placehold.co/400x300/f3f4f6/1a2e4a?text=Article+6" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </a>
-                        </div>
-                        <div class="md:w-2/3 space-y-3">
-                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">材料科学</span>
-                            <h2 class="text-2xl font-bold text-primary hover:text-accent transition-colors">
-                                <a href="article.html">超轻质陶瓷气凝胶的极端环境稳定性测试</a>
-                            </h2>
-                            <p class="text-gray-400 text-sm">2026年2月10日</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                这种新型材料在 1000°C 以上的高温下仍能保持其结构完整性与隔热性能，在航空航天热防护领域具有广阔前景。
-                            </p>
-                        </div>
-                    </article>
+                    </div>
 
                     <!-- Pagination -->
-                    <div class="pt-12 flex justify-center">
-                        <nav class="flex space-x-2">
-                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-accent hover:text-accent">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                            </a>
-                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-accent text-white font-bold">1</a>
-                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-accent hover:text-accent">2</a>
-                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-accent hover:text-accent">3</a>
-                            <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
-                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-accent hover:text-accent">12</a>
-                            <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-accent hover:text-accent">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </a>
-                        </nav>
+                    <div class="pt-12 flex justify-center space-x-2">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-accent font-bold bg-accent-light">1</a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-accent hover:text-accent transition-colors">2</a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-accent hover:text-accent transition-colors">3</a>
+                        <span class="w-10 h-10 flex items-center justify-center text-gray-300">...</span>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-accent hover:text-accent transition-colors">8</a>
                     </div>
                 </div>
 
                 <!-- Right: Sidebar -->
                 <aside class="lg:w-1/3 space-y-12">
                     <!-- Categories -->
-                    <div class="bg-gray-50 p-8">
-                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">分类筛选</h3>
+                    <div>
+                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">栏目分类</h3>
                         <ul class="space-y-3">
-                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>全部动态</span> <span class="text-gray-400">(42)</span></a></li>
-                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>生命科学</span> <span class="text-gray-400">(12)</span></a></li>
-                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>物理学</span> <span class="text-gray-400">(8)</span></a></li>
-                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>人工智能</span> <span class="text-gray-400">(10)</span></a></li>
-                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>环境与海洋</span> <span class="text-gray-400">(6)</span></a></li>
-                            <li><a href="#" class="flex justify-between text-sm text-gray-600 hover:text-accent"><span>材料科学</span> <span class="text-gray-400">(6)</span></a></li>
+                            <li><a href="#" class="flex justify-between items-center py-2 border-b border-gray-50 text-sm text-gray-600 hover:text-accent transition-colors"><span>科研突破</span><span class="text-xs text-gray-400">(24)</span></a></li>
+                            <li><a href="#" class="flex justify-between items-center py-2 border-b border-gray-50 text-sm text-gray-600 hover:text-accent transition-colors"><span>国际合作</span><span class="text-xs text-gray-400">(12)</span></a></li>
+                            <li><a href="#" class="flex justify-between items-center py-2 border-b border-gray-50 text-sm text-gray-600 hover:text-accent transition-colors"><span>校园新闻</span><span class="text-xs text-gray-400">(45)</span></a></li>
+                            <li><a href="#" class="flex justify-between items-center py-2 border-b border-gray-50 text-sm text-gray-600 hover:text-accent transition-colors"><span>学术讲座</span><span class="text-xs text-gray-400">(18)</span></a></li>
                         </ul>
                     </div>
 
-                    <!-- Latest Articles -->
+                    <!-- Latest -->
                     <div>
-                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">最新文章</h3>
+                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">最新发布</h3>
                         <div class="space-y-6">
                             <div class="flex gap-4">
-                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=L1" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=80&h=80&q=80" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
                                 <div>
-                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">我院科学家荣获年度国际物理学大奖</a>
-                                    <p class="text-xs text-gray-400 mt-1">2026.03.14</p>
+                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">拓扑绝缘体在量子计算中的潜在应用研究</a>
+                                    <p class="text-xs text-gray-400 mt-1">2026.03.01</p>
                                 </div>
                             </div>
                             <div class="flex gap-4">
-                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=L2" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=80&h=80&q=80" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
                                 <div>
-                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">关于举办夏季国际学术交流周的通知</a>
-                                    <p class="text-xs text-gray-400 mt-1">2026.03.13</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <img src="https://placehold.co/80x80/f3f4f6/1a2e4a?text=L3" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
-                                <div>
-                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">新型超导材料研究取得阶段性进展</a>
-                                    <p class="text-xs text-gray-400 mt-1">2026.03.11</p>
+                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">深海生态系统对全球变暖的响应机制分析</a>
+                                    <p class="text-xs text-gray-400 mt-1">2026.02.25</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tag Cloud -->
+                    <!-- Tags -->
                     <div>
-                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">标签云</h3>
+                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">热门标签</h3>
                         <div class="flex flex-wrap gap-2">
-                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">量子计算</a>
-                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">气候变化</a>
-                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">基因组学</a>
-                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">可持续发展</a>
-                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">深度学习</a>
-                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">纳米技术</a>
-                            <a href="#" class="px-3 py-1 bg-gray-100 text-xs text-gray-600 hover:bg-accent hover:text-white transition-colors">国际会议</a>
+                            <a href="#" class="px-3 py-1 bg-gray-50 text-xs text-gray-500 hover:bg-accent hover:text-white transition-colors"># 神经科学</a>
+                            <a href="#" class="px-3 py-1 bg-gray-50 text-xs text-gray-500 hover:bg-accent hover:text-white transition-colors"># 量子物理</a>
+                            <a href="#" class="px-3 py-1 bg-gray-50 text-xs text-gray-500 hover:bg-accent hover:text-white transition-colors"># 可持续发展</a>
+                            <a href="#" class="px-3 py-1 bg-gray-50 text-xs text-gray-500 hover:bg-accent hover:text-white transition-colors"># 生物工程</a>
+                            <a href="#" class="px-3 py-1 bg-gray-50 text-xs text-gray-500 hover:bg-accent hover:text-white transition-colors"># 大数据</a>
                         </div>
                     </div>
                 </aside>
@@ -283,7 +231,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-primary text-white py-20">
+    <footer class="bg-[#111111] text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-1">
@@ -334,10 +282,42 @@
     </footer>
 
     <script>
-        const btn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('active');
+        const header = document.getElementById('main-header');
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        // Scroll Effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') && !header.contains(e.target)) {
+                toggleMenu();
+            }
         });
     </script>
 </body>
