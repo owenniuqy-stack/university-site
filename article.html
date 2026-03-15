@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>解码人类大脑：神经元网络映射的新突破 | SCIENCE ORG 科研机构</title>
+    <title>Article Title | SCIENCE ORG</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -12,9 +12,14 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#111111',
-                        accent: '#005bac',
-                        'accent-light': '#e8f0fa',
+                        oist: {
+                            DEFAULT: '#004c45',
+                            accent: '#007a6e',
+                            hover: '#007a6e',
+                        },
+                        gray: {
+                            950: '#111111',
+                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -24,230 +29,228 @@
         }
     </script>
     <style>
-        .nav-transition { transition: all 300ms ease-in-out; }
+        body { color: #333333; }
+        h1, h2, h3, h4, h5, h6 { color: #111111; }
         
-        /* Mobile Menu Animation */
-        #mobile-menu {
+        /* Dropdown Menu */
+        .nav-dropdown {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 200ms ease-in-out;
+        }
+        .nav-item:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu Hamburger */
+        .hamburger span {
+            transition: all 300ms ease-in-out;
+        }
+        .menu-open .hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .menu-open .hamburger span:nth-child(2) { opacity: 0; }
+        .menu-open .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        /* Accordion */
+        .accordion-content {
             max-height: 0;
-            opacity: 0;
             overflow: hidden;
-            transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+            transition: max-height 0.3s ease-out;
         }
-        #mobile-menu.active {
-            max-height: 400px;
-            opacity: 1;
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
         }
-        
-        /* Overlay */
-        #menu-overlay {
+        .accordion-item.active .arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Search Box */
+        #search-overlay {
+            display: none;
             opacity: 0;
-            pointer-events: none;
-            transition: opacity 300ms ease-in-out;
+            transition: opacity 0.3s ease-in-out;
         }
-        #menu-overlay.active {
+        #search-overlay.active {
+            display: flex;
             opacity: 1;
-            pointer-events: auto;
         }
-
-        /* Header Scrolled State for List/Article */
-        header.scrolled {
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-        }
-
-        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #374151; }
-        .article-content h2 { font-size: 1.5rem; font-weight: 700; color: #111111; margin-top: 2.5rem; margin-bottom: 1.25rem; border-left: 4px solid #005bac; padding-left: 1rem; }
-        blockquote { border-left: 4px solid #e5e7eb; padding-left: 1.5rem; font-style: italic; color: #4b5563; margin: 2rem 0; }
     </style>
 </head>
-<body class="bg-white text-gray-900 font-sans">
+<body class="font-sans antialiased pt-20">
 
-    <!-- Menu Overlay -->
-    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40"></div>
-
-    <!-- Header -->
-    <header id="main-header" class="fixed w-full z-50 nav-transition bg-white border-b border-gray-100">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="index.html" class="text-2xl font-bold text-primary tracking-tighter">SCIENCE <span class="text-accent">ORG</span></a>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="list.html" class="nav-link text-sm font-medium text-accent transition-colors">研究</a>
-                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">教育</a>
-                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">创新</a>
-                    <a href="#" class="nav-link text-sm font-medium text-[#1a1a1a] hover:text-accent transition-colors">关于我们</a>
-                    <div class="flex items-center space-x-2 ml-4 border-l pl-6 border-gray-200">
-                        <button class="text-xs font-bold text-accent">中</button>
-                        <span class="text-gray-300">|</span>
-                        <button class="text-xs font-medium text-gray-500 hover:text-accent">EN</button>
+    <!-- Navigation (Same as index.html) -->
+    <header class="fixed w-full top-0 z-[100] bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-oist"></div>
+                <span class="text-xl font-bold text-gray-950 tracking-tighter uppercase">Science <span class="text-oist">Org</span></span>
+            </a>
+            <nav class="hidden xl:flex items-center space-x-1 h-full">
+                <div class="nav-item relative h-full flex items-center px-3 group">
+                    <a href="#" class="text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">About</a>
+                    <div class="nav-dropdown absolute top-20 left-0 bg-white shadow-xl border-t border-gray-100 min-w-[240px] py-4">
+                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">About OIST</a>
+                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent">Careers</a>
                     </div>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-primary p-2 focus:outline-none">
-                        <svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                <div class="nav-item relative h-full flex items-center px-3 group">
+                    <a href="list.html" class="text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Research</a>
+                    <div class="nav-dropdown absolute top-20 left-0 bg-white shadow-xl border-t border-gray-100 min-w-[240px] py-4">
+                        <a href="list.html" class="block px-6 py-2 text-[13px] hover:text-oist-accent">Research at OIST</a>
+                    </div>
                 </div>
+                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Education</a>
+                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Admissions</a>
+                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Innovation</a>
+                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">News</a>
+                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Outreach</a>
+                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Campus</a>
+                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Careers</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="search-btn" class="p-2 text-[#1a1a1a] hover:text-oist-accent transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                <div class="hidden md:flex items-center space-x-2 text-[11px] font-bold border-l pl-4 border-gray-200">
+                    <button class="text-oist-accent">EN</button>
+                    <span class="text-gray-300">/</span>
+                    <button class="text-[#1a1a1a] hover:text-oist-accent">日本語</button>
+                </div>
+                <button id="mobile-menu-btn" class="xl:hidden hamburger p-2 flex flex-col space-y-1.5 z-[110]">
+                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
+                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
+                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
+                </button>
             </div>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden bg-white px-4 py-4 space-y-2 border-b border-gray-100">
-            <a href="list.html" class="block py-2 text-base font-medium text-accent">研究</a>
-            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">教育</a>
-            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">创新</a>
-            <a href="#" class="block py-2 text-base font-medium text-[#1a1a1a]">关于我们</a>
         </div>
     </header>
 
-    <!-- Article Header -->
-    <section class="pt-32 pb-12 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="flex text-xs font-medium text-gray-400 space-x-2 mb-8 uppercase tracking-wider">
-                <a href="index.html" class="hover:text-accent">首页</a>
-                <span>/</span>
-                <a href="list.html" class="hover:text-accent">研究动态</a>
-                <span>/</span>
-                <span class="text-gray-600">正文</span>
-            </nav>
-            
-            <h1 class="text-3xl md:text-5xl font-bold text-primary leading-tight mb-8">解码人类大脑：神经元网络映射的新突破</h1>
-            
-            <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500 mb-10">
-                <div class="flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    2026年3月12日
-                </div>
-                <div class="flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                    作者：陈明远 博士
-                </div>
-                <div class="flex items-center">
-                    <span class="px-2 py-0.5 bg-accent-light text-accent text-[10px] font-bold rounded uppercase">生命科学</span>
+    <!-- Mobile Menu (Same as index.html) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[105] pt-24 px-6 overflow-y-auto hidden">
+        <div class="space-y-2">
+            <div class="accordion-item border-b border-gray-100">
+                <button class="w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]">About <span class="arrow transition-transform duration-300">▶</span></button>
+                <div class="accordion-content bg-gray-50 px-4">
+                    <a href="#" class="block py-3 text-sm">About OIST</a>
                 </div>
             </div>
+            <a href="list.html" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">Research</a>
+            <a href="#" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">Education</a>
+            <a href="#" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">News</a>
+        </div>
+    </div>
 
-            <div class="w-full aspect-[21/9] overflow-hidden rounded-sm shadow-lg">
-                <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1200&h=480&q=80" alt="Featured Image" class="w-full h-full object-cover">
+    <!-- Search Overlay (Same as index.html) -->
+    <div id="search-overlay" class="fixed inset-0 bg-white z-[200] flex-col items-center pt-32 px-6">
+        <button id="close-search" class="absolute top-8 right-8 text-gray-400 hover:text-oist transition-colors">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="max-w-3xl w-full">
+            <input type="text" placeholder="Search Science Org..." class="w-full text-4xl font-light border-b-2 border-gray-100 py-4 focus:outline-none focus:border-oist transition-colors">
+        </div>
+    </div>
+
+    <!-- Article Hero -->
+    <section class="max-w-[1440px] mx-auto px-6 pt-12">
+        <div class="relative h-[480px] overflow-hidden">
+            <img src="https://picsum.photos/1200/480?random=50" alt="Article Hero" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-12">
+                <p class="text-[11px] font-bold text-oist-accent uppercase tracking-widest mb-4">Research Update</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight max-w-4xl">解码人类大脑：神经元网络映射的新突破</h1>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="py-12 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Article Content -->
+    <main class="py-20 bg-white">
+        <div class="max-w-[1440px] mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-16">
-                
-                <!-- Left: Article Content -->
+                <!-- Left: Article Body -->
                 <div class="lg:w-2/3">
-                    <div class="article-content">
-                        <p class="text-lg font-medium text-gray-700 italic border-l-4 border-gray-200 pl-6 mb-10">
-                            “理解大脑如何工作是 21 世纪科学面临的最大挑战之一。我们的新方法让我们能够以前所未有的清晰度观察神经元之间的对话。” —— 陈明远博士
-                        </p>
-                        
-                        <p>
-                            人类大脑由约 860 亿个神经元组成，它们通过数万亿个突触相互连接，形成了一个极其复杂的网络。长期以来，科学家们一直试图绘制出这个网络的精确地图，即所谓的“连接组”。近日，我院神经科学研究中心在这一领域取得了里程碑式的进展。
-                        </p>
-
-                        <h2>高分辨率成像技术的革新</h2>
-                        <p>
-                            传统的成像技术往往难以平衡视野大小与分辨率。为了解决这一难题，我们的团队开发了一种名为“多尺度电子显微扫描”（MS-EMS）的新技术。该技术能够在大范围内实现纳米级的空间分辨率，使我们能够清晰地看到单个突触的精细结构。
-                        </p>
-
-                        <div class="my-10">
-                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&h=500&q=80" alt="Inline Image" class="w-full rounded-sm mb-3">
-                            <p class="text-center text-xs text-gray-400 italic">图 1：通过 MS-EMS 技术捕获的神经元突触连接细节图。</p>
+                    <!-- Meta -->
+                    <div class="flex items-center space-x-6 mb-12 pb-12 border-b border-gray-100">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://picsum.photos/100/100?random=51" alt="Author" class="w-10 h-10 rounded-full">
+                            <div>
+                                <p class="text-xs font-bold text-gray-400 uppercase">Author</p>
+                                <p class="text-sm font-bold">Dr. Sarah Chen</p>
+                            </div>
                         </div>
-
-                        <p>
-                            通过这种技术，我们成功重建了一块约 1 立方毫米的小鼠大脑皮层组织。虽然体积看起来很小，但其中包含了超过 10 万个神经元和数亿个突触。
-                        </p>
-
-                        <h2>数据驱动的神经科学</h2>
-                        <p>
-                            如此大规模的成像产生了海量的数据。仅这一小块组织的原始图像数据就达到了数个 PB。为了处理这些数据，我们与人工智能学部合作，利用深度学习算法自动识别和追踪神经元的形态。
-                        </p>
-
-                        <blockquote>
-                            “如果没有人工智能的辅助，仅靠人工标注这些神经元可能需要数千年的时间。现在，我们可以在几周内完成这项工作。”
-                        </blockquote>
-
-                        <p>
-                            初步分析显示，神经元之间的连接并非随机，而是遵循特定的拓扑规律。这些规律可能正是大脑高效处理信息、产生意识与记忆的物理基础。
-                        </p>
-
-                        <h2>未来展望</h2>
-                        <p>
-                            这项研究不仅是基础科学的胜利，也具有重要的临床意义。通过对比健康大脑与患有神经退行性疾病（如阿尔茨海默症）大脑的连接图谱，我们有望找到疾病发生的早期结构性标志，从而开发出更有效的诊断与治疗手段。
-                        </p>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase">Date</p>
+                            <p class="text-sm font-bold">March 15, 2026</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase">Reading Time</p>
+                            <p class="text-sm font-bold">8 min read</p>
+                        </div>
                     </div>
 
-                    <!-- Article Bottom -->
-                    <div class="mt-16 pt-8 border-t border-gray-100">
-                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                            <div class="flex flex-wrap gap-2">
-                                <a href="#" class="px-3 py-1 bg-gray-50 text-xs text-gray-500 hover:bg-accent hover:text-white transition-colors"># 神经科学</a>
-                                <a href="#" class="px-3 py-1 bg-gray-50 text-xs text-gray-500 hover:bg-accent hover:text-white transition-colors"># 人工智能</a>
-                                <a href="#" class="px-3 py-1 bg-gray-50 text-xs text-gray-500 hover:bg-accent hover:text-white transition-colors"># 大脑图谱</a>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <span class="text-xs text-gray-400 uppercase font-bold">分享至:</span>
-                                <a href="#" class="text-gray-400 hover:text-accent"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                                <a href="#" class="text-gray-400 hover:text-accent"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
-                            </div>
-                        </div>
+                    <!-- Body -->
+                    <div class="prose prose-lg max-w-none text-[#333333] leading-relaxed space-y-8">
+                        <p class="text-xl font-light text-gray-600 italic">我院神经科学研究中心在《自然》杂志发表最新成果，首次实现了对小鼠大脑皮层神经元连接的纳米级重建。这一突破性进展为理解复杂神经网络的功能提供了前所未有的细节。</p>
                         
-                        <div class="mt-12 grid grid-cols-2 gap-4">
-                            <a href="#" class="p-6 border border-gray-100 hover:border-accent group transition-all">
-                                <p class="text-[10px] font-bold text-gray-400 uppercase mb-2">上一篇</p>
-                                <h4 class="text-sm font-bold text-primary group-hover:text-accent">拓扑绝缘体在量子计算中的潜在应用研究</h4>
-                            </a>
-                            <a href="#" class="p-6 border border-gray-100 hover:border-accent group transition-all text-right">
-                                <p class="text-[10px] font-bold text-gray-400 uppercase mb-2">下一篇</p>
-                                <h4 class="text-sm font-bold text-primary group-hover:text-accent">深海生态系统对全球变暖的响应机制分析</h4>
-                            </a>
+                        <p>长期以来，绘制大脑中数以亿计的神经元及其复杂的连接网络一直是神经科学领域的“圣杯”。虽然宏观层面的大脑结构已经得到了广泛研究，但在突触级别理解神经元如何相互沟通仍然面临巨大挑战。</p>
+                        
+                        <h2 class="text-2xl font-bold pt-4">纳米级的视觉革命</h2>
+                        <p>由 Sarah Chen 博士领导的研究团队利用先进的串行切片电子显微镜技术，对一立方毫米的小鼠大脑皮层进行了成像。这一过程产生了超过 2PB 的原始数据，相当于 4000 万张高清照片。</p>
+                        
+                        <div class="my-12">
+                            <img src="https://picsum.photos/800/500?random=52" loading="lazy" alt="Microscope" class="w-full rounded-sm shadow-lg">
+                            <p class="mt-4 text-xs text-gray-400 italic text-center">图：研究团队正在调整超高分辨率电子显微镜参数</p>
                         </div>
+
+                        <p>“这不仅仅是成像技术的胜利，”Chen 博士解释道，“更重要的是我们开发了一套基于人工智能的自动分割算法，能够准确识别并追踪每一个神经元的分支及其突触连接。如果没有 AI 的辅助，人工完成这项工作需要耗费数个世纪。”</p>
+
+                        <blockquote class="border-l-4 border-oist pl-8 py-4 my-12 bg-gray-50 italic text-xl text-gray-700">
+                            “我们现在能够看到神经元之间是如何‘对话’的，这为治疗阿尔茨海默病等神经退行性疾病开辟了全新的路径。”
+                        </blockquote>
+
+                        <h2 class="text-2xl font-bold pt-4">未来的研究方向</h2>
+                        <p>该团队目前正致力于将这一技术应用于人类大脑样本。虽然人类大脑的复杂程度远超小鼠，但这一阶段性成果证明了大规模神经回路重建的可行性。</p>
+                        
+                        <p>研究结果不仅对神经科学具有深远影响，也为类脑智能和人工神经网络的设计提供了生物学灵感。通过模仿自然界最高效的信息处理系统，未来的 AI 可能会变得更加节能且强大。</p>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="mt-16 pt-8 border-t border-gray-100 flex flex-wrap gap-2">
+                        <a href="#" class="px-3 py-1 bg-gray-100 text-[11px] font-bold uppercase tracking-widest hover:bg-oist hover:text-white transition-colors">Neuroscience</a>
+                        <a href="#" class="px-3 py-1 bg-gray-100 text-[11px] font-bold uppercase tracking-widest hover:bg-oist hover:text-white transition-colors">Brain Mapping</a>
+                        <a href="#" class="px-3 py-1 bg-gray-100 text-[11px] font-bold uppercase tracking-widest hover:bg-oist hover:text-white transition-colors">AI</a>
                     </div>
                 </div>
 
                 <!-- Right: Sidebar -->
                 <aside class="lg:w-1/3 space-y-12">
-                    <!-- Author Card -->
-                    <div class="bg-primary text-white p-8 rounded-sm">
-                        <div class="flex items-center gap-4 mb-6">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80" alt="Author" class="w-16 h-16 rounded-full border-2 border-accent">
-                            <div>
-                                <h3 class="text-lg font-bold">陈明远 博士</h3>
-                                <p class="text-xs text-accent font-medium">首席研究员 / 神经科学</p>
+                    <div class="bg-gray-50 p-8">
+                        <h3 class="text-sm font-bold uppercase tracking-widest border-b-2 border-oist pb-2 mb-6">Related News</h3>
+                        <div class="space-y-6">
+                            <div class="group">
+                                <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-1">Innovation</p>
+                                <h4 class="font-bold text-sm group-hover:text-oist-accent transition-colors"><a href="#">量子传感器在生物成像中的应用</a></h4>
+                            </div>
+                            <div class="group">
+                                <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-1">Research</p>
+                                <h4 class="font-bold text-sm group-hover:text-oist-accent transition-colors"><a href="#">新发现：睡眠如何清理大脑代谢废物</a></h4>
+                            </div>
+                            <div class="group">
+                                <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-1">Campus</p>
+                                <h4 class="font-bold text-sm group-hover:text-oist-accent transition-colors"><a href="#">SCIENCE ORG 获批建设国家级脑科学中心</a></h4>
                             </div>
                         </div>
-                        <p class="text-sm text-gray-300 leading-relaxed mb-6">
-                            陈博士在神经成像与计算神经科学领域拥有超过 15 年的研究经验，曾多次在《自然》、《科学》等顶尖期刊发表论文。
-                        </p>
-                        <a href="#" class="inline-block text-xs font-bold uppercase tracking-widest border-b border-accent pb-1 hover:text-accent transition-colors">查看完整个人资料</a>
                     </div>
-
-                    <!-- Related Articles -->
-                    <div>
-                        <h3 class="text-lg font-bold text-primary mb-6 border-l-4 border-accent pl-4 uppercase tracking-wider">相关文章</h3>
-                        <div class="space-y-6">
-                            <div class="flex gap-4">
-                                <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=80&h=80&q=80" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
-                                <div>
-                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">利用 AI 自动识别神经元形态的新算法</a>
-                                    <p class="text-xs text-gray-400 mt-1">2026.02.20</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=80&h=80&q=80" alt="Small" class="w-20 h-20 object-cover flex-shrink-0">
-                                <div>
-                                    <a href="#" class="text-sm font-bold text-primary hover:text-accent line-clamp-2">神经退行性疾病的早期结构性标志研究</a>
-                                    <p class="text-xs text-gray-400 mt-1">2026.01.15</p>
-                                </div>
-                            </div>
+                    
+                    <div class="sticky top-32">
+                        <h3 class="text-sm font-bold uppercase tracking-widest border-b-2 border-oist pb-2 mb-6">Share This Article</h3>
+                        <div class="flex space-x-4">
+                            <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist hover:text-white transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                            </button>
+                            <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist hover:text-white transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </button>
                         </div>
                     </div>
                 </aside>
@@ -255,95 +258,62 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-[#111111] text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <div class="col-span-1 md:col-span-1">
-                    <a href="index.html" class="text-2xl font-bold tracking-tighter mb-6 block">SCIENCE <span class="text-accent">ORG</span></a>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        致力于通过卓越的研究与教育，推动科学进步，造福人类社会。
-                    </p>
+    <!-- Footer (Same as index.html) -->
+    <footer class="bg-oist text-white pt-20 pb-10">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="flex flex-wrap gap-x-8 gap-y-4 text-[11px] font-bold uppercase tracking-widest mb-12 opacity-70">
+                <a href="#" class="hover:text-white transition-colors">Giving Back</a>
+                <a href="#" class="hover:text-white transition-colors">Policy Library</a>
+                <a href="#" class="hover:text-white transition-colors">Sitemap</a>
+            </div>
+            <div class="flex space-x-6 mb-16">
+                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-oist transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 border-b border-white/10">
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white"></div>
+                        <span class="text-2xl font-bold tracking-tighter uppercase">Science Org</span>
+                    </div>
+                    <p class="text-sm opacity-80 leading-relaxed max-w-md">SCIENCE ORG 科研机构<br>地址：某市科技园区科学大道 88 号</p>
                 </div>
-                <div>
-                    <h5 class="text-lg font-bold mb-6">快速链接</h5>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-accent transition-colors">研究领域</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">招生信息</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">校园生活</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">媒体中心</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-lg font-bold mb-6">加入我们</h5>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-accent transition-colors">教职招聘</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">博士后研究</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">行政岗位</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">实习机会</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-lg font-bold mb-6">联系我们</h5>
-                    <p class="text-gray-400 text-sm mb-4">
-                        地址：某市科技园区科学大道 88 号<br>
-                        邮编：100000
-                    </p>
-                    <p class="text-gray-400 text-sm">
-                        电话：+86 (0)10 1234 5678<br>
-                        邮箱：info@scienceorg.edu
-                    </p>
+                <div class="space-y-6">
+                    <h5 class="text-lg font-bold">订阅我们的新闻邮件</h5>
+                    <form class="flex space-x-2">
+                        <input type="email" placeholder="Email Address" class="flex-grow bg-white/10 border border-white/20 px-4 py-3 text-sm focus:outline-none focus:border-white transition-colors">
+                        <button class="px-8 py-3 bg-white text-oist font-bold uppercase tracking-widest text-xs hover:bg-oist-accent hover:text-white transition-colors">Subscribe</button>
+                    </form>
                 </div>
             </div>
-            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
-                <p>&copy; 2026 SCIENCE ORG. 保留所有权利。</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-white">隐私政策</a>
-                    <a href="#" class="hover:text-white">使用条款</a>
-                    <a href="#" class="hover:text-white">网站地图</a>
-                </div>
+            <div class="pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest opacity-50">
+                <p>Copyright © 2011-2026 | SCIENCE ORG</p>
             </div>
         </div>
     </footer>
 
     <script>
-        const header = document.getElementById('main-header');
-        const mobileMenuBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuOverlay = document.getElementById('menu-overlay');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-
-        // Scroll Effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
         // Mobile Menu Toggle
-        function toggleMenu() {
-            const isOpen = mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-            document.body.style.overflow = isOpen ? 'hidden' : '';
-        }
-
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleMenu();
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.classList.toggle('menu-open');
         });
 
-        menuOverlay.addEventListener('click', toggleMenu);
-
-        document.addEventListener('click', (e) => {
-            if (mobileMenu.classList.contains('active') && !header.contains(e.target)) {
-                toggleMenu();
-            }
+        // Accordion Logic
+        const accordionTriggers = document.querySelectorAll('.accordion-item button');
+        accordionTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                trigger.parentElement.classList.toggle('active');
+            });
         });
+
+        // Search Overlay Logic
+        const searchBtn = document.getElementById('search-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearch = document.getElementById('close-search');
+        searchBtn.addEventListener('click', () => searchOverlay.classList.add('active'));
+        closeSearch.addEventListener('click', () => searchOverlay.classList.remove('active'));
     </script>
 </body>
 </html>
