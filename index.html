@@ -4,814 +4,675 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCIENCE ORG | 探索科学的无限边界</title>
+    <title>Okinawa Institute of Science and Technology OIST</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         oist: {
-                            DEFAULT: '#004c45',
-                            accent: '#007a6e',
-                            hover: '#007a6e',
-                        },
-                        gray: {
-                            950: '#111111',
+                            dark: '#004c45',
+                            teal: '#007a6e',
+                            orange: '#f05023',
+                            gray: '#f8f8f8',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     },
                 }
             }
         }
     </script>
     <style>
-        body { color: #333333; }
-        h1, h2, h3, h4, h5, h6 { color: #111111; }
-        
-        /* Mega Menu Panels */
-        .mega-panel {
+        @import "tailwindcss";
+
+        body {
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        /* Mega Menu Styles */
+        .mega-menu {
             position: fixed;
-            top: 80px;
+            top: 100px; /* Adjusted for taller header */
             left: 0;
             width: 100%;
             background-color: #1a1a1a;
             color: white;
-            padding: 48px 0;
-            z-index: 150;
+            z-index: 100;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 200ms ease-in-out;
+            transform: translateY(-10px);
+            transition: all 0.3s ease-in-out;
+            padding: 60px 0;
         }
-        .mega-panel.active {
+
+        .mega-menu.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        .mega-panel h4 {
+
+        .mega-menu h3 {
             color: #007a6e;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 1.5rem;
-        }
-        .mega-panel a {
-            display: block;
-            font-size: 13px;
-            color: #cccccc;
-            margin-bottom: 0.75rem;
-            transition: color 0.2s;
-        }
-        .mega-panel a:hover {
-            color: white;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
         }
 
-        /* Nav Button Active State */
-        .nav-btn {
-            position: relative;
-            height: 100%;
-            padding: 0 12px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a1a1a;
+        .mega-menu ul li a {
+            font-size: 14px;
+            color: #ccc;
+            display: block;
+            padding: 8px 0;
             transition: color 0.2s;
         }
-        .nav-btn:hover { color: #007a6e; }
-        .nav-btn::after {
+
+        .mega-menu ul li a:hover {
+            color: #fff;
+        }
+
+        /* Nav Underline */
+        .nav-link {
+            position: relative;
+            padding: 10px 0;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             width: 100%;
             height: 3px;
             background-color: #007a6e;
             transform: scaleX(0);
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
         }
-        .nav-btn.active::after {
+
+        .nav-link.active::after, .nav-link:hover::after {
             transform: scaleX(1);
         }
 
-        /* Backdrop Overlay */
-        #mega-backdrop {
+        /* Backdrop */
+        #menu-backdrop {
             position: fixed;
             inset: 0;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 140;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s;
-        }
-        #mega-backdrop.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Mobile Menu Hamburger */
-        .hamburger span {
-            transition: all 300ms ease-in-out;
-        }
-        .menu-open .hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .menu-open .hamburger span:nth-child(2) { opacity: 0; }
-        .menu-open .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-        /* Carousel */
-        .carousel-container { overflow: hidden; position: relative; }
-        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
-        .carousel-item { min-width: 100%; flex-shrink: 0; }
-        @media (min-width: 768px) {
-            .carousel-item { min-width: 33.333%; }
-        }
-
-        /* Accordion */
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .accordion-item.active .arrow {
-            transform: rotate(90deg);
-        }
-
-        /* Search Box */
-        #search-overlay {
+            background: rgba(0,0,0,0.5);
+            z-index: 90;
             display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* News Card Hover */
+        .news-card img {
+            transition: transform 0.5s ease;
+        }
+        .news-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            flex: 0 0 100%;
+        }
+        @media (min-width: 768px) {
+            .carousel-item {
+                flex: 0 0 33.333%;
+            }
+        }
+
+        /* Search Overlay */
+        #search-overlay {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 200;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
         }
         #search-overlay.active {
             display: flex;
-            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #004c45;
         }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans">
 
-    <!-- Backdrop for Mega Menu -->
-    <div id="mega-backdrop"></div>
+    <div id="menu-backdrop"></div>
 
-    <!-- Navigation -->
-    <header class="fixed w-full top-0 z-[200] bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]">
-        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="index.html" class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-oist"></div>
-                <span class="text-xl font-bold text-gray-950 tracking-tighter uppercase">Science <span class="text-oist">Org</span></span>
+    <!-- Search Overlay -->
+    <div id="search-overlay">
+        <button id="close-search" class="absolute top-10 right-10 p-4 hover:text-oist-teal">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="w-full max-w-4xl px-6">
+            <input type="text" placeholder="Search OIST..." class="w-full text-4xl lg:text-6xl font-light border-b-2 border-gray-100 py-6 focus:outline-none focus:border-oist-teal transition-colors">
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-oist-teal">Admissions</a></li>
+                        <li><a href="#" class="hover:text-oist-teal">Research Units</a></li>
+                        <li><a href="#" class="hover:text-oist-teal">Campus Map</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full bg-white z-[110] border-b border-gray-100">
+        <!-- Top Utility Bar -->
+        <div class="bg-oist-dark text-white py-2 px-6 hidden lg:block">
+            <div class="max-w-[1440px] mx-auto flex justify-end space-x-6 text-[11px] font-bold uppercase tracking-widest opacity-80">
+                <a href="#" class="hover:opacity-100">Giving</a>
+                <a href="#" class="hover:opacity-100">Policy Library</a>
+                <a href="#" class="hover:opacity-100">Careers</a>
+                <a href="#" class="hover:opacity-100">Contact</a>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="max-w-[1440px] mx-auto px-6 h-20 lg:h-24 flex items-center justify-between">
+            <!-- Logo & Name -->
+            <a href="index.html" class="flex items-center space-x-4">
+                <div class="w-10 h-10 lg:w-12 lg:h-12 bg-oist-dark flex-shrink-0"></div>
+                <div class="flex flex-col">
+                    <span class="text-lg lg:text-xl font-bold tracking-tighter leading-none uppercase">OIST</span>
+                    <span class="text-[10px] lg:text-[11px] font-medium tracking-tight text-gray-500 hidden sm:block">Okinawa Institute of Science and Technology Graduate University</span>
+                </div>
             </a>
 
-            <!-- Desktop Nav -->
-            <nav class="hidden xl:flex items-center space-x-1 h-full">
-                <button class="nav-btn" data-panel="panel-about">About</button>
-                <button class="nav-btn" data-panel="panel-research">Research</button>
-                <button class="nav-btn" data-panel="panel-education">Education</button>
-                <a href="#" class="nav-btn flex items-center">Admissions</a>
-                <a href="#" class="nav-btn flex items-center">Innovation</a>
-                <button class="nav-btn" data-panel="panel-news">News</button>
-                <button class="nav-btn" data-panel="panel-outreach">Outreach</button>
-                <button class="nav-btn" data-panel="panel-campus">Campus</button>
-                <a href="#" class="nav-btn flex items-center">Careers</a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden xl:flex items-center space-x-6 h-full">
+                <button class="nav-link" data-menu="about">About</button>
+                <button class="nav-link" data-menu="research">Research</button>
+                <button class="nav-link" data-menu="education">Education</button>
+                <button class="nav-link" data-menu="admissions">Admissions</button>
+                <button class="nav-link" data-menu="innovation">Innovation</button>
+                <button class="nav-link" data-menu="news">News</button>
+                <button class="nav-link" data-menu="outreach">Outreach</button>
+                <button class="nav-link" data-menu="campus">Campus</button>
             </nav>
 
             <!-- Right Actions -->
             <div class="flex items-center space-x-4">
-                <button id="search-btn" class="p-2 text-[#1a1a1a] hover:text-oist-accent transition-colors">
+                <button id="search-trigger" class="p-2 hover:text-oist-teal transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
                 <div class="hidden md:flex items-center space-x-2 text-[11px] font-bold border-l pl-4 border-gray-200">
-                    <button class="text-oist-accent">EN</button>
+                    <button class="text-oist-teal">EN</button>
                     <span class="text-gray-300">/</span>
-                    <button class="text-[#1a1a1a] hover:text-oist-accent">日本語</button>
+                    <button class="text-gray-900 hover:text-oist-teal">JP</button>
                 </div>
-                <!-- Mobile Toggle -->
-                <button id="mobile-menu-btn" class="xl:hidden hamburger p-2 flex flex-col space-y-1.5 z-[210]">
-                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
-                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
-                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
+                <button id="mobile-toggle" class="xl:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
 
-        <!-- Mega Menu Panels -->
-        <!-- Panel About -->
-        <div id="panel-about" class="mega-panel">
+        <!-- Mega Menus -->
+        <div id="menu-about" class="mega-menu">
             <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
                 <div>
-                    <h4>Overview</h4>
-                    <a href="#">About OIST</a>
-                    <a href="#">Facts and Figures</a>
-                    <a href="#">Leadership and Governance</a>
+                    <h3>Overview</h3>
+                    <ul>
+                        <li><a href="#">About OIST</a></li>
+                        <li><a href="#">Facts and Figures</a></li>
+                        <li><a href="#">Leadership and Governance</a></li>
+                        <li><a href="#">History</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>History & Values</h4>
-                    <a href="#">History</a>
-                    <a href="#">Mission and Vision</a>
-                    <a href="#">Sustainability</a>
+                    <h3>Institutional</h3>
+                    <ul>
+                        <li><a href="#">Mission and Vision</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Diversity and Inclusion</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Resources</h4>
-                    <a href="#">Publications and Reports</a>
-                    <a href="#">Media Kit</a>
-                    <a href="#">Tokyo Office</a>
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Publications and Reports</a></li>
+                        <li><a href="#">Media Kit</a></li>
+                        <li><a href="#">Tokyo Office</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Opportunities</h4>
-                    <a href="#">Careers</a>
-                    <a href="#">Giving to OIST</a>
-                    <a href="#">Contact Us</a>
+                    <h3>Opportunities</h3>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Giving to OIST</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Panel Research -->
-        <div id="panel-research" class="mega-panel">
+        <div id="menu-research" class="mega-menu">
             <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
                 <div>
-                    <h4>Programs</h4>
-                    <a href="list.html">Research at OIST</a>
-                    <a href="#">Faculty and Research Units</a>
-                    <a href="#">Postdoctoral Scholars</a>
+                    <h3>Research at OIST</h3>
+                    <ul>
+                        <li><a href="#">Overview</a></li>
+                        <li><a href="#">Faculty and Research Units</a></li>
+                        <li><a href="#">Postdoctoral Scholars</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Centers</h4>
-                    <a href="#">Open Centers</a>
-                    <a href="#">Marine Science Station</a>
-                    <a href="#">Quantum Technology Center</a>
+                    <h3>Centers</h3>
+                    <ul>
+                        <li><a href="#">Open Centers</a></li>
+                        <li><a href="#">Marine Science Station</a></li>
+                        <li><a href="#">Quantum Technology Center</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Infrastructure</h4>
-                    <a href="#">Research Facilities</a>
-                    <a href="#">Core Instrumentation</a>
-                    <a href="#">Computing Resources</a>
+                    <h3>Facilities</h3>
+                    <ul>
+                        <li><a href="#">Research Facilities</a></li>
+                        <li><a href="#">Core Instrumentation</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Support</h4>
-                    <a href="#">Research Support</a>
-                    <a href="#">Grants & Partnerships</a>
-                    <a href="#">Ethics and Compliance</a>
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Research Support</a></li>
+                        <li><a href="#">Grants and Partnerships</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Panel Education -->
-        <div id="panel-education" class="mega-panel">
+        <!-- Mega Menu: Admissions -->
+        <div id="menu-admissions" class="mega-menu">
             <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
                 <div>
-                    <h4>Graduate School</h4>
-                    <a href="#">PhD Program</a>
-                    <a href="#">Curriculum</a>
-                    <a href="#">Admissions</a>
+                    <h3>Degree Programs</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">PhD Program</a></li>
+                        <li><a href="#">Research Internship</a></li>
+                        <li><a href="#">Visiting Program</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Student Life</h4>
-                    <a href="#">Student Support</a>
-                    <a href="#">Housing</a>
-                    <a href="#">Recreation</a>
+                    <h3>How to Apply</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Application Process</a></li>
+                        <li><a href="#">Financial Support</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Internships</h4>
-                    <a href="#">Research Internship</a>
-                    <a href="#">Summer Programs</a>
+                    <h3>Student Life</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Housing</a></li>
+                        <li><a href="#">Health & Wellness</a></li>
+                        <li><a href="#">Okinawa Life</a></li>
+                    </ul>
                 </div>
-                <div>
-                    <h4>Funding</h4>
-                    <a href="#">Tuition & Fees</a>
-                    <a href="#">Financial Support</a>
+                <div class="bg-oist-dark p-8">
+                    <h4 class="text-oist-teal text-xs font-bold uppercase mb-4">Upcoming Deadline</h4>
+                    <p class="text-white text-lg font-bold mb-4">PhD Application Deadline: March 31, 2026</p>
+                    <a href="#" class="inline-block bg-oist-teal text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-oist-teal transition-colors">Apply Now</a>
                 </div>
             </div>
         </div>
 
-        <!-- Panel News -->
-        <div id="panel-news" class="mega-panel">
+        <!-- Mega Menu: Campus -->
+        <div id="menu-campus" class="mega-menu">
             <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
                 <div>
-                    <h4>Latest</h4>
-                    <a href="#">Latest News</a>
-                    <a href="#">Press Releases</a>
-                    <a href="#">Media Coverage</a>
+                    <h3>Our Campus</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Architecture</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Art at OIST</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Social</h4>
-                    <a href="#">Social Media</a>
-                    <a href="#">Podcast</a>
-                    <a href="#">Newsletter</a>
+                    <h3>Community</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Diversity & Inclusion</a></li>
+                        <li><a href="#">Clubs & Activities</a></li>
+                        <li><a href="#">Resource Center</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4>Events</h4>
-                    <a href="#">Event Calendar</a>
-                    <a href="#">Public Lectures</a>
+                    <h3>Visit Us</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Campus Tours</a></li>
+                        <li><a href="#">Access & Maps</a></li>
+                        <li><a href="#">OIST Gallery</a></li>
+                    </ul>
                 </div>
-                <div>
-                    <h4>Contact</h4>
-                    <a href="#">Press Contact</a>
-                    <a href="#">Expert Guide</a>
+                <div class="relative overflow-hidden group">
+                    <img src="https://picsum.photos/seed/campus/400/300" alt="Campus" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <span class="text-white font-bold uppercase tracking-widest border-b-2 border-oist-teal">Virtual Tour</span>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Panel Outreach -->
-        <div id="panel-outreach" class="mega-panel">
-            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
-                <div>
-                    <h4>Community</h4>
-                    <a href="#">Community Outreach</a>
-                    <a href="#">Outreach News</a>
-                </div>
-                <div>
-                    <h4>Schools</h4>
-                    <a href="#">Elementary School</a>
-                    <a href="#">High School</a>
-                    <a href="#">University</a>
-                </div>
-                <div>
-                    <h4>Public</h4>
-                    <a href="#">General Public</a>
-                    <a href="#">Open Campus</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel Campus -->
-        <div id="panel-campus" class="mega-panel">
-            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
-                <div>
-                    <h4>Visit</h4>
-                    <a href="#">Campus Map</a>
-                    <a href="#">Access & Parking</a>
-                    <a href="#">Tours</a>
-                </div>
-                <div>
-                    <h4>Services</h4>
-                    <a href="#">Event Venues</a>
-                    <a href="#">Dining</a>
-                    <a href="#">Childcare</a>
-                </div>
-                <div>
-                    <h4>Living</h4>
-                    <a href="#">Housing</a>
-                    <a href="#">Health & Wellness</a>
-                </div>
-            </div>
-        </div>
+        <!-- Add other menus as needed... -->
     </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[105] pt-24 px-6 overflow-y-auto hidden">
-        <div class="space-y-2">
-            <!-- About Accordion -->
-            <div class="accordion-item border-b border-gray-100">
-                <button class="accordion-trigger w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]" aria-expanded="false">
-                    About <span class="arrow transition-transform duration-300">▶</span>
-                </button>
-                <div class="accordion-content bg-gray-50 px-4">
-                    <a href="#" class="block py-3 text-sm border-b border-white">About OIST</a>
-                    <a href="#" class="block py-3 text-sm border-b border-white">Facts and Figures</a>
-                    <a href="#" class="block py-3 text-sm border-b border-white">Leadership</a>
-                    <a href="#" class="block py-3 text-sm">Careers</a>
-                </div>
-            </div>
-            <!-- Research Accordion -->
-            <div class="accordion-item border-b border-gray-100">
-                <button class="accordion-trigger w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]" aria-expanded="false">
-                    Research <span class="arrow transition-transform duration-300">▶</span>
-                </button>
-                <div class="accordion-content bg-gray-50 px-4">
-                    <a href="list.html" class="block py-3 text-sm border-b border-white">Research at OIST</a>
-                    <a href="#" class="block py-3 text-sm border-b border-white">Faculty Units</a>
-                    <a href="#" class="block py-3 text-sm">Facilities</a>
-                </div>
-            </div>
-            <!-- Other Items -->
-            <a href="#" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">Education</a>
-            <a href="#" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">Admissions</a>
-            <a href="#" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">Innovation</a>
-            <a href="#" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">News</a>
-        </div>
-
-        <!-- Mobile Bottom -->
-        <div class="mt-12 pb-12 space-y-6">
-            <div class="flex items-center space-x-4">
-                <button class="px-4 py-2 bg-oist text-white text-sm font-bold">EN</button>
-                <button class="px-4 py-2 bg-gray-100 text-[#1a1a1a] text-sm font-bold">日本語</button>
-            </div>
-            <div class="relative">
-                <input type="text" placeholder="Search..." class="w-full bg-gray-100 h-12 px-4 rounded-sm focus:outline-none">
-                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Search Overlay -->
-    <div id="search-overlay" class="fixed inset-0 bg-white z-[300] flex-col items-center pt-32 px-6">
-        <button id="close-search" class="absolute top-8 right-8 text-gray-400 hover:text-oist transition-colors">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-        <div class="max-w-3xl w-full">
-            <input type="text" placeholder="Search Science Org..." class="w-full text-4xl font-light border-b-2 border-gray-100 py-4 focus:outline-none focus:border-oist transition-colors">
-            <p class="mt-4 text-gray-400 text-sm">Press Enter to search</p>
-        </div>
-    </div>
-
     <!-- Hero Section -->
-    <section class="relative h-screen min-h-[600px] overflow-hidden">
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-science-experiment-in-a-laboratory-41443-large.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-black/30"></div>
-        <div class="absolute bottom-[15%] left-[6rem] z-10 w-full">
-            <h1 class="text-5xl md:text-7xl font-[300] text-white leading-tight max-w-4xl tracking-[-0.02em]" fetchpriority="high">探索科学的无限边界</h1>
-            <p class="text-xl text-white/90 mt-4 font-light">Science Without Boundaries</p>
+    <section class="relative h-screen min-h-[600px] flex items-end pt-24">
+        <div class="absolute inset-0">
+            <img src="https://picsum.photos/1920/1080?random=1" alt="OIST Campus" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-[1440px] mx-auto px-6 pb-24 w-full">
+            <div class="max-w-3xl">
+                <h1 class="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">Science Without Boundaries</h1>
+                <p class="text-xl text-white/90 font-light max-w-xl">OIST is a world-class graduate university in Okinawa, Japan, conducting pioneering research across disciplines.</p>
+                <div class="mt-10 flex space-x-4">
+                    <a href="#" class="px-8 py-4 bg-oist-teal text-white font-bold uppercase tracking-widest text-xs hover:bg-oist-dark transition-colors">Explore Research</a>
+                    <a href="#" class="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold uppercase tracking-widest text-xs hover:bg-white/20 transition-colors">Study at OIST</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- News Carousel Section -->
-    <section class="py-24 bg-white overflow-hidden">
+    <!-- News Section -->
+    <section class="py-24 bg-white">
         <div class="max-w-[1440px] mx-auto px-6">
             <div class="flex justify-between items-end mb-12">
-                <h2 class="text-3xl font-bold uppercase tracking-tight">新闻动态</h2>
-                <a href="list.html" class="text-sm font-bold text-oist-accent hover:underline uppercase tracking-widest">查看全部 &rarr;</a>
+                <h2 class="text-4xl font-bold tracking-tight">News</h2>
+                <a href="#" class="text-sm font-bold text-oist-teal hover:underline uppercase tracking-widest">View all news &rarr;</a>
             </div>
-            
-            <div class="carousel-container group">
-                <div class="carousel-track" id="news-carousel">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item px-4">
-                        <div class="bg-white">
-                            <div class="aspect-video overflow-hidden mb-6">
-                                <img src="https://picsum.photos/800/500?random=11" loading="lazy" alt="News" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Research Update</p>
-                            <h3 class="text-xl font-bold mb-3 line-clamp-2"><a href="article.html" class="hover:text-oist-accent transition-colors">解码人类大脑：神经元网络映射的新突破</a></h3>
-                            <p class="text-sm text-gray-600 line-clamp-2">我院神经科学研究中心在《自然》杂志发表最新成果，首次实现了对小鼠大脑皮层神经元连接的纳米级重建。</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- News Item 1 -->
+                <article class="news-card group cursor-pointer">
+                    <div class="aspect-[16/10] overflow-hidden mb-6">
+                        <img src="https://picsum.photos/800/500?random=10" alt="News" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-bold text-oist-teal uppercase tracking-widest">Research Update</span>
+                        <h3 class="text-xl font-bold leading-snug group-hover:text-oist-teal transition-colors">New Breakthrough in Quantum Computing Efficiency</h3>
+                        <p class="text-sm text-gray-500 line-clamp-2">Researchers at OIST have developed a new method to reduce decoherence in superconducting qubits, paving the way for more stable quantum processors.</p>
+                        <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">March 14, 2026</time>
+                    </div>
+                </article>
+
+                <!-- News Item 2 -->
+                <article class="news-card group cursor-pointer">
+                    <div class="aspect-[16/10] overflow-hidden mb-6">
+                        <img src="https://picsum.photos/800/500?random=11" alt="News" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-bold text-oist-teal uppercase tracking-widest">Innovation</span>
+                        <h3 class="text-xl font-bold leading-snug group-hover:text-oist-teal transition-colors">OIST Startup Receives Major Series A Funding</h3>
+                        <p class="text-sm text-gray-500 line-clamp-2">A spin-off company focusing on sustainable marine energy has secured $15M to scale its underwater turbine technology.</p>
+                        <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">March 12, 2026</time>
+                    </div>
+                </article>
+
+                <!-- News Item 3 -->
+                <article class="news-card group cursor-pointer">
+                    <div class="aspect-[16/10] overflow-hidden mb-6">
+                        <img src="https://picsum.photos/800/500?random=12" alt="News" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-bold text-oist-teal uppercase tracking-widest">Education</span>
+                        <h3 class="text-xl font-bold leading-snug group-hover:text-oist-teal transition-colors">2026 PhD Admissions Now Open for International Students</h3>
+                        <p class="text-sm text-gray-500 line-clamp-2">Join a diverse community of scholars from over 50 countries. Applications are accepted until the end of the month.</p>
+                        <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">March 10, 2026</time>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-24 bg-oist-gray">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="text-4xl font-bold tracking-tight">Events</h2>
+                <a href="#" class="text-sm font-bold text-oist-teal hover:underline uppercase tracking-widest">View all events &rarr;</a>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Event 1 -->
+                <div class="bg-white p-8 flex flex-col md:flex-row md:items-center justify-between group hover:shadow-lg transition-all cursor-pointer">
+                    <div class="flex items-center space-x-8">
+                        <div class="text-center min-w-[60px]">
+                            <p class="text-xs font-bold text-gray-400 uppercase">MAR</p>
+                            <p class="text-4xl font-bold text-oist-dark">20</p>
+                        </div>
+                        <div>
+                            <span class="inline-block px-2 py-0.5 bg-oist-teal text-white text-[10px] font-bold rounded uppercase mb-2">Symposium</span>
+                            <h4 class="text-xl font-bold group-hover:text-oist-teal transition-colors">The Future of Marine Biodiversity in the Pacific</h4>
                         </div>
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item px-4">
-                        <div class="bg-white">
-                            <div class="aspect-video overflow-hidden mb-6">
-                                <img src="https://picsum.photos/800/500?random=12" loading="lazy" alt="News" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Innovation</p>
-                            <h3 class="text-xl font-bold mb-3 line-clamp-2">全球气候变化监测网络正式启动</h3>
-                            <p class="text-sm text-gray-600 line-clamp-2">SCIENCE ORG 与 12 家国际顶尖机构联合发起的全球海洋与大气监测网络今日在日内瓦宣布正式运行。</p>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="carousel-item px-4">
-                        <div class="bg-white">
-                            <div class="aspect-video overflow-hidden mb-6">
-                                <img src="https://picsum.photos/800/500?random=13" loading="lazy" alt="News" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Education</p>
-                            <h3 class="text-xl font-bold mb-3 line-clamp-2">2026 年度博士研究生招生计划发布</h3>
-                            <p class="text-sm text-gray-600 line-clamp-2">我院今年将进一步扩大跨学科博士项目的招生规模，重点支持量子计算与生物工程领域的交叉研究。</p>
-                        </div>
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="carousel-item px-4">
-                        <div class="bg-white">
-                            <div class="aspect-video overflow-hidden mb-6">
-                                <img src="https://picsum.photos/800/500?random=14" loading="lazy" alt="News" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Outreach</p>
-                            <h3 class="text-xl font-bold mb-3 line-clamp-2">科学走进社区：2026 春季科普周圆满落幕</h3>
-                            <p class="text-sm text-gray-600 line-clamp-2">为期一周的科普活动吸引了超过 5000 名市民参与，展示了科学与日常生活的紧密联系。</p>
-                        </div>
-                    </div>
-                    <!-- Slide 5 -->
-                    <div class="carousel-item px-4">
-                        <div class="bg-white">
-                            <div class="aspect-video overflow-hidden mb-6">
-                                <img src="https://picsum.photos/800/500?random=15" loading="lazy" alt="News" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Campus</p>
-                            <h3 class="text-xl font-bold mb-3 line-clamp-2">新科研大楼落成，助力跨学科合作</h3>
-                            <p class="text-sm text-gray-600 line-clamp-2">耗时三年建设的新大楼正式投入使用，将为量子物理与合成生物学团队提供顶尖的研究环境。</p>
-                        </div>
+                    <div class="mt-4 md:mt-0 text-right">
+                        <p class="text-sm font-bold text-gray-500">14:00 - 17:00</p>
+                        <p class="text-xs text-gray-400">Auditorium B, Campus Center</p>
                     </div>
                 </div>
-                
-                <!-- Carousel Controls -->
-                <div class="flex justify-center items-center mt-12 space-x-6">
-                    <button id="prev-btn" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist hover:text-white transition-all">
+
+                <!-- Event 2 -->
+                <div class="bg-white p-8 flex flex-col md:flex-row md:items-center justify-between group hover:shadow-lg transition-all cursor-pointer">
+                    <div class="flex items-center space-x-8">
+                        <div class="text-center min-w-[60px]">
+                            <p class="text-xs font-bold text-gray-400 uppercase">MAR</p>
+                            <p class="text-4xl font-bold text-oist-dark">25</p>
+                        </div>
+                        <div>
+                            <span class="inline-block px-2 py-0.5 bg-oist-orange text-white text-[10px] font-bold rounded uppercase mb-2">Seminar</span>
+                            <h4 class="text-xl font-bold group-hover:text-oist-teal transition-colors">AI Ethics: Navigating the New Frontier of Research</h4>
+                        </div>
+                    </div>
+                    <div class="mt-4 md:mt-0 text-right">
+                        <p class="text-sm font-bold text-gray-500">10:00 - 12:00</p>
+                        <p class="text-xs text-gray-400">Online Webinar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Highlights Carousel -->
+    <section class="py-24 bg-white">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-bold tracking-tight">Research Highlights</h2>
+                    <p class="text-gray-500 mt-2">Discover the impact of our scientific discoveries.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="prev-slide" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist-teal hover:text-white transition-all">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
-                    <div class="flex space-x-2" id="carousel-dots">
-                        <!-- Dots generated by JS -->
-                    </div>
-                    <button id="next-btn" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist hover:text-white transition-all">
+                    <button id="next-slide" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist-teal hover:text-white transition-all">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
                 </div>
             </div>
+
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel-track">
+                    <!-- Item 1 -->
+                    <div class="carousel-item px-4">
+                        <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-dark hover:text-white transition-all">
+                            <div>
+                                <h4 class="text-xs font-bold text-oist-teal uppercase tracking-widest mb-4 group-hover:text-white">Neuroscience</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">Mapping the Neural Circuits of Memory</h3>
+                                <p class="text-sm opacity-70">How the brain stores and retrieves complex information across distributed networks.</p>
+                            </div>
+                            <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
+                                Read More <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="carousel-item px-4">
+                        <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-dark hover:text-white transition-all">
+                            <div>
+                                <h4 class="text-xs font-bold text-oist-teal uppercase tracking-widest mb-4 group-hover:text-white">Marine Science</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">Coral Resilience in a Warming Ocean</h3>
+                                <p class="text-sm opacity-70">Genetic adaptations that allow Okinawa's reefs to survive extreme heat events.</p>
+                            </div>
+                            <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
+                                Read More <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="carousel-item px-4">
+                        <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-dark hover:text-white transition-all">
+                            <div>
+                                <h4 class="text-xs font-bold text-oist-teal uppercase tracking-widest mb-4 group-hover:text-white">Physics</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">Quantum Materials for the Next Generation</h3>
+                                <p class="text-sm opacity-70">Synthesizing new states of matter with topological properties for future electronics.</p>
+                            </div>
+                            <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
+                                Read More <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="carousel-item px-4">
+                        <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-dark hover:text-white transition-all">
+                            <div>
+                                <h4 class="text-xs font-bold text-oist-teal uppercase tracking-widest mb-4 group-hover:text-white">AI & Robotics</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">Bio-inspired Autonomous Systems</h3>
+                                <p class="text-sm opacity-70">Developing robots that learn and adapt using principles from animal behavior.</p>
+                            </div>
+                            <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
+                                Read More <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Research Events Section -->
+    <!-- Bento Grid Sections -->
     <section class="py-24 bg-white">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="flex justify-between items-end mb-12">
-                <h2 class="text-3xl font-bold uppercase tracking-tight">学术活动</h2>
-                <a href="#" class="text-sm font-bold text-oist-accent hover:underline uppercase tracking-widest">查看更多 &rarr;</a>
-            </div>
-            
-            <div class="flex flex-col border-t border-[#e5e5e5]">
-                <!-- Event 1 -->
-                <div class="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b border-[#e5e5e5] gap-4">
-                    <div class="flex items-center space-x-8 min-w-[100px]">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-gray-400 uppercase">MAR</p>
-                            <p class="text-4xl font-bold text-oist">15</p>
-                        </div>
-                    </div>
-                    <div class="flex-grow">
-                        <span class="inline-block px-2 py-0.5 bg-oist text-white text-[10px] font-bold rounded uppercase mb-2">Symposium</span>
-                        <h4 class="text-xl font-bold hover:text-oist-accent transition-colors"><a href="#">量子计算的未来：从理论到商业化应用</a></h4>
-                    </div>
-                    <div class="text-right text-sm text-gray-500">
-                        <p>14:00 - 17:00</p>
-                        <p>Auditorium A, Campus Center</p>
-                    </div>
-                </div>
-                <!-- Event 2 -->
-                <div class="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b border-[#e5e5e5] gap-4">
-                    <div class="flex items-center space-x-8 min-w-[100px]">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-gray-400 uppercase">MAR</p>
-                            <p class="text-4xl font-bold text-oist">22</p>
-                        </div>
-                    </div>
-                    <div class="flex-grow">
-                        <span class="inline-block px-2 py-0.5 bg-orange-600 text-white text-[10px] font-bold rounded uppercase mb-2">Seminar</span>
-                        <h4 class="text-xl font-bold hover:text-oist-accent transition-colors"><a href="#">合成生物学：重塑生命蓝图的伦理与技术</a></h4>
-                    </div>
-                    <div class="text-right text-sm text-gray-500">
-                        <p>10:30 - 12:00</p>
-                        <p>Lab Building 3, Room 204</p>
-                    </div>
-                </div>
-                <!-- Event 3 -->
-                <div class="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b border-[#e5e5e5] gap-4">
-                    <div class="flex items-center space-x-8 min-w-[100px]">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-gray-400 uppercase">APR</p>
-                            <p class="text-4xl font-bold text-oist">05</p>
-                        </div>
-                    </div>
-                    <div class="flex-grow">
-                        <span class="inline-block px-2 py-0.5 bg-blue-600 text-white text-[10px] font-bold rounded uppercase mb-2">Workshop</span>
-                        <h4 class="text-xl font-bold hover:text-oist-accent transition-colors"><a href="#">2026 春季校园开放日：走进顶尖实验室</a></h4>
-                    </div>
-                    <div class="text-right text-sm text-gray-500">
-                        <p>09:00 - 16:00</p>
-                        <p>Main Entrance, Science Campus</p>
-                    </div>
-                </div>
-                <!-- Event 4 -->
-                <div class="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b border-[#e5e5e5] gap-4">
-                    <div class="flex items-center space-x-8 min-w-[100px]">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-gray-400 uppercase">APR</p>
-                            <p class="text-4xl font-bold text-oist">12</p>
-                        </div>
-                    </div>
-                    <div class="flex-grow">
-                        <span class="inline-block px-2 py-0.5 bg-purple-600 text-white text-[10px] font-bold rounded uppercase mb-2">Lecture</span>
-                        <h4 class="text-xl font-bold hover:text-oist-accent transition-colors"><a href="#">深海生态系统对全球变暖的响应机制</a></h4>
-                    </div>
-                    <div class="text-right text-sm text-gray-500">
-                        <p>15:00 - 16:30</p>
-                        <p>Ocean Research Center, Hall B</p>
-                    </div>
+        <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="relative h-[500px] group overflow-hidden">
+                <img src="https://picsum.photos/1000/800?random=30" alt="Research" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-12 text-white">
+                    <h3 class="text-4xl font-bold mb-4">Research at OIST</h3>
+                    <p class="text-lg text-white/80 mb-8 max-w-md">Discover how our scientists are pushing the boundaries of knowledge across 80+ research units.</p>
+                    <a href="#" class="inline-block w-fit px-8 py-4 border border-white font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all">Explore Units</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Research and Faculty Section -->
-    <section class="py-24 bg-white">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="relative h-[450px] group overflow-hidden">
-                    <img src="https://picsum.photos/700/500?random=20" alt="Research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-10 text-white">
-                        <h3 class="text-3xl font-bold mb-4">Research at OIST</h3>
-                        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-oist-accent transition-colors">Explore →</a>
-                    </div>
-                </div>
-                <div class="relative h-[450px] group overflow-hidden">
-                    <img src="https://picsum.photos/700/500?random=21" alt="Faculty" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-10 text-white">
-                        <h3 class="text-3xl font-bold mb-4">Faculty and Research Units</h3>
-                        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-oist-accent transition-colors">Explore →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Study at OIST Section -->
-    <section class="py-24 bg-oist text-white">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="max-w-3xl mb-16">
-                <h2 class="text-4xl font-bold mb-6">Study at OIST</h2>
-                <p class="text-lg text-white/80 leading-relaxed">加入全球顶尖的跨学科博士项目，在世界一流导师的指导下开展前沿研究。我们提供全额奖学金支持与高度国际化的学术环境。</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="space-y-4">
-                    <h4 class="text-xl font-bold">Science Without Boundaries</h4>
-                    <p class="text-sm text-white/70 leading-relaxed">打破传统学科壁垒，在物理、化学、生物与计算科学的交汇点探索未知。</p>
-                    <a href="#" class="inline-block text-xs font-bold uppercase border-b border-white pb-1 hover:text-oist-accent hover:border-oist-accent transition-colors">Learn More</a>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="text-xl font-bold">PhD Program</h4>
-                    <p class="text-sm text-white/70 leading-relaxed">全额奖学金支持，高度国际化的教学环境，培养下一代科学领袖。</p>
-                    <a href="#" class="inline-block text-xs font-bold uppercase border-b border-white pb-1 hover:text-oist-accent hover:border-oist-accent transition-colors">Learn More</a>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="text-xl font-bold">Student Life</h4>
-                    <p class="text-sm text-white/70 leading-relaxed">坐拥绝美海景的现代化校园，丰富多彩的社团活动与多元文化体验。</p>
-                    <a href="#" class="inline-block text-xs font-bold uppercase border-b border-white pb-1 hover:text-oist-accent hover:border-oist-accent transition-colors">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Driving Innovation Section -->
-    <section class="py-24 bg-white">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-16">
-                <div class="md:w-1/2 space-y-8">
-                    <h2 class="text-4xl font-bold uppercase tracking-tight">创新驱动未来</h2>
-                    <ul class="space-y-6">
-                        <li class="flex items-start space-x-4">
-                            <span class="text-oist-accent font-bold text-xl">01.</span>
-                            <div>
-                                <h5 class="font-bold text-lg">技术转移</h5>
-                                <p class="text-gray-600 text-sm mt-1">将实验室的突破性发现转化为改变世界的商业应用。</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start space-x-4">
-                            <span class="text-oist-accent font-bold text-xl">02.</span>
-                            <div>
-                                <h5 class="font-bold text-lg">初创孵化</h5>
-                                <p class="text-gray-600 text-sm mt-1">为科学家创业提供全方位的资金、空间与导师支持。</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start space-x-4">
-                            <span class="text-oist-accent font-bold text-xl">03.</span>
-                            <div>
-                                <h5 class="font-bold text-lg">产业合作</h5>
-                                <p class="text-gray-600 text-sm mt-1">与全球顶尖企业建立深度的科研战略伙伴关系。</p>
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="#" class="inline-block px-8 py-4 bg-oist text-white font-bold uppercase tracking-widest text-xs hover:bg-oist-accent transition-colors">了解创新中心</a>
-                </div>
-                <div class="md:w-1/2">
-                    <img src="https://picsum.photos/800/600?random=25" alt="Innovation" class="rounded-sm shadow-2xl">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Outreach Section -->
-    <section class="py-24 bg-gray-50">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
-                    <h2 class="text-3xl font-bold uppercase tracking-tight mb-6">科学外展</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed">我们致力于向公众普及科学知识，激发青少年对科学的热情。通过多样化的活动，让科学走进社区，造福社会。</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <a href="#" class="p-4 bg-white border border-gray-100 hover:border-oist-accent text-sm font-bold transition-colors">小学项目</a>
-                        <a href="#" class="p-4 bg-white border border-gray-100 hover:border-oist-accent text-sm font-bold transition-colors">初中项目</a>
-                        <a href="#" class="p-4 bg-white border border-gray-100 hover:border-oist-accent text-sm font-bold transition-colors">高中项目</a>
-                        <a href="#" class="p-4 bg-white border border-gray-100 hover:border-oist-accent text-sm font-bold transition-colors">大学项目</a>
-                        <a href="#" class="p-4 bg-white border border-gray-100 hover:border-oist-accent text-sm font-bold transition-colors">公众开放日</a>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-8">公开活动</h3>
-                    <div class="space-y-6">
-                        <div class="flex space-x-4">
-                            <div class="text-oist-accent font-bold">03/25</div>
-                            <div>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase">Online</span>
-                                <h4 class="font-bold hover:text-oist-accent transition-colors"><a href="#">科学咖啡馆：人工智能会取代人类吗？</a></h4>
-                            </div>
-                        </div>
-                        <div class="flex space-x-4">
-                            <div class="text-oist-accent font-bold">04/10</div>
-                            <div>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase">Campus</span>
-                                <h4 class="font-bold hover:text-oist-accent transition-colors"><a href="#">小小科学家：显微镜下的奇妙世界</a></h4>
-                            </div>
-                        </div>
-                        <div class="flex space-x-4">
-                            <div class="text-oist-accent font-bold">04/22</div>
-                            <div>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase">Public</span>
-                                <h4 class="font-bold hover:text-oist-accent transition-colors"><a href="#">科学博物馆巡展：探索宇宙的起源</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Latest Outreach News Section -->
-    <section class="py-24 bg-white">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <h2 class="text-3xl font-bold uppercase tracking-tight mb-12">最新外展新闻</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group">
-                    <div class="aspect-video overflow-hidden mb-4">
-                        <img src="https://picsum.photos/600/400?random=30" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Community</p>
-                    <h4 class="font-bold group-hover:text-oist-accent transition-colors">SCIENCE ORG 志愿者走进当地小学</h4>
-                </div>
-                <div class="group">
-                    <div class="aspect-video overflow-hidden mb-4">
-                        <img src="https://picsum.photos/600/400?random=31" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Education</p>
-                    <h4 class="font-bold group-hover:text-oist-accent transition-colors">2026 年度科学夏令营报名启动</h4>
-                </div>
-                <div class="group">
-                    <div class="aspect-video overflow-hidden mb-4">
-                        <img src="https://picsum.photos/600/400?random=32" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Public</p>
-                    <h4 class="font-bold group-hover:text-oist-accent transition-colors">科学博物馆巡展：探索宇宙的起源</h4>
+            <div class="relative h-[500px] group overflow-hidden">
+                <img src="https://picsum.photos/1000/800?random=31" alt="Faculty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-12 text-white">
+                    <h3 class="text-4xl font-bold mb-4">Study at OIST</h3>
+                    <p class="text-lg text-white/80 mb-8 max-w-md">Our PhD program offers a unique, interdisciplinary environment with full funding for all students.</p>
+                    <a href="#" class="inline-block w-fit px-8 py-4 border border-white font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all">Apply Now</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-oist text-white pt-20 pb-10">
+    <footer class="bg-oist-dark text-white pt-24 pb-12">
         <div class="max-w-[1440px] mx-auto px-6">
-            <!-- Quick Links -->
-            <div class="flex flex-wrap gap-x-8 gap-y-4 text-[11px] font-bold uppercase tracking-widest mb-12 opacity-70">
-                <a href="#" class="hover:text-white transition-colors">Giving Back</a>
-                <a href="#" class="hover:text-white transition-colors">Policy Library</a>
-                <a href="#" class="hover:text-white transition-colors">Information Disclosure</a>
-                <a href="#" class="hover:text-white transition-colors">Audits</a>
-                <a href="#" class="hover:text-white transition-colors">Sitemap</a>
-            </div>
-
-            <!-- Social Media -->
-            <div class="flex space-x-6 mb-16">
-                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-oist transition-all">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-oist transition-all">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-oist transition-all">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 border-b border-white/10">
-                <!-- Info -->
-                <div class="space-y-6">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-white"></div>
-                        <span class="text-2xl font-bold tracking-tighter uppercase">Science Org</span>
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-20">
+                <div class="lg:col-span-1 space-y-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-white flex-shrink-0"></div>
+                        <span class="text-2xl font-bold tracking-tighter uppercase">OIST</span>
                     </div>
-                    <p class="text-sm opacity-80 leading-relaxed max-w-md">
-                        SCIENCE ORG 科研机构<br>
-                        地址：某市科技园区科学大道 88 号<br>
-                        邮编：100000
+                    <p class="text-sm text-white/60 leading-relaxed">
+                        Okinawa Institute of Science and Technology Graduate University<br>
+                        1919-1 Tancha, Onna-son, Kunigami-gun<br>
+                        Okinawa, Japan 904-0495
                     </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-oist-dark transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-oist-dark transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <!-- Subscribe -->
-                <div class="space-y-6">
-                    <h5 class="text-lg font-bold">订阅我们的新闻邮件</h5>
-                    <form class="flex space-x-2">
-                        <input type="email" placeholder="Email Address" class="flex-grow bg-white/10 border border-white/20 px-4 py-3 text-sm focus:outline-none focus:border-white transition-colors">
-                        <button class="px-8 py-3 bg-white text-oist font-bold uppercase tracking-widest text-xs hover:bg-oist-accent hover:text-white transition-colors">Subscribe</button>
-                    </form>
-                    <p class="text-[10px] opacity-50">点击订阅即表示您同意我们的隐私政策。您的数据将仅用于发送学术资讯。</p>
+
+                <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-12">
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-teal mb-6">About</h4>
+                        <ul class="space-y-4 text-sm text-white/60">
+                            <li><a href="#" class="hover:text-white">About OIST</a></li>
+                            <li><a href="#" class="hover:text-white">Leadership</a></li>
+                            <li><a href="#" class="hover:text-white">History</a></li>
+                            <li><a href="#" class="hover:text-white">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-teal mb-6">Research</h4>
+                        <ul class="space-y-4 text-sm text-white/60">
+                            <li><a href="#" class="hover:text-white">Research Units</a></li>
+                            <li><a href="#" class="hover:text-white">Faculty</a></li>
+                            <li><a href="#" class="hover:text-white">Postdocs</a></li>
+                            <li><a href="#" class="hover:text-white">Facilities</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-teal mb-6">Education</h4>
+                        <ul class="space-y-4 text-sm text-white/60">
+                            <li><a href="#" class="hover:text-white">PhD Program</a></li>
+                            <li><a href="#" class="hover:text-white">Admissions</a></li>
+                            <li><a href="#" class="hover:text-white">Student Life</a></li>
+                            <li><a href="#" class="hover:text-white">Internships</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-teal mb-6">Innovation</h4>
+                        <ul class="space-y-4 text-sm text-white/60">
+                            <li><a href="#" class="hover:text-white">Technology Transfer</a></li>
+                            <li><a href="#" class="hover:text-white">Startups</a></li>
+                            <li><a href="#" class="hover:text-white">Partnerships</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <!-- Copyright -->
-            <div class="pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest opacity-50">
-                <p>Copyright © 2011-2026 | SCIENCE ORG</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-white">Member Login</a>
+            <div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-white/40">
+                <p>© 2026 Okinawa Institute of Science and Technology Graduate University</p>
+                <div class="flex space-x-8 mt-6 md:mt-0">
                     <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Site Map</a>
+                    <a href="#" class="hover:text-white">Login</a>
                 </div>
             </div>
         </div>
@@ -819,166 +680,99 @@
 
     <script>
         // Mega Menu Logic
-        const navBtns = document.querySelectorAll('.nav-btn[data-panel]');
-        const panels = document.querySelectorAll('.mega-panel');
-        const backdrop = document.getElementById('mega-backdrop');
+        const navButtons = document.querySelectorAll('.nav-link[data-menu]');
+        const megaMenus = document.querySelectorAll('.mega-menu');
+        const backdrop = document.getElementById('menu-backdrop');
 
-        function closeAllPanels() {
-            panels.forEach(p => p.classList.remove('active'));
-            navBtns.forEach(b => b.classList.remove('active'));
-            backdrop.classList.remove('active');
+        function closeAllMenus() {
+            megaMenus.forEach(menu => menu.classList.remove('active'));
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            backdrop.style.display = 'none';
+            document.body.style.overflow = '';
         }
 
-        navBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const panelId = btn.getAttribute('data-panel');
-                const panel = document.getElementById(panelId);
-                const isActive = panel.classList.contains('active');
-
-                if (isActive) {
-                    closeAllPanels();
-                } else {
-                    closeAllPanels();
-                    panel.classList.add('active');
-                    btn.classList.add('active');
-                    backdrop.classList.add('active');
-                }
-            });
-        });
-
-        backdrop.addEventListener('click', closeAllPanels);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeAllPanels();
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const body = document.body;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.toggle('hidden');
-            body.classList.toggle('overflow-hidden', !isOpen);
-            mobileMenuBtn.classList.toggle('menu-open');
-        });
-
-        // Accordion Logic
-        const accordionTriggers = document.querySelectorAll('.accordion-trigger');
-        accordionTriggers.forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                const content = trigger.nextElementSibling;
-                const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        navButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const menuId = `menu-${button.getAttribute('data-menu')}`;
+                const targetMenu = document.getElementById(menuId);
                 
-                // Close all others
-                document.querySelectorAll('.accordion-trigger').forEach(t => {
-                    t.setAttribute('aria-expanded', 'false');
-                    t.parentElement.classList.remove('active');
-                    if (t.nextElementSibling) {
-                        t.nextElementSibling.style.maxHeight = null;
-                    }
-                });
+                if (!targetMenu) return;
 
-                // Toggle current
-                if (!isOpen) {
-                    trigger.setAttribute('aria-expanded', 'true');
-                    trigger.parentElement.classList.add('active');
-                    content.style.maxHeight = content.scrollHeight + 'px';
+                const isActive = targetMenu.classList.contains('active');
+
+                closeAllMenus();
+
+                if (!isActive) {
+                    targetMenu.classList.add('active');
+                    button.classList.add('active');
+                    backdrop.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
                 }
             });
+        });
+
+        backdrop.addEventListener('click', closeAllMenus);
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAllMenus();
+                document.getElementById('search-overlay').classList.remove('active');
+            }
         });
 
         // Search Overlay Logic
-        const searchBtn = document.getElementById('search-btn');
+        const searchTrigger = document.getElementById('search-trigger');
         const searchOverlay = document.getElementById('search-overlay');
         const closeSearch = document.getElementById('close-search');
 
-        searchBtn.addEventListener('click', () => {
+        searchTrigger.addEventListener('click', () => {
             searchOverlay.classList.add('active');
-            body.classList.add('overflow-hidden');
+            document.body.style.overflow = 'hidden';
         });
 
         closeSearch.addEventListener('click', () => {
             searchOverlay.classList.remove('active');
-            body.classList.remove('overflow-hidden');
+            document.body.style.overflow = '';
         });
 
         // Carousel Logic
-        const track = document.getElementById('news-carousel');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const dotsContainer = document.getElementById('carousel-dots');
-        let currentIndex = 0;
-        const items = document.querySelectorAll('.carousel-item');
-        const totalSlides = items.length;
+        const track = document.getElementById('carousel-track');
+        const nextBtn = document.getElementById('next-slide');
+        const prevBtn = document.getElementById('prev-slide');
+        let index = 0;
 
-        function generateDots() {
-            dotsContainer.innerHTML = '';
-            const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
-            const maxIndex = window.innerWidth >= 768 ? totalSlides - 2 : totalSlides;
-            
-            for (let i = 0; i < maxIndex; i++) {
-                const dot = document.createElement('button');
-                dot.className = `w-2 h-2 rounded-full transition-all ${i === currentIndex ? 'bg-oist w-6' : 'bg-gray-200'}`;
-                dot.addEventListener('click', () => goToSlide(i));
-                dotsContainer.appendChild(dot);
-            }
-        }
-
-        function updateDots() {
-            const dots = dotsContainer.querySelectorAll('button');
-            dots.forEach((dot, i) => {
-                if (i === currentIndex) {
-                    dot.classList.add('bg-oist', 'w-6');
-                    dot.classList.remove('bg-gray-200');
-                } else {
-                    dot.classList.remove('bg-oist', 'w-6');
-                    dot.classList.add('bg-gray-200');
-                }
-            });
-        }
-
-        function goToSlide(index) {
-            const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
-            const maxIndex = window.innerWidth >= 768 ? totalSlides - 3 : totalSlides - 1;
-            
-            if (index < 0) index = 0;
-            if (index > maxIndex) index = maxIndex;
-            
-            currentIndex = index;
-            const offset = currentIndex * (100 / itemsPerView);
-            track.style.transform = `translateX(-${offset}%)`;
-            updateDots();
+        function updateCarousel() {
+            const itemWidth = document.querySelector('.carousel-item').offsetWidth;
+            track.style.transform = `translateX(-${index * itemWidth}px)`;
         }
 
         nextBtn.addEventListener('click', () => {
-            const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
-            const maxIndex = window.innerWidth >= 768 ? totalSlides - 3 : totalSlides - 1;
-            if (currentIndex < maxIndex) {
-                goToSlide(currentIndex + 1);
-            } else {
-                goToSlide(0);
+            const itemsVisible = window.innerWidth >= 768 ? 3 : 1;
+            const totalItems = document.querySelectorAll('.carousel-item').length;
+            if (index < totalItems - itemsVisible) {
+                index++;
+                updateCarousel();
             }
         });
 
         prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                goToSlide(currentIndex - 1);
-            } else {
-                const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
-                const maxIndex = window.innerWidth >= 768 ? totalSlides - 3 : totalSlides - 1;
-                goToSlide(maxIndex);
+            if (index > 0) {
+                index--;
+                updateCarousel();
             }
         });
 
         window.addEventListener('resize', () => {
-            currentIndex = 0;
-            goToSlide(0);
-            generateDots();
+            index = 0;
+            updateCarousel();
         });
 
-        generateDots();
-        goToSlide(0);
+        // Mobile Menu (Simple toggle for now)
+        const mobileToggle = document.getElementById('mobile-toggle');
+        mobileToggle.addEventListener('click', () => {
+            alert('Mobile menu would open here');
+        });
     </script>
 </body>
 </html>

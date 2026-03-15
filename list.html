@@ -4,295 +4,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research News | SCIENCE ORG</title>
+    <title>News | Okinawa Institute of Science and Technology OIST</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         oist: {
-                            DEFAULT: '#004c45',
-                            accent: '#007a6e',
-                            hover: '#007a6e',
-                        },
-                        gray: {
-                            950: '#111111',
+                            dark: '#004c45',
+                            teal: '#007a6e',
+                            orange: '#f05023',
+                            gray: '#f8f8f8',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     },
                 }
             }
         }
     </script>
     <style>
-        body { color: #333333; }
-        h1, h2, h3, h4, h5, h6 { color: #111111; }
-        
-        /* Mega Menu Panels */
-        .mega-panel {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            background-color: #1a1a1a;
-            color: white;
-            padding: 48px 0;
-            z-index: 150;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 200ms ease-in-out;
-        }
-        .mega-panel.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .mega-panel h4 {
-            color: #007a6e;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 1.5rem;
-        }
-        .mega-panel a {
-            display: block;
-            font-size: 13px;
-            color: #cccccc;
-            margin-bottom: 0.75rem;
-            transition: color 0.2s;
-        }
-        .mega-panel a:hover { color: white; }
+        @import "tailwindcss";
+        body { color: #1a1a1a; background-color: #ffffff; }
+        .mega-menu { position: fixed; top: 100px; left: 0; width: 100%; background-color: #1a1a1a; color: white; z-index: 100; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease-in-out; padding: 60px 0; }
+        .mega-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .mega-menu h3 { color: #007a6e; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .mega-menu ul li a { font-size: 14px; color: #ccc; display: block; padding: 8px 0; transition: color 0.2s; }
+        .mega-menu ul li a:hover { color: white; }
+        .nav-link { position: relative; padding: 10px 0; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background-color: #007a6e; transform: scaleX(0); transition: transform 0.3s ease; }
+        .nav-link.active::after, .nav-link:hover::after { transform: scaleX(1); }
+        #menu-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90; display: none; }
+        .news-card img { transition: transform 0.5s ease; }
+        .news-card:hover img { transform: scale(1.05); }
 
-        /* Nav Button Active State */
-        .nav-btn {
-            position: relative;
-            height: 100%;
-            padding: 0 12px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a1a1a;
-            transition: color 0.2s;
-        }
-        .nav-btn:hover { color: #007a6e; }
-        .nav-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: #007a6e;
-            transform: scaleX(0);
-            transition: transform 0.2s;
-        }
-        .nav-btn.active::after { transform: scaleX(1); }
-
-        /* Backdrop Overlay */
-        #mega-backdrop {
+        /* Search Overlay */
+        #search-overlay {
             position: fixed;
             inset: 0;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 140;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s;
-        }
-        #mega-backdrop.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Mobile Menu Hamburger */
-        .hamburger span { transition: all 300ms ease-in-out; }
-        .menu-open .hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .menu-open .hamburger span:nth-child(2) { opacity: 0; }
-        .menu-open .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-        /* Accordion */
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .accordion-item.active .arrow { transform: rotate(90deg); }
-
-        /* Search Box */
-        #search-overlay {
+            background: white;
+            z-index: 200;
             display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
         }
-        #search-overlay.active { display: flex; opacity: 1; }
+        #search-overlay.active {
+            display: flex;
+        }
     </style>
 </head>
-<body class="font-sans antialiased pt-20">
+<body class="font-sans pt-24 lg:pt-32">
 
-    <!-- Backdrop for Mega Menu -->
-    <div id="mega-backdrop"></div>
+    <div id="menu-backdrop"></div>
 
-    <!-- Navigation -->
-    <header class="fixed w-full top-0 z-[200] bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]">
-        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-oist"></div>
-                <span class="text-xl font-bold text-gray-950 tracking-tighter uppercase">Science <span class="text-oist">Org</span></span>
+    <!-- Search Overlay -->
+    <div id="search-overlay">
+        <button id="close-search" class="absolute top-10 right-10 p-4 hover:text-oist-teal">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="w-full max-w-4xl px-6">
+            <input type="text" placeholder="Search OIST..." class="w-full text-4xl lg:text-6xl font-light border-b-2 border-gray-100 py-6 focus:outline-none focus:border-oist-teal transition-colors">
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-oist-teal">Admissions</a></li>
+                        <li><a href="#" class="hover:text-oist-teal">Research Units</a></li>
+                        <li><a href="#" class="hover:text-oist-teal">Campus Map</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header (Same as index.html) -->
+    <header class="fixed top-0 left-0 w-full bg-white z-[110] border-b border-gray-100">
+        <div class="bg-oist-dark text-white py-2 px-6 hidden lg:block">
+            <div class="max-w-[1440px] mx-auto flex justify-end space-x-6 text-[11px] font-bold uppercase tracking-widest opacity-80">
+                <a href="#" class="hover:opacity-100">Giving</a>
+                <a href="#" class="hover:opacity-100">Policy Library</a>
+                <a href="#" class="hover:opacity-100">Careers</a>
+                <a href="#" class="hover:opacity-100">Contact</a>
+            </div>
+        </div>
+        <div class="max-w-[1440px] mx-auto px-6 h-20 lg:h-24 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-4">
+                <div class="w-10 h-10 lg:w-12 lg:h-12 bg-oist-dark flex-shrink-0"></div>
+                <div class="flex flex-col">
+                    <span class="text-lg lg:text-xl font-bold tracking-tighter leading-none uppercase">OIST</span>
+                    <span class="text-[10px] lg:text-[11px] font-medium tracking-tight text-gray-500 hidden sm:block">Okinawa Institute of Science and Technology Graduate University</span>
+                </div>
             </a>
-            <nav class="hidden xl:flex items-center space-x-1 h-full">
-                <button class="nav-btn" data-panel="panel-about">About</button>
-                <button class="nav-btn" data-panel="panel-research">Research</button>
-                <button class="nav-btn" data-panel="panel-education">Education</button>
-                <a href="#" class="nav-btn flex items-center">Admissions</a>
-                <a href="#" class="nav-btn flex items-center">Innovation</a>
-                <button class="nav-btn" data-panel="panel-news">News</button>
-                <button class="nav-btn" data-panel="panel-outreach">Outreach</button>
-                <button class="nav-btn" data-panel="panel-campus">Campus</button>
-                <a href="#" class="nav-btn flex items-center">Careers</a>
+            <nav class="hidden xl:flex items-center space-x-6 h-full">
+                <button class="nav-link" data-menu="about">About</button>
+                <button class="nav-link" data-menu="research">Research</button>
+                <button class="nav-link" data-menu="education">Education</button>
+                <button class="nav-link" data-menu="admissions">Admissions</button>
+                <button class="nav-link" data-menu="innovation">Innovation</button>
+                <button class="nav-link" data-menu="news">News</button>
+                <button class="nav-link" data-menu="outreach">Outreach</button>
+                <button class="nav-link" data-menu="campus">Campus</button>
             </nav>
             <div class="flex items-center space-x-4">
-                <button id="search-btn" class="p-2 text-[#1a1a1a] hover:text-oist-accent transition-colors">
+                <button id="search-trigger" class="p-2 hover:text-oist-teal transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
                 <div class="hidden md:flex items-center space-x-2 text-[11px] font-bold border-l pl-4 border-gray-200">
-                    <button class="text-oist-accent">EN</button>
+                    <button class="text-oist-teal">EN</button>
                     <span class="text-gray-300">/</span>
-                    <button class="text-[#1a1a1a] hover:text-oist-accent">日本語</button>
+                    <button class="text-gray-900 hover:text-oist-teal">JP</button>
                 </div>
-                <button id="mobile-menu-btn" class="xl:hidden hamburger p-2 flex flex-col space-y-1.5 z-[210]">
-                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
-                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
-                    <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
-                </button>
             </div>
         </div>
 
-        <!-- Mega Menu Panels (Same as index.html) -->
-        <div id="panel-about" class="mega-panel">
+        <!-- Mega Menus (Same as index.html) -->
+        <div id="menu-about" class="mega-menu">
             <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
-                <div><h4>Overview</h4><a href="#">About OIST</a><a href="#">Facts and Figures</a><a href="#">Leadership</a></div>
-                <div><h4>History</h4><a href="#">History</a><a href="#">Mission</a></div>
-                <div><h4>Resources</h4><a href="#">Publications</a><a href="#">Media Kit</a></div>
-                <div><h4>Opportunities</h4><a href="#">Careers</a><a href="#">Contact</a></div>
+                <div>
+                    <h3>Overview</h3>
+                    <ul>
+                        <li><a href="#">About OIST</a></li>
+                        <li><a href="#">Facts and Figures</a></li>
+                        <li><a href="#">Leadership and Governance</a></li>
+                        <li><a href="#">History</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Institutional</h3>
+                    <ul>
+                        <li><a href="#">Mission and Vision</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Diversity and Inclusion</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Publications and Reports</a></li>
+                        <li><a href="#">Media Kit</a></li>
+                        <li><a href="#">Tokyo Office</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Opportunities</h3>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Giving to OIST</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div id="panel-research" class="mega-panel">
+
+        <div id="menu-research" class="mega-menu">
             <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
-                <div><h4>Programs</h4><a href="list.html">Research at OIST</a><a href="#">Faculty Units</a></div>
-                <div><h4>Centers</h4><a href="#">Open Centers</a><a href="#">Marine Station</a></div>
-                <div><h4>Infrastructure</h4><a href="#">Facilities</a><a href="#">Computing</a></div>
-                <div><h4>Support</h4><a href="#">Research Support</a><a href="#">Grants</a></div>
+                <div>
+                    <h3>Research at OIST</h3>
+                    <ul>
+                        <li><a href="#">Overview</a></li>
+                        <li><a href="#">Faculty and Research Units</a></li>
+                        <li><a href="#">Postdoctoral Scholars</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Centers</h3>
+                    <ul>
+                        <li><a href="#">Open Centers</a></li>
+                        <li><a href="#">Marine Science Station</a></li>
+                        <li><a href="#">Quantum Technology Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Facilities</h3>
+                    <ul>
+                        <li><a href="#">Research Facilities</a></li>
+                        <li><a href="#">Core Instrumentation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Research Support</a></li>
+                        <li><a href="#">Grants and Partnerships</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <!-- ... other panels ... -->
-        <div id="panel-education" class="mega-panel"><div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12"><div><h4>Graduate School</h4><a href="#">PhD Program</a><a href="#">Admissions</a></div></div></div>
-        <div id="panel-news" class="mega-panel"><div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12"><div><h4>Latest</h4><a href="#">Latest News</a><a href="#">Press Releases</a></div></div></div>
-        <div id="panel-outreach" class="mega-panel"><div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12"><div><h4>Community</h4><a href="#">Outreach News</a></div></div></div>
-        <div id="panel-campus" class="mega-panel"><div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12"><div><h4>Visit</h4><a href="#">Campus Map</a><a href="#">Access</a></div></div></div>
+
+        <div id="menu-admissions" class="mega-menu">
+            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
+                <div>
+                    <h3>Degree Programs</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">PhD Program</a></li>
+                        <li><a href="#">Research Internship</a></li>
+                        <li><a href="#">Visiting Program</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>How to Apply</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Application Process</a></li>
+                        <li><a href="#">Financial Support</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Student Life</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Housing</a></li>
+                        <li><a href="#">Health & Wellness</a></li>
+                        <li><a href="#">Okinawa Life</a></li>
+                    </ul>
+                </div>
+                <div class="bg-oist-dark p-8">
+                    <h4 class="text-oist-teal text-xs font-bold uppercase mb-4">Upcoming Deadline</h4>
+                    <p class="text-white text-lg font-bold mb-4">PhD Application Deadline: March 31, 2026</p>
+                    <a href="#" class="inline-block bg-oist-teal text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-oist-teal transition-colors">Apply Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="menu-campus" class="mega-menu">
+            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
+                <div>
+                    <h3>Our Campus</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Architecture</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Art at OIST</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Community</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Diversity & Inclusion</a></li>
+                        <li><a href="#">Clubs & Activities</a></li>
+                        <li><a href="#">Resource Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Visit Us</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#">Campus Tours</a></li>
+                        <li><a href="#">Access & Maps</a></li>
+                        <li><a href="#">OIST Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="relative overflow-hidden group">
+                    <img src="https://picsum.photos/seed/campus/400/300" alt="Campus" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <span class="text-white font-bold uppercase tracking-widest border-b-2 border-oist-teal">Virtual Tour</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[105] pt-24 px-6 overflow-y-auto hidden">
-        <div class="space-y-2">
-            <div class="accordion-item border-b border-gray-100">
-                <button class="accordion-trigger w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]" aria-expanded="false">About <span class="arrow transition-transform duration-300">▶</span></button>
-                <div class="accordion-content bg-gray-50 px-4"><a href="#" class="block py-3 text-sm">About OIST</a><a href="#" class="block py-3 text-sm">Careers</a></div>
-            </div>
-            <div class="accordion-item border-b border-gray-100">
-                <button class="accordion-trigger w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]" aria-expanded="false">Research <span class="arrow transition-transform duration-300">▶</span></button>
-                <div class="accordion-content bg-gray-50 px-4"><a href="list.html" class="block py-3 text-sm">Research at OIST</a></div>
-            </div>
-            <a href="#" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">Education</a>
-            <a href="#" class="block py-4 border-b border-gray-100 text-lg font-bold text-[#1a1a1a]">News</a>
-        </div>
-    </div>
-
-    <!-- Search Overlay -->
-    <div id="search-overlay" class="fixed inset-0 bg-white z-[300] flex-col items-center pt-32 px-6">
-        <button id="close-search" class="absolute top-8 right-8 text-gray-400 hover:text-oist transition-colors"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <div class="max-w-3xl w-full"><input type="text" placeholder="Search Science Org..." class="w-full text-4xl font-light border-b-2 border-gray-100 py-4 focus:outline-none focus:border-oist transition-colors"></div>
-    </div>
-
-    <!-- Banner Section -->
-    <section class="relative h-[400px] flex items-center overflow-hidden">
-        <img src="https://picsum.photos/1440/400?random=40" alt="Banner" class="absolute inset-0 w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black/40"></div>
-        <div class="relative z-10 max-w-[1440px] mx-auto px-6 w-full">
-            <h1 class="text-5xl font-bold text-white uppercase tracking-tight">Research News</h1>
-            <p class="text-white/80 mt-4 text-lg font-light">探索前沿科学，发现未来可能</p>
+    <!-- Page Title -->
+    <section class="bg-oist-gray py-16">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <nav class="flex space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">
+                <a href="index.html" class="hover:text-oist-teal">Home</a>
+                <span>/</span>
+                <span class="text-gray-900">News</span>
+            </nav>
+            <h1 class="text-5xl font-bold tracking-tight">News</h1>
         </div>
     </section>
 
-    <!-- Main Content -->
+    <!-- News List -->
     <main class="py-24 bg-white">
         <div class="max-w-[1440px] mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-16">
-                <div class="lg:w-2/3 space-y-12">
-                    <article class="flex flex-col md:flex-row gap-8 group">
-                        <div class="md:w-1/3 aspect-[3/2] overflow-hidden"><img src="https://picsum.photos/600/400?random=41" loading="lazy" alt="Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="md:w-2/3">
-                            <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Research Update</p>
-                            <h2 class="text-2xl font-bold mb-4 group-hover:text-oist-accent transition-colors"><a href="article.html">解码人类大脑：神经元网络映射的新突破</a></h2>
-                            <p class="text-sm text-gray-600 mb-6 leading-relaxed">我院神经科学研究中心在《自然》杂志发表最新成果，首次实现了对小鼠大脑皮层神经元连接的纳米级重建。</p>
-                            <time class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">March 15, 2026</time>
+                <!-- Main List -->
+                <div class="lg:w-3/4 space-y-12">
+                    <!-- News Item -->
+                    <article class="flex flex-col md:flex-row gap-8 group cursor-pointer">
+                        <div class="md:w-1/3 aspect-[16/10] overflow-hidden">
+                            <img src="https://picsum.photos/800/500?random=20" alt="News" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="md:w-2/3 space-y-4">
+                            <span class="text-[10px] font-bold text-oist-teal uppercase tracking-widest">Research Update</span>
+                            <h2 class="text-2xl font-bold leading-tight group-hover:text-oist-teal transition-colors"><a href="article.html">Unlocking the Secrets of Deep-Sea Coral Resilience</a></h2>
+                            <p class="text-sm text-gray-500 leading-relaxed">A new study led by OIST researchers reveals the genetic mechanisms that allow certain coral species to thrive in extreme pressure and low light conditions.</p>
+                            <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">March 15, 2026</time>
                         </div>
                     </article>
-                    <!-- ... other articles ... -->
-                    <article class="flex flex-col md:flex-row gap-8 group">
-                        <div class="md:w-1/3 aspect-[3/2] overflow-hidden"><img src="https://picsum.photos/600/400?random=42" loading="lazy" alt="Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="md:w-2/3">
-                            <p class="text-[10px] font-bold text-oist-accent uppercase tracking-widest mb-2">Innovation</p>
-                            <h2 class="text-2xl font-bold mb-4 group-hover:text-oist-accent transition-colors"><a href="#">全球气候变化监测网络正式启动</a></h2>
-                            <p class="text-sm text-gray-600 mb-6 leading-relaxed">SCIENCE ORG 与 12 家国际顶尖机构联合发起的全球海洋与大气监测网络今日在日内瓦宣布正式运行。</p>
-                            <time class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">March 12, 2026</time>
+
+                    <!-- News Item -->
+                    <article class="flex flex-col md:flex-row gap-8 group cursor-pointer">
+                        <div class="md:w-1/3 aspect-[16/10] overflow-hidden">
+                            <img src="https://picsum.photos/800/500?random=21" alt="News" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="md:w-2/3 space-y-4">
+                            <span class="text-[10px] font-bold text-oist-teal uppercase tracking-widest">Innovation</span>
+                            <h2 class="text-2xl font-bold leading-tight group-hover:text-oist-teal transition-colors"><a href="#">New AI Model Predicts Protein Folding with Unprecedented Accuracy</a></h2>
+                            <p class="text-sm text-gray-500 leading-relaxed">The OIST Computational Biology Unit has released a new open-source tool that significantly reduces the time required for protein structure prediction.</p>
+                            <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">March 12, 2026</time>
                         </div>
                     </article>
+
+                    <!-- Pagination -->
+                    <div class="pt-12 border-t border-gray-100 flex justify-center space-x-4">
+                        <button class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-oist-teal hover:text-oist-teal transition-all">1</button>
+                        <button class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-oist-teal hover:text-oist-teal transition-all">2</button>
+                        <button class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-400 hover:border-oist-teal hover:text-oist-teal transition-all">3</button>
+                    </div>
                 </div>
+
                 <!-- Sidebar -->
-                <aside class="lg:w-1/3 space-y-12">
-                    <div><h3 class="text-sm font-bold uppercase tracking-widest border-b-2 border-oist pb-2 mb-6">Categories</h3><ul class="space-y-3"><li><a href="#" class="text-sm hover:text-oist-accent flex justify-between">Research Update <span class="text-gray-400">(42)</span></a></li></ul></div>
+                <aside class="lg:w-1/4 space-y-12">
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-oist-teal border-b border-gray-100 pb-4 mb-6">Categories</h3>
+                        <ul class="space-y-4 text-sm font-medium">
+                            <li><a href="#" class="hover:text-oist-teal flex justify-between">Research Update <span class="text-gray-300">42</span></a></li>
+                            <li><a href="#" class="hover:text-oist-teal flex justify-between">Innovation <span class="text-gray-300">18</span></a></li>
+                            <li><a href="#" class="hover:text-oist-teal flex justify-between">Education <span class="text-gray-300">25</span></a></li>
+                            <li><a href="#" class="hover:text-oist-teal flex justify-between">Campus Life <span class="text-gray-300">12</span></a></li>
+                        </ul>
+                    </div>
                 </aside>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-oist text-white pt-20 pb-10">
+    <!-- Footer (Same as index.html) -->
+    <footer class="bg-oist-dark text-white pt-24 pb-12">
         <div class="max-w-[1440px] mx-auto px-6">
-            <div class="flex flex-wrap gap-x-8 gap-y-4 text-[11px] font-bold uppercase tracking-widest mb-12 opacity-70"><a href="#" class="hover:text-white">Giving Back</a><a href="#" class="hover:text-white">Policy Library</a></div>
-            <div class="pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest opacity-50"><p>Copyright © 2011-2026 | SCIENCE ORG</p></div>
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-20">
+                <div class="lg:col-span-1 space-y-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-white flex-shrink-0"></div>
+                        <span class="text-2xl font-bold tracking-tighter uppercase">OIST</span>
+                    </div>
+                    <p class="text-sm text-white/60 leading-relaxed">
+                        Okinawa Institute of Science and Technology Graduate University<br>
+                        1919-1 Tancha, Onna-son, Kunigami-gun<br>
+                        Okinawa, Japan 904-0495
+                    </p>
+                </div>
+                <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-12">
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-teal mb-6">About</h4>
+                        <ul class="space-y-4 text-sm text-white/60">
+                            <li><a href="#" class="hover:text-white">About OIST</a></li>
+                            <li><a href="#" class="hover:text-white">Leadership</a></li>
+                            <li><a href="#" class="hover:text-white">Careers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-white/40">
+                <p>© 2026 Okinawa Institute of Science and Technology Graduate University</p>
+            </div>
         </div>
     </footer>
 
     <script>
         // Mega Menu Logic
-        const navBtns = document.querySelectorAll('.nav-btn[data-panel]');
-        const panels = document.querySelectorAll('.mega-panel');
-        const backdrop = document.getElementById('mega-backdrop');
-        function closeAllPanels() { panels.forEach(p => p.classList.remove('active')); navBtns.forEach(b => b.classList.remove('active')); backdrop.classList.remove('active'); }
-        navBtns.forEach(btn => { btn.addEventListener('click', () => { const panelId = btn.getAttribute('data-panel'); const panel = document.getElementById(panelId); const isActive = panel.classList.contains('active'); if (isActive) { closeAllPanels(); } else { closeAllPanels(); panel.classList.add('active'); btn.classList.add('active'); backdrop.classList.add('active'); } }); });
-        backdrop.addEventListener('click', closeAllPanels);
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllPanels(); });
+        const navButtons = document.querySelectorAll('.nav-link[data-menu]');
+        const megaMenus = document.querySelectorAll('.mega-menu');
+        const backdrop = document.getElementById('menu-backdrop');
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); mobileMenuBtn.classList.toggle('menu-open'); });
+        function closeAllMenus() {
+            megaMenus.forEach(menu => menu.classList.remove('active'));
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            backdrop.style.display = 'none';
+            document.body.style.overflow = '';
+        }
 
-        // Accordion Logic
-        const accordionTriggers = document.querySelectorAll('.accordion-trigger');
-        accordionTriggers.forEach(trigger => { trigger.addEventListener('click', () => { const content = trigger.nextElementSibling; const isOpen = trigger.getAttribute('aria-expanded') === 'true'; document.querySelectorAll('.accordion-trigger').forEach(t => { t.setAttribute('aria-expanded', 'false'); t.parentElement.classList.remove('active'); if (t.nextElementSibling) t.nextElementSibling.style.maxHeight = null; }); if (!isOpen) { trigger.setAttribute('aria-expanded', 'true'); trigger.parentElement.classList.add('active'); content.style.maxHeight = content.scrollHeight + 'px'; } }); });
+        navButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const menuId = `menu-${button.getAttribute('data-menu')}`;
+                const targetMenu = document.getElementById(menuId);
+                
+                if (!targetMenu) return;
 
-        // Search Overlay
-        const searchBtn = document.getElementById('search-btn');
+                const isActive = targetMenu.classList.contains('active');
+
+                closeAllMenus();
+
+                if (!isActive) {
+                    targetMenu.classList.add('active');
+                    button.classList.add('active');
+                    backdrop.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        backdrop.addEventListener('click', closeAllMenus);
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAllMenus();
+                document.getElementById('search-overlay').classList.remove('active');
+            }
+        });
+
+        // Search Overlay Logic
+        const searchTrigger = document.getElementById('search-trigger');
         const searchOverlay = document.getElementById('search-overlay');
         const closeSearch = document.getElementById('close-search');
-        searchBtn.addEventListener('click', () => searchOverlay.classList.add('active'));
-        closeSearch.addEventListener('click', () => searchOverlay.classList.remove('active'));
+
+        searchTrigger.addEventListener('click', () => {
+            searchOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeSearch.addEventListener('click', () => {
+            searchOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
     </script>
 </body>
 </html>
