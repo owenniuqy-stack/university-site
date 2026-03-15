@@ -32,17 +32,84 @@
         body { color: #333333; }
         h1, h2, h3, h4, h5, h6 { color: #111111; }
         
-        /* Dropdown Menu */
-        .nav-dropdown {
+        /* Mega Menu Panels */
+        .mega-panel {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 48px 0;
+            z-index: 150;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
+            transform: translateY(-8px);
             transition: all 200ms ease-in-out;
         }
-        .nav-item:hover .nav-dropdown {
+        .mega-panel.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+        }
+        .mega-panel h4 {
+            color: #007a6e;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1.5rem;
+        }
+        .mega-panel a {
+            display: block;
+            font-size: 13px;
+            color: #cccccc;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s;
+        }
+        .mega-panel a:hover {
+            color: white;
+        }
+
+        /* Nav Button Active State */
+        .nav-btn {
+            position: relative;
+            height: 100%;
+            padding: 0 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: color 0.2s;
+        }
+        .nav-btn:hover { color: #007a6e; }
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #007a6e;
+            transform: scaleX(0);
+            transition: transform 0.2s;
+        }
+        .nav-btn.active::after {
+            transform: scaleX(1);
+        }
+
+        /* Backdrop Overlay */
+        #mega-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 140;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s;
+        }
+        #mega-backdrop.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Mobile Menu Hamburger */
@@ -67,9 +134,6 @@
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
-        .accordion-item.active .accordion-content {
-            max-height: 1000px;
-        }
         .accordion-item.active .arrow {
             transform: rotate(90deg);
         }
@@ -88,8 +152,11 @@
 </head>
 <body class="font-sans antialiased">
 
+    <!-- Backdrop for Mega Menu -->
+    <div id="mega-backdrop"></div>
+
     <!-- Navigation -->
-    <header class="fixed w-full top-0 z-[100] bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]">
+    <header class="fixed w-full top-0 z-[200] bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]">
         <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
             <!-- Logo -->
             <a href="index.html" class="flex items-center space-x-2">
@@ -99,79 +166,15 @@
 
             <!-- Desktop Nav -->
             <nav class="hidden xl:flex items-center space-x-1 h-full">
-                <!-- About -->
-                <div class="nav-item relative h-full flex items-center px-3 group">
-                    <a href="#" class="text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">About</a>
-                    <div class="nav-dropdown absolute top-20 left-0 bg-white shadow-xl border-t border-gray-100 min-w-[240px] py-4">
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">About OIST</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Facts and Figures</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Leadership and Governance</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">History</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Publications and Reports</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent">Careers</a>
-                    </div>
-                </div>
-                <!-- Research -->
-                <div class="nav-item relative h-full flex items-center px-3 group">
-                    <a href="list.html" class="text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Research</a>
-                    <div class="nav-dropdown absolute top-20 left-0 bg-white shadow-xl border-t border-gray-100 min-w-[240px] py-4">
-                        <a href="list.html" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Research at OIST</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Faculty and Research Units</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Open Centers</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Research Facilities</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Research Support</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent">Grants & Partnerships</a>
-                    </div>
-                </div>
-                <!-- Education -->
-                <div class="nav-item relative h-full flex items-center px-3 group">
-                    <a href="#" class="text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Education</a>
-                    <div class="nav-dropdown absolute top-20 left-0 bg-white shadow-xl border-t border-gray-100 min-w-[240px] py-4">
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">PhD Program</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Research Internship</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Student Life</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Admissions</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent">Tuition & Funding</a>
-                    </div>
-                </div>
-                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Admissions</a>
-                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Innovation</a>
-                <!-- News -->
-                <div class="nav-item relative h-full flex items-center px-3 group">
-                    <a href="#" class="text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">News</a>
-                    <div class="nav-dropdown absolute top-20 left-0 bg-white shadow-xl border-t border-gray-100 min-w-[240px] py-4">
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Latest News</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Media Coverage</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Social Media</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Podcast</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent">Press Contact</a>
-                    </div>
-                </div>
-                <!-- Outreach -->
-                <div class="nav-item relative h-full flex items-center px-3 group">
-                    <a href="#" class="text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Outreach</a>
-                    <div class="nav-dropdown absolute top-20 left-0 bg-white shadow-xl border-t border-gray-100 min-w-[240px] py-4">
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Community Outreach</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Outreach News</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Elementary School</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">High School</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">University</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent">General Public</a>
-                    </div>
-                </div>
-                <!-- Campus -->
-                <div class="nav-item relative h-full flex items-center px-3 group">
-                    <a href="#" class="text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Campus</a>
-                    <div class="nav-dropdown absolute top-20 left-0 bg-white shadow-xl border-t border-gray-100 min-w-[240px] py-4">
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Campus Map</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Access & Parking</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Event Venues</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Housing</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent border-b border-gray-50 last:border-0">Childcare</a>
-                        <a href="#" class="block px-6 py-2 text-[13px] hover:text-oist-accent">Tokyo Office</a>
-                    </div>
-                </div>
-                <a href="#" class="px-3 text-[13px] font-semibold text-[#1a1a1a] hover:text-oist-accent transition-colors">Careers</a>
+                <button class="nav-btn" data-panel="panel-about">About</button>
+                <button class="nav-btn" data-panel="panel-research">Research</button>
+                <button class="nav-btn" data-panel="panel-education">Education</button>
+                <a href="#" class="nav-btn flex items-center">Admissions</a>
+                <a href="#" class="nav-btn flex items-center">Innovation</a>
+                <button class="nav-btn" data-panel="panel-news">News</button>
+                <button class="nav-btn" data-panel="panel-outreach">Outreach</button>
+                <button class="nav-btn" data-panel="panel-campus">Campus</button>
+                <a href="#" class="nav-btn flex items-center">Careers</a>
             </nav>
 
             <!-- Right Actions -->
@@ -185,11 +188,173 @@
                     <button class="text-[#1a1a1a] hover:text-oist-accent">日本語</button>
                 </div>
                 <!-- Mobile Toggle -->
-                <button id="mobile-menu-btn" class="xl:hidden hamburger p-2 flex flex-col space-y-1.5 z-[110]">
+                <button id="mobile-menu-btn" class="xl:hidden hamburger p-2 flex flex-col space-y-1.5 z-[210]">
                     <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
                     <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
                     <span class="block w-6 h-0.5 bg-[#1a1a1a]"></span>
                 </button>
+            </div>
+        </div>
+
+        <!-- Mega Menu Panels -->
+        <!-- Panel About -->
+        <div id="panel-about" class="mega-panel">
+            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
+                <div>
+                    <h4>Overview</h4>
+                    <a href="#">About OIST</a>
+                    <a href="#">Facts and Figures</a>
+                    <a href="#">Leadership and Governance</a>
+                </div>
+                <div>
+                    <h4>History & Values</h4>
+                    <a href="#">History</a>
+                    <a href="#">Mission and Vision</a>
+                    <a href="#">Sustainability</a>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <a href="#">Publications and Reports</a>
+                    <a href="#">Media Kit</a>
+                    <a href="#">Tokyo Office</a>
+                </div>
+                <div>
+                    <h4>Opportunities</h4>
+                    <a href="#">Careers</a>
+                    <a href="#">Giving to OIST</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Research -->
+        <div id="panel-research" class="mega-panel">
+            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
+                <div>
+                    <h4>Programs</h4>
+                    <a href="list.html">Research at OIST</a>
+                    <a href="#">Faculty and Research Units</a>
+                    <a href="#">Postdoctoral Scholars</a>
+                </div>
+                <div>
+                    <h4>Centers</h4>
+                    <a href="#">Open Centers</a>
+                    <a href="#">Marine Science Station</a>
+                    <a href="#">Quantum Technology Center</a>
+                </div>
+                <div>
+                    <h4>Infrastructure</h4>
+                    <a href="#">Research Facilities</a>
+                    <a href="#">Core Instrumentation</a>
+                    <a href="#">Computing Resources</a>
+                </div>
+                <div>
+                    <h4>Support</h4>
+                    <a href="#">Research Support</a>
+                    <a href="#">Grants & Partnerships</a>
+                    <a href="#">Ethics and Compliance</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Education -->
+        <div id="panel-education" class="mega-panel">
+            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
+                <div>
+                    <h4>Graduate School</h4>
+                    <a href="#">PhD Program</a>
+                    <a href="#">Curriculum</a>
+                    <a href="#">Admissions</a>
+                </div>
+                <div>
+                    <h4>Student Life</h4>
+                    <a href="#">Student Support</a>
+                    <a href="#">Housing</a>
+                    <a href="#">Recreation</a>
+                </div>
+                <div>
+                    <h4>Internships</h4>
+                    <a href="#">Research Internship</a>
+                    <a href="#">Summer Programs</a>
+                </div>
+                <div>
+                    <h4>Funding</h4>
+                    <a href="#">Tuition & Fees</a>
+                    <a href="#">Financial Support</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel News -->
+        <div id="panel-news" class="mega-panel">
+            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
+                <div>
+                    <h4>Latest</h4>
+                    <a href="#">Latest News</a>
+                    <a href="#">Press Releases</a>
+                    <a href="#">Media Coverage</a>
+                </div>
+                <div>
+                    <h4>Social</h4>
+                    <a href="#">Social Media</a>
+                    <a href="#">Podcast</a>
+                    <a href="#">Newsletter</a>
+                </div>
+                <div>
+                    <h4>Events</h4>
+                    <a href="#">Event Calendar</a>
+                    <a href="#">Public Lectures</a>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <a href="#">Press Contact</a>
+                    <a href="#">Expert Guide</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Outreach -->
+        <div id="panel-outreach" class="mega-panel">
+            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
+                <div>
+                    <h4>Community</h4>
+                    <a href="#">Community Outreach</a>
+                    <a href="#">Outreach News</a>
+                </div>
+                <div>
+                    <h4>Schools</h4>
+                    <a href="#">Elementary School</a>
+                    <a href="#">High School</a>
+                    <a href="#">University</a>
+                </div>
+                <div>
+                    <h4>Public</h4>
+                    <a href="#">General Public</a>
+                    <a href="#">Open Campus</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Campus -->
+        <div id="panel-campus" class="mega-panel">
+            <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-4 gap-12">
+                <div>
+                    <h4>Visit</h4>
+                    <a href="#">Campus Map</a>
+                    <a href="#">Access & Parking</a>
+                    <a href="#">Tours</a>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <a href="#">Event Venues</a>
+                    <a href="#">Dining</a>
+                    <a href="#">Childcare</a>
+                </div>
+                <div>
+                    <h4>Living</h4>
+                    <a href="#">Housing</a>
+                    <a href="#">Health & Wellness</a>
+                </div>
             </div>
         </div>
     </header>
@@ -199,7 +364,7 @@
         <div class="space-y-2">
             <!-- About Accordion -->
             <div class="accordion-item border-b border-gray-100">
-                <button class="w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]">
+                <button class="accordion-trigger w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]" aria-expanded="false">
                     About <span class="arrow transition-transform duration-300">▶</span>
                 </button>
                 <div class="accordion-content bg-gray-50 px-4">
@@ -211,7 +376,7 @@
             </div>
             <!-- Research Accordion -->
             <div class="accordion-item border-b border-gray-100">
-                <button class="w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]">
+                <button class="accordion-trigger w-full py-4 flex justify-between items-center text-lg font-bold text-[#1a1a1a]" aria-expanded="false">
                     Research <span class="arrow transition-transform duration-300">▶</span>
                 </button>
                 <div class="accordion-content bg-gray-50 px-4">
@@ -243,7 +408,7 @@
     </div>
 
     <!-- Search Overlay -->
-    <div id="search-overlay" class="fixed inset-0 bg-white z-[200] flex-col items-center pt-32 px-6">
+    <div id="search-overlay" class="fixed inset-0 bg-white z-[300] flex-col items-center pt-32 px-6">
         <button id="close-search" class="absolute top-8 right-8 text-gray-400 hover:text-oist transition-colors">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
@@ -254,13 +419,13 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="relative h-screen min-h-[600px] flex items-center overflow-hidden">
+    <section class="relative h-screen min-h-[600px] overflow-hidden">
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
             <source src="https://assets.mixkit.co/videos/preview/mixkit-science-experiment-in-a-laboratory-41443-large.mp4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-black/30"></div>
-        <div class="relative z-10 max-w-[1440px] mx-auto px-6 w-full">
-            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight max-w-4xl" fetchpriority="high">探索科学的无限边界</h1>
+        <div class="absolute bottom-[15%] left-[6rem] z-10 w-full">
+            <h1 class="text-5xl md:text-7xl font-[300] text-white leading-tight max-w-4xl tracking-[-0.02em]" fetchpriority="high">探索科学的无限边界</h1>
             <p class="text-xl text-white/90 mt-4 font-light">Science Without Boundaries</p>
         </div>
     </section>
@@ -349,78 +514,80 @@
     </section>
 
     <!-- Research Events Section -->
-    <section class="py-24 bg-gray-50">
+    <section class="py-24 bg-white">
         <div class="max-w-[1440px] mx-auto px-6">
             <div class="flex justify-between items-end mb-12">
                 <h2 class="text-3xl font-bold uppercase tracking-tight">学术活动</h2>
                 <a href="#" class="text-sm font-bold text-oist-accent hover:underline uppercase tracking-widest">查看更多 &rarr;</a>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+            <div class="flex flex-col border-t border-[#e5e5e5]">
                 <!-- Event 1 -->
-                <div class="flex items-start space-x-8 py-6 border-b border-gray-200">
-                    <div class="text-center min-w-[60px]">
-                        <p class="text-xs font-bold text-gray-400 uppercase">MAR</p>
-                        <p class="text-4xl font-bold text-oist">15</p>
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b border-[#e5e5e5] gap-4">
+                    <div class="flex items-center space-x-8 min-w-[100px]">
+                        <div class="text-center">
+                            <p class="text-xs font-bold text-gray-400 uppercase">MAR</p>
+                            <p class="text-4xl font-bold text-oist">15</p>
+                        </div>
                     </div>
-                    <div>
+                    <div class="flex-grow">
                         <span class="inline-block px-2 py-0.5 bg-oist text-white text-[10px] font-bold rounded uppercase mb-2">Symposium</span>
-                        <h4 class="text-lg font-bold hover:text-oist-accent transition-colors"><a href="#">量子计算的未来：从理论到商业化应用</a></h4>
+                        <h4 class="text-xl font-bold hover:text-oist-accent transition-colors"><a href="#">量子计算的未来：从理论到商业化应用</a></h4>
+                    </div>
+                    <div class="text-right text-sm text-gray-500">
+                        <p>14:00 - 17:00</p>
+                        <p>Auditorium A, Campus Center</p>
                     </div>
                 </div>
                 <!-- Event 2 -->
-                <div class="flex items-start space-x-8 py-6 border-b border-gray-200">
-                    <div class="text-center min-w-[60px]">
-                        <p class="text-xs font-bold text-gray-400 uppercase">MAR</p>
-                        <p class="text-4xl font-bold text-oist">22</p>
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b border-[#e5e5e5] gap-4">
+                    <div class="flex items-center space-x-8 min-w-[100px]">
+                        <div class="text-center">
+                            <p class="text-xs font-bold text-gray-400 uppercase">MAR</p>
+                            <p class="text-4xl font-bold text-oist">22</p>
+                        </div>
                     </div>
-                    <div>
+                    <div class="flex-grow">
                         <span class="inline-block px-2 py-0.5 bg-orange-600 text-white text-[10px] font-bold rounded uppercase mb-2">Seminar</span>
-                        <h4 class="text-lg font-bold hover:text-oist-accent transition-colors"><a href="#">合成生物学：重塑生命蓝图的伦理与技术</a></h4>
+                        <h4 class="text-xl font-bold hover:text-oist-accent transition-colors"><a href="#">合成生物学：重塑生命蓝图的伦理与技术</a></h4>
+                    </div>
+                    <div class="text-right text-sm text-gray-500">
+                        <p>10:30 - 12:00</p>
+                        <p>Lab Building 3, Room 204</p>
                     </div>
                 </div>
                 <!-- Event 3 -->
-                <div class="flex items-start space-x-8 py-6 border-b border-gray-200">
-                    <div class="text-center min-w-[60px]">
-                        <p class="text-xs font-bold text-gray-400 uppercase">APR</p>
-                        <p class="text-4xl font-bold text-oist">05</p>
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b border-[#e5e5e5] gap-4">
+                    <div class="flex items-center space-x-8 min-w-[100px]">
+                        <div class="text-center">
+                            <p class="text-xs font-bold text-gray-400 uppercase">APR</p>
+                            <p class="text-4xl font-bold text-oist">05</p>
+                        </div>
                     </div>
-                    <div>
+                    <div class="flex-grow">
                         <span class="inline-block px-2 py-0.5 bg-blue-600 text-white text-[10px] font-bold rounded uppercase mb-2">Workshop</span>
-                        <h4 class="text-lg font-bold hover:text-oist-accent transition-colors"><a href="#">2026 春季校园开放日：走进顶尖实验室</a></h4>
+                        <h4 class="text-xl font-bold hover:text-oist-accent transition-colors"><a href="#">2026 春季校园开放日：走进顶尖实验室</a></h4>
+                    </div>
+                    <div class="text-right text-sm text-gray-500">
+                        <p>09:00 - 16:00</p>
+                        <p>Main Entrance, Science Campus</p>
                     </div>
                 </div>
                 <!-- Event 4 -->
-                <div class="flex items-start space-x-8 py-6 border-b border-gray-200">
-                    <div class="text-center min-w-[60px]">
-                        <p class="text-xs font-bold text-gray-400 uppercase">APR</p>
-                        <p class="text-4xl font-bold text-oist">12</p>
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b border-[#e5e5e5] gap-4">
+                    <div class="flex items-center space-x-8 min-w-[100px]">
+                        <div class="text-center">
+                            <p class="text-xs font-bold text-gray-400 uppercase">APR</p>
+                            <p class="text-4xl font-bold text-oist">12</p>
+                        </div>
                     </div>
-                    <div>
+                    <div class="flex-grow">
                         <span class="inline-block px-2 py-0.5 bg-purple-600 text-white text-[10px] font-bold rounded uppercase mb-2">Lecture</span>
-                        <h4 class="text-lg font-bold hover:text-oist-accent transition-colors"><a href="#">深海生态系统对全球变暖的响应机制</a></h4>
+                        <h4 class="text-xl font-bold hover:text-oist-accent transition-colors"><a href="#">深海生态系统对全球变暖的响应机制</a></h4>
                     </div>
-                </div>
-                <!-- Event 5 -->
-                <div class="flex items-start space-x-8 py-6 border-b border-gray-200">
-                    <div class="text-center min-w-[60px]">
-                        <p class="text-xs font-bold text-gray-400 uppercase">MAY</p>
-                        <p class="text-4xl font-bold text-oist">02</p>
-                    </div>
-                    <div>
-                        <span class="inline-block px-2 py-0.5 bg-emerald-600 text-white text-[10px] font-bold rounded uppercase mb-2">Conference</span>
-                        <h4 class="text-lg font-bold hover:text-oist-accent transition-colors"><a href="#">人工智能在医学影像诊断中的前沿应用</a></h4>
-                    </div>
-                </div>
-                <!-- Event 6 -->
-                <div class="flex items-start space-x-8 py-6 border-b border-gray-200">
-                    <div class="text-center min-w-[60px]">
-                        <p class="text-xs font-bold text-gray-400 uppercase">MAY</p>
-                        <p class="text-4xl font-bold text-oist">18</p>
-                    </div>
-                    <div>
-                        <span class="inline-block px-2 py-0.5 bg-rose-600 text-white text-[10px] font-bold rounded uppercase mb-2">Colloquium</span>
-                        <h4 class="text-lg font-bold hover:text-oist-accent transition-colors"><a href="#">暗物质探测：寻找宇宙中失踪的质量</a></h4>
+                    <div class="text-right text-sm text-gray-500">
+                        <p>15:00 - 16:30</p>
+                        <p>Ocean Research Center, Hall B</p>
                     </div>
                 </div>
             </div>
@@ -651,6 +818,40 @@
     </footer>
 
     <script>
+        // Mega Menu Logic
+        const navBtns = document.querySelectorAll('.nav-btn[data-panel]');
+        const panels = document.querySelectorAll('.mega-panel');
+        const backdrop = document.getElementById('mega-backdrop');
+
+        function closeAllPanels() {
+            panels.forEach(p => p.classList.remove('active'));
+            navBtns.forEach(b => b.classList.remove('active'));
+            backdrop.classList.remove('active');
+        }
+
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const panelId = btn.getAttribute('data-panel');
+                const panel = document.getElementById(panelId);
+                const isActive = panel.classList.contains('active');
+
+                if (isActive) {
+                    closeAllPanels();
+                } else {
+                    closeAllPanels();
+                    panel.classList.add('active');
+                    btn.classList.add('active');
+                    backdrop.classList.add('active');
+                }
+            });
+        });
+
+        backdrop.addEventListener('click', closeAllPanels);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAllPanels();
+        });
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -663,11 +864,27 @@
         });
 
         // Accordion Logic
-        const accordionTriggers = document.querySelectorAll('.accordion-item button');
+        const accordionTriggers = document.querySelectorAll('.accordion-trigger');
         accordionTriggers.forEach(trigger => {
             trigger.addEventListener('click', () => {
-                const item = trigger.parentElement;
-                item.classList.toggle('active');
+                const content = trigger.nextElementSibling;
+                const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+                
+                // Close all others
+                document.querySelectorAll('.accordion-trigger').forEach(t => {
+                    t.setAttribute('aria-expanded', 'false');
+                    t.parentElement.classList.remove('active');
+                    if (t.nextElementSibling) {
+                        t.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+
+                // Toggle current
+                if (!isOpen) {
+                    trigger.setAttribute('aria-expanded', 'true');
+                    trigger.parentElement.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
             });
         });
 
@@ -695,12 +912,17 @@
         const items = document.querySelectorAll('.carousel-item');
         const totalSlides = items.length;
 
-        // Generate Dots
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('button');
-            dot.className = `w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-oist w-6' : 'bg-gray-200'}`;
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
+        function generateDots() {
+            dotsContainer.innerHTML = '';
+            const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
+            const maxIndex = window.innerWidth >= 768 ? totalSlides - 2 : totalSlides;
+            
+            for (let i = 0; i < maxIndex; i++) {
+                const dot = document.createElement('button');
+                dot.className = `w-2 h-2 rounded-full transition-all ${i === currentIndex ? 'bg-oist w-6' : 'bg-gray-200'}`;
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
         }
 
         function updateDots() {
@@ -717,27 +939,46 @@
         }
 
         function goToSlide(index) {
+            const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
+            const maxIndex = window.innerWidth >= 768 ? totalSlides - 3 : totalSlides - 1;
+            
+            if (index < 0) index = 0;
+            if (index > maxIndex) index = maxIndex;
+            
             currentIndex = index;
-            const offset = currentIndex * (100 / (window.innerWidth >= 768 ? 3 : 1));
+            const offset = currentIndex * (100 / itemsPerView);
             track.style.transform = `translateX(-${offset}%)`;
             updateDots();
         }
 
         nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            goToSlide(currentIndex);
+            const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
+            const maxIndex = window.innerWidth >= 768 ? totalSlides - 3 : totalSlides - 1;
+            if (currentIndex < maxIndex) {
+                goToSlide(currentIndex + 1);
+            } else {
+                goToSlide(0);
+            }
         });
 
         prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            goToSlide(currentIndex);
+            if (currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            } else {
+                const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
+                const maxIndex = window.innerWidth >= 768 ? totalSlides - 3 : totalSlides - 1;
+                goToSlide(maxIndex);
+            }
         });
 
-        // Auto play
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            goToSlide(currentIndex);
-        }, 5000);
+        window.addEventListener('resize', () => {
+            currentIndex = 0;
+            goToSlide(0);
+            generateDots();
+        });
+
+        generateDots();
+        goToSlide(0);
     </script>
 </body>
 </html>
