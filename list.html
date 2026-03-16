@@ -28,7 +28,7 @@
     </script>
     <style>
         @import "tailwindcss";
-        body { color: #1a1a1a; background-color: #ffffff; }
+        body { color: #1a1a1a; background-color: #ffffff; font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif; overflow-x: hidden; }
         
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
@@ -41,6 +41,7 @@
             position: fixed; 
             top: 80px; 
             left: 0; 
+            right: 0;
             width: 100%; 
             background-color: white; 
             color: #1a1a1a; 
@@ -213,10 +214,10 @@
         <!-- Utility Bar -->
         <div class="bg-gray-50 py-2 px-6 hidden lg:block border-b border-gray-200">
             <div class="max-w-[1440px] mx-auto flex justify-end space-x-8 text-[10px] font-bold uppercase tracking-widest">
-                <a href="#" class="hover:text-oist-red transition-colors">Giving</a>
-                <a href="#" class="hover:text-oist-red transition-colors">Careers</a>
-                <a href="#" class="hover:text-oist-red transition-colors">Contact</a>
-                <a href="#" class="hover:text-oist-red transition-colors">Access</a>
+                <a href="#" class="hover:text-oist-red transition-colors">捐赠</a>
+                <a href="#" class="hover:text-oist-red transition-colors">职业发展</a>
+                <a href="#" class="hover:text-oist-red transition-colors">联系我们</a>
+                <a href="#" class="hover:text-oist-red transition-colors">访问指南</a>
                 <div class="flex items-center space-x-4 ml-8 border-l border-gray-200 pl-8">
                     <a href="#" class="text-oist-red font-bold">EN</a>
                     <a href="#" class="hover:text-oist-red transition-colors">JP</a>
@@ -231,20 +232,20 @@
                     <span class="text-white font-serif font-bold text-2xl lg:text-3xl">O</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-2xl lg:text-3xl font-serif font-bold tracking-tight leading-none">OIST</span>
-                    <span class="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.3em] mt-2 opacity-60 hidden sm:block">Okinawa Institute of Science and Technology</span>
+                    <span class="text-2xl lg:text-3xl font-serif font-bold tracking-tight leading-none">山河大学</span>
+                    <span class="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.3em] mt-2 opacity-60 hidden sm:block">山河大学科学技术研究院</span>
                 </div>
             </a>
             
             <nav class="hidden xl:flex items-center space-x-10 h-full">
-                <button class="nav-link menu-trigger" data-menu="about">About</button>
-                <button class="nav-link menu-trigger" data-menu="research">Research</button>
-                <button class="nav-link menu-trigger" data-menu="academic">Academic</button>
-                <button class="nav-link menu-trigger" data-menu="admissions">Admissions</button>
-                <button class="nav-link menu-trigger" data-menu="innovation">Innovation</button>
-                <button class="nav-link menu-trigger" data-menu="news">News</button>
-                <button class="nav-link menu-trigger" data-menu="outreach">Outreach</button>
-                <button class="nav-link menu-trigger" data-menu="campus">Campus</button>
+                <button class="nav-link menu-trigger" data-menu="about">关于我们</button>
+                <button class="nav-link menu-trigger" data-menu="research">科学研究</button>
+                <button class="nav-link menu-trigger" data-menu="academic">学术教育</button>
+                <button class="nav-link menu-trigger" data-menu="admissions">招生信息</button>
+                <button class="nav-link menu-trigger" data-menu="innovation">创新创业</button>
+                <button class="nav-link menu-trigger" data-menu="news">新闻动态</button>
+                <button class="nav-link menu-trigger" data-menu="outreach">社会服务</button>
+                <button class="nav-link menu-trigger" data-menu="campus">校园生活</button>
             </nav>
             
             <div class="flex items-center space-x-8">
@@ -586,11 +587,11 @@
     <section class="bg-oist-gray py-16">
         <div class="max-w-[1440px] mx-auto px-6">
             <nav class="flex space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">
-                <a href="index.html" class="hover:text-oist-red">Home</a>
+                <a href="index.html" class="hover:text-oist-red">首页</a>
                 <span>/</span>
-                <span class="text-gray-900">News</span>
+                <span class="text-gray-900">新闻动态</span>
             </nav>
-            <h1 class="text-5xl font-bold tracking-tight">News</h1>
+            <h1 class="text-5xl font-bold tracking-tight">新闻动态</h1>
         </div>
     </section>
 
@@ -603,26 +604,26 @@
                     <!-- News Item -->
                     <article class="flex flex-col md:flex-row gap-8 group cursor-pointer">
                         <div class="md:w-1/3 aspect-[16/10] overflow-hidden">
-                            <img src="https://picsum.photos/800/500?random=20" alt="News" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <img src="https://picsum.photos/800/500?random=20" alt="新闻" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         </div>
                         <div class="md:w-2/3 space-y-4">
-                            <span class="text-[10px] font-bold text-oist-red uppercase tracking-widest">Research Update</span>
-                            <h2 class="text-2xl font-bold leading-tight group-hover:text-oist-red transition-colors"><a href="article.html">Unlocking the Secrets of Deep-Sea Coral Resilience</a></h2>
-                            <p class="text-sm text-gray-500 leading-relaxed">A new study led by OIST researchers reveals the genetic mechanisms that allow certain coral species to thrive in extreme pressure and low light conditions.</p>
-                            <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">March 15, 2026</time>
+                            <span class="text-[10px] font-bold text-oist-red uppercase tracking-widest">科研动态</span>
+                            <h2 class="text-2xl font-bold leading-tight group-hover:text-oist-red transition-colors"><a href="article.html">揭秘深海珊瑚的韧性</a></h2>
+                            <p class="text-sm text-gray-500 leading-relaxed">山河大学研究人员领导的一项新研究揭示了某些珊瑚物种在极端压力和低光照条件下茁壮成长的遗传机制。</p>
+                            <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">2026年3月15日</time>
                         </div>
                     </article>
 
                     <!-- News Item -->
                     <article class="flex flex-col md:flex-row gap-8 group cursor-pointer">
                         <div class="md:w-1/3 aspect-[16/10] overflow-hidden">
-                            <img src="https://picsum.photos/800/500?random=21" alt="News" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <img src="https://picsum.photos/800/500?random=21" alt="新闻" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         </div>
                         <div class="md:w-2/3 space-y-4">
-                            <span class="text-[10px] font-bold text-oist-red uppercase tracking-widest">Innovation</span>
-                            <h2 class="text-2xl font-bold leading-tight group-hover:text-oist-red transition-colors"><a href="#">New AI Model Predicts Protein Folding with Unprecedented Accuracy</a></h2>
-                            <p class="text-sm text-gray-500 leading-relaxed">The OIST Computational Biology Unit has released a new open-source tool that significantly reduces the time required for protein structure prediction.</p>
-                            <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">March 12, 2026</time>
+                            <span class="text-[10px] font-bold text-oist-red uppercase tracking-widest">创新科技</span>
+                            <h2 class="text-2xl font-bold leading-tight group-hover:text-oist-red transition-colors"><a href="#">新型人工智能模型以前所未有的精度预测蛋白质折叠</a></h2>
+                            <p class="text-sm text-gray-500 leading-relaxed">山河大学计算生物学部门发布了一款新型开源工具，显著缩短了蛋白质结构预测所需的时间。</p>
+                            <time class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">2026年3月12日</time>
                         </div>
                     </article>
 
@@ -637,77 +638,56 @@
                 <!-- Sidebar -->
                 <aside class="lg:w-1/4 space-y-12">
                     <div>
-                        <h3 class="text-xs font-bold uppercase tracking-widest text-oist-red border-b border-gray-100 pb-4 mb-6">Categories</h3>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-oist-red border-b border-gray-100 pb-4 mb-6">分类</h3>
                         <ul class="space-y-4 text-sm font-medium">
-                            <li><a href="#" class="hover:text-oist-red flex justify-between">Research Update <span class="text-gray-300">42</span></a></li>
-                            <li><a href="#" class="hover:text-oist-red flex justify-between">Innovation <span class="text-gray-300">18</span></a></li>
-                            <li><a href="#" class="hover:text-oist-red flex justify-between">Education <span class="text-gray-300">25</span></a></li>
-                            <li><a href="#" class="hover:text-oist-red flex justify-between">Campus Life <span class="text-gray-300">12</span></a></li>
+                            <li><a href="#" class="hover:text-oist-red flex justify-between">科研动态 <span class="text-gray-300">42</span></a></li>
+                            <li><a href="#" class="hover:text-oist-red flex justify-between">创新科技 <span class="text-gray-300">18</span></a></li>
+                            <li><a href="#" class="hover:text-oist-red flex justify-between">学术教育 <span class="text-gray-300">25</span></a></li>
+                            <li><a href="#" class="hover:text-oist-red flex justify-between">校园生活 <span class="text-gray-300">12</span></a></li>
                         </ul>
                     </div>
-                </aside>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-oist-dark text-white pt-24 pb-12">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-20">
-                <div class="lg:col-span-2 space-y-8">
                     <div class="flex items-center space-x-6">
                         <div class="w-12 h-12 bg-oist-red flex items-center justify-center">
                             <span class="text-white font-serif font-bold text-2xl">O</span>
                         </div>
                         <div>
-                            <span class="block text-3xl font-serif font-bold tracking-tight leading-none">OIST</span>
-                            <span class="block text-[10px] font-bold uppercase tracking-[0.3em] mt-2 text-white/40">Okinawa Institute of Science and Technology</span>
+                            <span class="block text-3xl font-serif font-bold tracking-tight leading-none">山河大学</span>
+                            <span class="block text-[10px] font-bold uppercase tracking-[0.3em] mt-2 text-white/40">山河大学科学技术研究院</span>
                         </div>
                     </div>
                     <p class="text-sm text-white/60 leading-relaxed max-w-sm font-light">
-                        1919-1 Tancha, Onna-son, Kunigami-gun<br>
-                        Okinawa, Japan 904-0495<br>
-                        Phone: +81-98-966-8711
+                        1919-1 坦查, 恩纳村, 国头郡<br>
+                        冲绳, 日本 904-0495<br>
+                        电话: +81-98-966-8711
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-oist-red hover:border-oist-red transition-all group">
-                            <svg class="w-5 h-5 text-white/60 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-oist-red hover:border-oist-red transition-all group">
-                            <svg class="w-5 h-5 text-white/60 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-oist-red hover:border-oist-red transition-all group">
-                            <svg class="w-5 h-5 text-white/60 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-oist-red hover:border-oist-red transition-all group">
-                            <svg class="w-5 h-5 text-white/60 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
-                        </a>
+                        <!-- Social icons -->
                     </div>
                 </div>
 
-                <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-12">
+                <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-12">
                     <div>
-                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-red mb-8">Quick Links</h4>
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-red mb-8">快速链接</h4>
                         <ul class="space-y-4 text-sm text-white/40 font-light">
-                            <li><a href="#" class="hover:text-white transition-colors">About OIST</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Research Units</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">PhD Program</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Admissions</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">关于山河大学</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">研究单位</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">博士项目</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">招生信息</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">职业发展</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-red mb-8">Resources</h4>
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-red mb-8">资源</h4>
                         <ul class="space-y-4 text-sm text-white/40 font-light">
-                            <li><a href="#" class="hover:text-white transition-colors">Policy Library</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Library</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Resource Center</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Access & Maps</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">政策库</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">图书馆</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">资源中心</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">访问指南</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">联系我们</a></li>
                         </ul>
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-red mb-8">Language</h4>
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-oist-red mb-8">语言</h4>
                         <div class="flex flex-col space-y-4">
                             <button class="text-left text-sm font-bold text-white">English</button>
                             <button class="text-left text-sm font-light text-white/40 hover:text-white transition-colors">日本語</button>
@@ -718,12 +698,16 @@
 
             <div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-white/40">
-                    &copy; 2026 Okinawa Institute of Science and Technology
+                    &copy; 2026 山河大学科学技术研究院
                 </p>
                 <div class="flex flex-wrap justify-center gap-8 text-[10px] font-bold uppercase tracking-widest text-white/40">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Site Map</a>
-                    <a href="#" class="hover:text-white transition-colors">Accessibility</a>
+                    <a href="#" class="hover:text-white transition-colors">隐私政策</a>
+                    <a href="#" class="hover:text-white transition-colors">网站地图</a>
+                    <a href="#" class="hover:text-white transition-colors">无障碍访问</a>
+                </div>
+            </div>
+        </div>
+    </footer> <a href="#" class="hover:text-white transition-colors">Accessibility</a>
                 </div>
             </div>
         </div>
