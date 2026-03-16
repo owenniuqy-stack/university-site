@@ -30,17 +30,23 @@
     <style>
         @import "tailwindcss";
 
+        * {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif !important;
+        }
+
         body {
             color: #1a1a1a;
             background-color: #ffffff;
-            font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif !important;
+            overflow-x: hidden;
         }
 
         /* Mega Menu Styles */
         .mega-menu {
-            position: absolute;
+            position: fixed;
             top: 100%;
             left: 0;
+            right: 0;
             width: 100%;
             background-color: #ffffff;
             color: #1a1a1a;
@@ -821,63 +827,117 @@
  
             <div id="events-carousel" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Event 1 -->
-                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                    <img src="https://picsum.photos/seed/speaker1/600/400" alt="Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">3月20日 14:00</div>
-                        <h4 class="text-xl font-serif font-bold mb-2">太平洋海洋生物多样性的未来</h4>
-                        <p class="text-sm text-gray-600 mb-4">地点：礼堂 B</p>
-                        <p class="text-sm text-gray-500 font-light">探讨海洋生态系统保护的紧迫议题。</p>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker1/600/400" alt="Activity" class="w-full h-48 object-cover">
+                    <div class="p-6 relative">
+                        <div class="absolute -top-12 left-6">
+                            <img src="https://i.pravatar.cc/100?img=20" alt="Speaker" class="w-20 h-20 rounded-full border-4 border-white shadow-lg">
+                        </div>
+                        <div class="mt-8 mb-4">
+                            <h5 class="font-bold text-lg">张教授</h5>
+                            <p class="text-xs text-gray-500">海洋生物学首席研究员</p>
+                        </div>
+                        <h4 class="text-2xl font-serif font-bold mb-3">太平洋海洋生物多样性的未来</h4>
+                        <p class="text-sm text-gray-600 mb-4">探讨海洋生态系统保护的紧迫议题。</p>
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><strong>时间：</strong>2026年3月20日 14:00–16:00</p>
+                            <p><strong>地点：</strong>礼堂 B</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Event 2 -->
-                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                    <img src="https://picsum.photos/seed/speaker2/600/400" alt="Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">3月25日 10:00</div>
-                        <h4 class="text-xl font-serif font-bold mb-2">人工智能伦理：探索研究新前沿</h4>
-                        <p class="text-sm text-gray-600 mb-4">地点：Zoom 线上会议</p>
-                        <p class="text-sm text-gray-500 font-light">深入分析人工智能技术在伦理层面的挑战。</p>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker2/600/400" alt="Activity" class="w-full h-48 object-cover">
+                    <div class="p-6 relative">
+                        <div class="absolute -top-12 left-6">
+                            <img src="https://i.pravatar.cc/100?img=21" alt="Speaker" class="w-20 h-20 rounded-full border-4 border-white shadow-lg">
+                        </div>
+                        <div class="mt-8 mb-4">
+                            <h5 class="font-bold text-lg">李教授</h5>
+                            <p class="text-xs text-gray-500">人工智能伦理专家</p>
+                        </div>
+                        <h4 class="text-2xl font-serif font-bold mb-3">人工智能伦理：探索研究新前沿</h4>
+                        <p class="text-sm text-gray-600 mb-4">深入分析人工智能技术在伦理层面的挑战。</p>
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><strong>时间：</strong>2026年3月25日 10:00–12:00</p>
+                            <p><strong>地点：</strong>Zoom 线上会议</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Event 3 -->
-                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                    <img src="https://picsum.photos/seed/speaker3/600/400" alt="Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">4月05日 15:00</div>
-                        <h4 class="text-xl font-serif font-bold mb-2">量子计算的商业化应用</h4>
-                        <p class="text-sm text-gray-600 mb-4">地点：主会议室</p>
-                        <p class="text-sm text-gray-500 font-light">探讨量子计算从实验室走向市场的路径。</p>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker3/600/400" alt="Activity" class="w-full h-48 object-cover">
+                    <div class="p-6 relative">
+                        <div class="absolute -top-12 left-6">
+                            <img src="https://i.pravatar.cc/100?img=22" alt="Speaker" class="w-20 h-20 rounded-full border-4 border-white shadow-lg">
+                        </div>
+                        <div class="mt-8 mb-4">
+                            <h5 class="font-bold text-lg">王教授</h5>
+                            <p class="text-xs text-gray-500">量子计算物理学家</p>
+                        </div>
+                        <h4 class="text-2xl font-serif font-bold mb-3">量子计算的商业化应用</h4>
+                        <p class="text-sm text-gray-600 mb-4">探讨量子计算从实验室走向市场的路径。</p>
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><strong>时间：</strong>2026年4月05日 15:00–17:00</p>
+                            <p><strong>地点：</strong>主会议室</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Event 4 -->
-                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                    <img src="https://picsum.photos/seed/speaker4/600/400" alt="Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">4月12日 09:00</div>
-                        <h4 class="text-xl font-serif font-bold mb-2">基因编辑与人类健康</h4>
-                        <p class="text-sm text-gray-600 mb-4">地点：生命科学楼 101</p>
-                        <p class="text-sm text-gray-500 font-light">分析CRISPR技术在医疗领域的最新进展。</p>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker4/600/400" alt="Activity" class="w-full h-48 object-cover">
+                    <div class="p-6 relative">
+                        <div class="absolute -top-12 left-6">
+                            <img src="https://i.pravatar.cc/100?img=23" alt="Speaker" class="w-20 h-20 rounded-full border-4 border-white shadow-lg">
+                        </div>
+                        <div class="mt-8 mb-4">
+                            <h5 class="font-bold text-lg">赵教授</h5>
+                            <p class="text-xs text-gray-500">基因编辑技术专家</p>
+                        </div>
+                        <h4 class="text-2xl font-serif font-bold mb-3">基因编辑与人类健康</h4>
+                        <p class="text-sm text-gray-600 mb-4">分析CRISPR技术在医疗领域的最新进展。</p>
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><strong>时间：</strong>2026年4月12日 09:00–11:00</p>
+                            <p><strong>地点：</strong>生命科学楼 101</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Event 5 -->
-                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                    <img src="https://picsum.photos/seed/speaker5/600/400" alt="Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">4月18日 13:30</div>
-                        <h4 class="text-xl font-serif font-bold mb-2">气候变化下的城市规划</h4>
-                        <p class="text-sm text-gray-600 mb-4">地点：环境科学中心</p>
-                        <p class="text-sm text-gray-500 font-light">探讨如何构建更具韧性的未来城市。</p>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker5/600/400" alt="Activity" class="w-full h-48 object-cover">
+                    <div class="p-6 relative">
+                        <div class="absolute -top-12 left-6">
+                            <img src="https://i.pravatar.cc/100?img=24" alt="Speaker" class="w-20 h-20 rounded-full border-4 border-white shadow-lg">
+                        </div>
+                        <div class="mt-8 mb-4">
+                            <h5 class="font-bold text-lg">孙教授</h5>
+                            <p class="text-xs text-gray-500">环境科学与城市规划专家</p>
+                        </div>
+                        <h4 class="text-2xl font-serif font-bold mb-3">气候变化下的城市规划</h4>
+                        <p class="text-sm text-gray-600 mb-4">探讨如何构建更具韧性的未来城市。</p>
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><strong>时间：</strong>2026年4月18日 13:30–15:30</p>
+                            <p><strong>地点：</strong>环境科学中心</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Event 6 -->
-                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                    <img src="https://picsum.photos/seed/speaker6/600/400" alt="Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">4月25日 16:00</div>
-                        <h4 class="text-xl font-serif font-bold mb-2">未来能源：氢能的潜力</h4>
-                        <p class="text-sm text-gray-600 mb-4">地点：能源实验室</p>
-                        <p class="text-sm text-gray-500 font-light">分析氢能技术在能源转型中的核心作用。</p>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker6/600/400" alt="Activity" class="w-full h-48 object-cover">
+                    <div class="p-6 relative">
+                        <div class="absolute -top-12 left-6">
+                            <img src="https://i.pravatar.cc/100?img=25" alt="Speaker" class="w-20 h-20 rounded-full border-4 border-white shadow-lg">
+                        </div>
+                        <div class="mt-8 mb-4">
+                            <h5 class="font-bold text-lg">周教授</h5>
+                            <p class="text-xs text-gray-500">能源科学专家</p>
+                        </div>
+                        <h4 class="text-2xl font-serif font-bold mb-3">未来能源：氢能的潜力</h4>
+                        <p class="text-sm text-gray-600 mb-4">分析氢能技术在能源转型中的核心作用。</p>
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><strong>时间：</strong>2026年4月25日 16:00–18:00</p>
+                            <p><strong>地点：</strong>能源实验室</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -907,7 +967,7 @@
                     <!-- Professor 1-6 -->
                     <div class="carousel-item px-4 min-w-[33.333%]">
                         <div class="relative group overflow-hidden">
-                            <img src="https://picsum.photos/seed/prof1/600/800" alt="Professor 1" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="https://i.pravatar.cc/300?img=10" alt="Professor 1" class="w-full aspect-[3/4] object-cover object-top transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
                                 <h4 class="text-3xl font-serif font-bold mb-2">张教授</h4>
                                 <p class="text-sm opacity-80">物理学博士，专注于量子计算研究。</p>
@@ -916,7 +976,7 @@
                     </div>
                     <div class="carousel-item px-4 min-w-[33.333%]">
                         <div class="relative group overflow-hidden">
-                            <img src="https://picsum.photos/seed/prof2/600/800" alt="Professor 2" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="https://i.pravatar.cc/300?img=11" alt="Professor 2" class="w-full aspect-[3/4] object-cover object-top transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
                                 <h4 class="text-3xl font-serif font-bold mb-2">李教授</h4>
                                 <p class="text-sm opacity-80">生物学博士，专注于基因组学研究。</p>
@@ -925,7 +985,7 @@
                     </div>
                     <div class="carousel-item px-4 min-w-[33.333%]">
                         <div class="relative group overflow-hidden">
-                            <img src="https://picsum.photos/seed/prof3/600/800" alt="Professor 3" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="https://i.pravatar.cc/300?img=12" alt="Professor 3" class="w-full aspect-[3/4] object-cover object-top transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
                                 <h4 class="text-3xl font-serif font-bold mb-2">王教授</h4>
                                 <p class="text-sm opacity-80">计算机科学博士，专注于人工智能研究。</p>
@@ -934,7 +994,7 @@
                     </div>
                     <div class="carousel-item px-4 min-w-[33.333%]">
                         <div class="relative group overflow-hidden">
-                            <img src="https://picsum.photos/seed/prof4/600/800" alt="Professor 4" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="https://i.pravatar.cc/300?img=13" alt="Professor 4" class="w-full aspect-[3/4] object-cover object-top transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
                                 <h4 class="text-3xl font-serif font-bold mb-2">赵教授</h4>
                                 <p class="text-sm opacity-80">化学博士，专注于材料科学研究。</p>
@@ -943,7 +1003,7 @@
                     </div>
                     <div class="carousel-item px-4 min-w-[33.333%]">
                         <div class="relative group overflow-hidden">
-                            <img src="https://picsum.photos/seed/prof5/600/800" alt="Professor 5" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="https://i.pravatar.cc/300?img=14" alt="Professor 5" class="w-full aspect-[3/4] object-cover object-top transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
                                 <h4 class="text-3xl font-serif font-bold mb-2">孙教授</h4>
                                 <p class="text-sm opacity-80">环境科学博士，专注于气候变化研究。</p>
@@ -952,7 +1012,7 @@
                     </div>
                     <div class="carousel-item px-4 min-w-[33.333%]">
                         <div class="relative group overflow-hidden">
-                            <img src="https://picsum.photos/seed/prof6/600/800" alt="Professor 6" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="https://i.pravatar.cc/300?img=15" alt="Professor 6" class="w-full aspect-[3/4] object-cover object-top transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
                                 <h4 class="text-3xl font-serif font-bold mb-2">周教授</h4>
                                 <p class="text-sm opacity-80">数学博士，专注于应用数学研究。</p>
