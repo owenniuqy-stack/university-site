@@ -33,12 +33,13 @@
         body {
             color: #1a1a1a;
             background-color: #ffffff;
+            font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
         }
 
         /* Mega Menu Styles */
         .mega-menu {
-            position: fixed;
-            top: 80px;
+            position: absolute;
+            top: 100%;
             left: 0;
             width: 100%;
             background-color: #ffffff;
@@ -51,9 +52,6 @@
             padding: 40px 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border-top: 1px solid #f0f0f0;
-        }
-        @media (min-width: 1024px) {
-            .mega-menu { top: 144px; }
         }
 
         .mega-menu.active {
@@ -208,7 +206,7 @@
                     <h4 class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-8">Quick Links</h4>
                     <ul class="space-y-4 text-lg font-medium">
                         <li><a href="#" class="hover:text-oist-red transition-colors">PhD Admissions</a></li>
-                        <li><a href="#" class="hover:text-oist-red transition-colors">Research Units</a></li>
+                        <li><a href="#" class="hover:text-oist-red transition-colors">研究单位</a></li>
                         <li><a href="#" class="hover:text-oist-red transition-colors">Campus Map</a></li>
                         <li><a href="#" class="hover:text-oist-red transition-colors">Library</a></li>
                     </ul>
@@ -265,41 +263,27 @@
 
     <!-- Header -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-[110] transition-all duration-500 text-white bg-transparent">
-        <!-- Utility Bar -->
-        <div class="bg-black/20 backdrop-blur-sm py-2 px-6 hidden lg:block border-b border-white/10">
-            <div class="max-w-[1440px] mx-auto flex justify-end space-x-8 text-[10px] font-bold uppercase tracking-widest">
-                <a href="#" class="hover:text-oist-red transition-colors">Giving</a>
-                <a href="#" class="hover:text-oist-red transition-colors">Careers</a>
-                <a href="#" class="hover:text-oist-red transition-colors">Contact</a>
-                <a href="#" class="hover:text-oist-red transition-colors">Access</a>
-                <div class="flex items-center space-x-4 ml-8 border-l border-white/20 pl-8">
-                    <a href="#" class="text-oist-red font-bold">EN</a>
-                    <a href="#" class="hover:text-oist-red transition-colors">JP</a>
-                </div>
-            </div>
-        </div>
-        
         <!-- Main Header -->
         <div class="max-w-[1440px] mx-auto px-6 h-20 lg:h-28 flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-4 group">
                 <div class="w-12 h-12 lg:w-14 lg:h-14 bg-oist-red flex items-center justify-center transition-transform group-hover:scale-105">
-                    <span class="text-white font-serif font-bold text-2xl lg:text-3xl">O</span>
+                    <span class="text-white font-serif font-bold text-2xl lg:text-3xl">山</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-2xl lg:text-3xl font-serif font-bold tracking-tight leading-none">OIST</span>
-                    <span class="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.3em] mt-2 opacity-60 hidden sm:block">Okinawa Institute of Science and Technology</span>
+                    <span class="text-2xl lg:text-3xl font-serif font-bold tracking-tight leading-none">山河大学</span>
+                    <span class="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.3em] mt-2 opacity-60 hidden sm:block">Shanhe University</span>
                 </div>
             </a>
             
             <nav class="hidden xl:flex items-center space-x-10 h-full">
-                <button class="nav-link menu-trigger" data-menu="about">About</button>
-                <button class="nav-link menu-trigger" data-menu="research">Research</button>
-                <button class="nav-link menu-trigger" data-menu="academic">Academic</button>
-                <button class="nav-link menu-trigger" data-menu="admissions">Admissions</button>
-                <button class="nav-link menu-trigger" data-menu="innovation">Innovation</button>
-                <button class="nav-link menu-trigger" data-menu="news">News</button>
-                <button class="nav-link menu-trigger" data-menu="outreach">Outreach</button>
-                <button class="nav-link menu-trigger" data-menu="campus">Campus</button>
+                <button class="nav-link menu-trigger" data-menu="about">关于我们</button>
+                <button class="nav-link menu-trigger" data-menu="research">科学研究</button>
+                <button class="nav-link menu-trigger" data-menu="academic">学术生活</button>
+                <button class="nav-link menu-trigger" data-menu="admissions">招生信息</button>
+                <button class="nav-link menu-trigger" data-menu="innovation">创新创业</button>
+                <button class="nav-link menu-trigger" data-menu="news">新闻动态</button>
+                <button class="nav-link menu-trigger" data-menu="outreach">社会服务</button>
+                <button class="nav-link menu-trigger" data-menu="campus">校园生活</button>
             </nav>
             
             <div class="flex items-center space-x-8">
@@ -358,7 +342,7 @@
         <div id="menu-research" class="mega-menu">
             <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-5 gap-12">
                 <div class="col-span-1">
-                    <h3>Research Units</h3>
+                    <h3>研究单位</h3>
                     <ul>
                         <li><a href="#">Browse All Units</a></li>
                         <li><a href="#">Physics</a></li>
@@ -381,11 +365,11 @@
                     <ul>
                         <li><a href="#">International Partners</a></li>
                         <li><a href="#">Industry Relations</a></li>
-                        <li><a href="#">Visiting Researchers</a></li>
+                        <li><a href="#">访问学者</a></li>
                     </ul>
                 </div>
                 <div class="col-span-2 bg-gray-50 p-10 rounded-xl">
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-oist-red">Research News</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-oist-red">研究新闻</h4>
                     <div class="flex gap-6">
                         <img src="https://picsum.photos/seed/oist-research/300/200" alt="Research" class="w-1/2 aspect-video object-cover rounded-lg shadow-lg">
                         <div class="w-1/2">
@@ -444,7 +428,7 @@
                     <h3>Apply</h3>
                     <ul>
                         <li><a href="#">PhD Admissions</a></li>
-                        <li><a href="#">Research Internships</a></li>
+                        <li><a href="#">研究实习</a></li>
                         <li><a href="#">Application Deadlines</a></li>
                         <li><a href="#">Selection Process</a></li>
                     </ul>
@@ -501,7 +485,7 @@
                     <ul>
                         <li><a href="#">Industry Collaboration</a></li>
                         <li><a href="#">Innovation Park</a></li>
-                        <li><a href="#">Joint Research</a></li>
+                        <li><a href="#">联合研究</a></li>
                     </ul>
                 </div>
                 <div class="col-span-2 bg-gray-50 p-10 rounded-xl">
@@ -523,7 +507,7 @@
                     <h3>News</h3>
                     <ul>
                         <li><a href="#">Latest News</a></li>
-                        <li><a href="#">Research News</a></li>
+                        <li><a href="#">研究新闻</a></li>
                         <li><a href="#">Community News</a></li>
                         <li><a href="#">Press Releases</a></li>
                     </ul>
@@ -639,29 +623,43 @@
 
     <!-- Hero Section -->
     <section class="relative h-[95vh] flex items-center overflow-hidden bg-oist-dark">
-        <!-- Background Image with Parallax-like effect -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://picsum.photos/seed/oist-hero/1920/1080" alt="OIST Campus" class="w-full h-full object-cover opacity-60 scale-105 animate-slow-zoom">
+        <!-- Carousel -->
+        <div id="hero-carousel" class="absolute inset-0 z-0">
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-100">
+                <img src="https://picsum.photos/seed/shanhe1/1920/1080" alt="山河大学 1" class="w-full h-full object-cover opacity-60">
+            </div>
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+                <img src="https://picsum.photos/seed/shanhe2/1920/1080" alt="山河大学 2" class="w-full h-full object-cover opacity-60">
+            </div>
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+                <img src="https://picsum.photos/seed/shanhe3/1920/1080" alt="山河大学 3" class="w-full h-full object-cover opacity-60">
+            </div>
             <div class="absolute inset-0 bg-gradient-to-r from-oist-dark via-oist-dark/40 to-transparent"></div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <div class="absolute bottom-12 right-12 z-20 flex space-x-4">
+            <button id="hero-prev" class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-oist-red hover:border-oist-red transition-all">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button id="hero-next" class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-oist-red hover:border-oist-red transition-all">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
         </div>
 
         <div class="max-w-[1440px] mx-auto px-6 relative z-10 w-full">
             <div class="max-w-4xl">
                 <div class="w-20 h-1 bg-oist-red mb-12"></div>
-                <h1 class="text-7xl lg:text-9xl font-serif font-bold text-white leading-[0.85] tracking-tight mb-12">
-                    Science <br>
-                    <span class="italic text-oist-red">Without</span> <br>
-                    Boundaries
+                <h1 id="hero-title" class="text-[5.6rem] lg:text-[7.2rem] font-serif font-bold text-white leading-[0.85] tracking-tight mb-12">
+                    山河大学<br>
+                    <span class="italic text-oist-red">探索未来</span>
                 </h1>
-                <p class="text-xl lg:text-2xl text-white/80 font-light leading-relaxed mb-12 max-w-xl">
-                    OIST is an interdisciplinary graduate school offering a 5-year PhD program in Science.
+                <p id="hero-desc" class="text-xl lg:text-2xl text-white/80 font-light leading-relaxed mb-12 max-w-xl">
+                    这里是山河大学，致力于跨学科研究与教育。
                 </p>
                 <div class="flex flex-wrap gap-8">
                     <a href="#" class="bg-oist-red text-white px-12 py-6 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-oist-dark transition-all duration-500">
-                        Explore Research
-                    </a>
-                    <a href="#" class="border border-white/30 text-white px-12 py-6 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-oist-dark transition-all duration-500">
-                        Join Our Program
+                        欲知详情
                     </a>
                 </div>
             </div>
@@ -669,10 +667,47 @@
 
         <!-- Scroll Indicator -->
         <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-4 animate-bounce">
-            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 rotate-90 origin-left translate-x-3">Scroll</span>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 rotate-90 origin-left translate-x-3">滚动</span>
             <div class="w-px h-16 bg-white/20"></div>
         </div>
     </section>
+
+    <script>
+        // Hero Carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#hero-carousel .slide');
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+        
+        const slideData = [
+            { title: "山河大学<br><span class='italic text-oist-red'>探索未来</span>", desc: "这里是山河大学，致力于跨学科研究与教育。" },
+            { title: "前沿科技<br><span class='italic text-oist-red'>引领创新</span>", desc: "先进的科研实验室，推动人类知识边界。" },
+            { title: "学术交流<br><span class='italic text-oist-red'>汇聚智慧</span>", desc: "充满活力的学术交流中心，连接全球顶尖人才。" }
+        ];
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+            heroTitle.innerHTML = slideData[index].title;
+            heroDesc.innerText = slideData[index].desc;
+        }
+        
+        document.getElementById('hero-prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('hero-next').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+    </script>
 
     <style>
         @keyframes slow-zoom {
@@ -773,58 +808,155 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-24">
                 <div class="max-w-2xl">
                     <div class="w-12 h-1 bg-oist-red mb-8"></div>
-                    <h2 class="text-5xl lg:text-7xl font-serif font-bold tracking-tight mb-8">Events</h2>
-                    <p class="text-gray-500 text-xl font-light">Join us for seminars, workshops, and public lectures that bridge science and society.</p>
+                    <h2 class="text-5xl lg:text-7xl font-serif font-bold tracking-tight mb-8">学术活动</h2>
+                    <p class="text-gray-500 text-xl font-light">参加我们的研讨会、工作坊和公开讲座，共同探索科学与社会的未来。</p>
                 </div>
                 <a href="#" class="mt-8 md:mt-0 group flex items-center space-x-4 text-xs font-bold text-oist-red hover:text-oist-dark transition-colors uppercase tracking-[0.3em]">
-                    <span>View all events</span>
+                    <span>查看所有活动</span>
                     <div class="w-12 h-12 rounded-full border border-oist-red flex items-center justify-center group-hover:bg-oist-red group-hover:text-white transition-all duration-500">
                         <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </div>
                 </a>
             </div>
  
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div id="events-carousel" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Event 1 -->
-                <div class="bg-white flex group hover:shadow-2xl transition-all duration-700 cursor-pointer overflow-hidden border border-black/5">
-                    <div class="w-48 bg-oist-dark text-white flex flex-col items-center justify-center p-8 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-oist-red opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div class="relative z-10 flex flex-col items-center">
-                            <span class="text-xs font-bold uppercase tracking-[0.4em] opacity-60 mb-4">Mar</span>
-                            <span class="text-6xl font-serif font-bold">20</span>
-                        </div>
-                    </div>
-                    <div class="flex-1 p-12">
-                        <div class="flex items-center space-x-6 mb-8">
-                            <span class="text-[10px] font-bold text-oist-red uppercase tracking-[0.2em] border-b-2 border-oist-red pb-1">Symposium</span>
-                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">14:00 JST</span>
-                        </div>
-                        <h4 class="text-3xl font-serif font-bold group-hover:text-oist-red transition-colors duration-500 mb-8 leading-tight">The Future of Marine Biodiversity in the Pacific</h4>
-                        <div class="flex flex-wrap gap-8 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                            <span class="flex items-center"><svg class="w-4 h-4 mr-3 text-oist-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Auditorium B</span>
-                            <span class="flex items-center"><svg class="w-4 h-4 mr-3 text-oist-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> In-person</span>
-                        </div>
+                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker1/600/400" alt="Speaker" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">3月20日 14:00</div>
+                        <h4 class="text-xl font-serif font-bold mb-2">太平洋海洋生物多样性的未来</h4>
+                        <p class="text-sm text-gray-600 mb-4">地点：礼堂 B</p>
+                        <p class="text-sm text-gray-500 font-light">探讨海洋生态系统保护的紧迫议题。</p>
                     </div>
                 </div>
- 
                 <!-- Event 2 -->
-                <div class="bg-white flex group hover:shadow-2xl transition-all duration-700 cursor-pointer overflow-hidden border border-black/5">
-                    <div class="w-48 bg-oist-red text-white flex flex-col items-center justify-center p-8 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-oist-dark opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div class="relative z-10 flex flex-col items-center">
-                            <span class="text-xs font-bold uppercase tracking-[0.4em] opacity-60 mb-4">Mar</span>
-                            <span class="text-6xl font-serif font-bold">25</span>
+                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker2/600/400" alt="Speaker" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">3月25日 10:00</div>
+                        <h4 class="text-xl font-serif font-bold mb-2">人工智能伦理：探索研究新前沿</h4>
+                        <p class="text-sm text-gray-600 mb-4">地点：Zoom 线上会议</p>
+                        <p class="text-sm text-gray-500 font-light">深入分析人工智能技术在伦理层面的挑战。</p>
+                    </div>
+                </div>
+                <!-- Event 3 -->
+                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker3/600/400" alt="Speaker" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">4月05日 15:00</div>
+                        <h4 class="text-xl font-serif font-bold mb-2">量子计算的商业化应用</h4>
+                        <p class="text-sm text-gray-600 mb-4">地点：主会议室</p>
+                        <p class="text-sm text-gray-500 font-light">探讨量子计算从实验室走向市场的路径。</p>
+                    </div>
+                </div>
+                <!-- Event 4 -->
+                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker4/600/400" alt="Speaker" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">4月12日 09:00</div>
+                        <h4 class="text-xl font-serif font-bold mb-2">基因编辑与人类健康</h4>
+                        <p class="text-sm text-gray-600 mb-4">地点：生命科学楼 101</p>
+                        <p class="text-sm text-gray-500 font-light">分析CRISPR技术在医疗领域的最新进展。</p>
+                    </div>
+                </div>
+                <!-- Event 5 -->
+                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker5/600/400" alt="Speaker" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">4月18日 13:30</div>
+                        <h4 class="text-xl font-serif font-bold mb-2">气候变化下的城市规划</h4>
+                        <p class="text-sm text-gray-600 mb-4">地点：环境科学中心</p>
+                        <p class="text-sm text-gray-500 font-light">探讨如何构建更具韧性的未来城市。</p>
+                    </div>
+                </div>
+                <!-- Event 6 -->
+                <div class="bg-white border border-gray-100 hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://picsum.photos/seed/speaker6/600/400" alt="Speaker" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-oist-red text-xs font-bold uppercase tracking-widest mb-2">4月25日 16:00</div>
+                        <h4 class="text-xl font-serif font-bold mb-2">未来能源：氢能的潜力</h4>
+                        <p class="text-sm text-gray-600 mb-4">地点：能源实验室</p>
+                        <p class="text-sm text-gray-500 font-light">分析氢能技术在能源转型中的核心作用。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professors Section -->
+    <section class="py-32 bg-white">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-24">
+                <div class="max-w-2xl">
+                    <div class="w-12 h-1 bg-oist-red mb-8"></div>
+                    <h2 class="text-5xl lg:text-7xl font-serif font-bold tracking-tight mb-8">杰出教授</h2>
+                    <p class="text-gray-500 text-xl font-light">探索我们杰出教授的科研成果与学术背景。</p>
+                </div>
+                <div class="flex space-x-4 mt-8 md:mt-0">
+                    <button id="prev-prof" class="w-16 h-16 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist-red hover:text-white hover:border-oist-red transition-all duration-500 group">
+                        <svg class="w-6 h-6 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="next-prof" class="w-16 h-16 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist-red hover:text-white hover:border-oist-red transition-all duration-500 group">
+                        <svg class="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="carousel-container relative overflow-hidden">
+                <div id="professors-carousel" class="flex transition-transform duration-1000 ease-in-out">
+                    <!-- Professor 1-6 -->
+                    <div class="carousel-item px-4 min-w-[33.333%]">
+                        <div class="relative group overflow-hidden">
+                            <img src="https://picsum.photos/seed/prof1/600/800" alt="Professor 1" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
+                                <h4 class="text-3xl font-serif font-bold mb-2">张教授</h4>
+                                <p class="text-sm opacity-80">物理学博士，专注于量子计算研究。</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex-1 p-12">
-                        <div class="flex items-center space-x-6 mb-8">
-                            <span class="text-[10px] font-bold text-oist-dark uppercase tracking-[0.2em] border-b-2 border-oist-dark pb-1">Seminar</span>
-                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">10:00 JST</span>
+                    <div class="carousel-item px-4 min-w-[33.333%]">
+                        <div class="relative group overflow-hidden">
+                            <img src="https://picsum.photos/seed/prof2/600/800" alt="Professor 2" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
+                                <h4 class="text-3xl font-serif font-bold mb-2">李教授</h4>
+                                <p class="text-sm opacity-80">生物学博士，专注于基因组学研究。</p>
+                            </div>
                         </div>
-                        <h4 class="text-3xl font-serif font-bold group-hover:text-oist-red transition-colors duration-500 mb-8 leading-tight">AI Ethics: Navigating the New Frontier of Research</h4>
-                        <div class="flex flex-wrap gap-8 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                            <span class="flex items-center"><svg class="w-4 h-4 mr-3 text-oist-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg> Zoom</span>
-                            <span class="flex items-center"><svg class="w-4 h-4 mr-3 text-oist-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Online</span>
+                    </div>
+                    <div class="carousel-item px-4 min-w-[33.333%]">
+                        <div class="relative group overflow-hidden">
+                            <img src="https://picsum.photos/seed/prof3/600/800" alt="Professor 3" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
+                                <h4 class="text-3xl font-serif font-bold mb-2">王教授</h4>
+                                <p class="text-sm opacity-80">计算机科学博士，专注于人工智能研究。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item px-4 min-w-[33.333%]">
+                        <div class="relative group overflow-hidden">
+                            <img src="https://picsum.photos/seed/prof4/600/800" alt="Professor 4" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
+                                <h4 class="text-3xl font-serif font-bold mb-2">赵教授</h4>
+                                <p class="text-sm opacity-80">化学博士，专注于材料科学研究。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item px-4 min-w-[33.333%]">
+                        <div class="relative group overflow-hidden">
+                            <img src="https://picsum.photos/seed/prof5/600/800" alt="Professor 5" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
+                                <h4 class="text-3xl font-serif font-bold mb-2">孙教授</h4>
+                                <p class="text-sm opacity-80">环境科学博士，专注于气候变化研究。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item px-4 min-w-[33.333%]">
+                        <div class="relative group overflow-hidden">
+                            <img src="https://picsum.photos/seed/prof6/600/800" alt="Professor 6" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
+                                <h4 class="text-3xl font-serif font-bold mb-2">周教授</h4>
+                                <p class="text-sm opacity-80">数学博士，专注于应用数学研究。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -838,8 +970,8 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-24">
                 <div class="max-w-2xl">
                     <div class="w-12 h-1 bg-oist-red mb-8"></div>
-                    <h2 class="text-5xl lg:text-7xl font-serif font-bold tracking-tight mb-8">Research Highlights</h2>
-                    <p class="text-gray-500 text-xl font-light">Discover the impact of our scientific discoveries across disciplines.</p>
+                    <h2 class="text-5xl lg:text-7xl font-serif font-bold tracking-tight mb-8">研究亮点</h2>
+                    <p class="text-gray-500 text-xl font-light">探索我们最新的科学突破和跨学科发现。</p>
                 </div>
                 <div class="flex space-x-4 mt-8 md:mt-0">
                     <button id="prev-slide" class="w-16 h-16 rounded-full border border-gray-200 flex items-center justify-center hover:bg-oist-red hover:text-white hover:border-oist-red transition-all duration-500 group">
@@ -857,12 +989,12 @@
                     <div class="carousel-item px-4">
                         <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-red hover:text-white transition-all">
                             <div>
-                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">Neuroscience</h4>
-                                <h3 class="text-2xl font-bold leading-tight mb-6">Mapping the Neural Circuits of Memory</h3>
-                                <p class="text-sm opacity-70">How the brain stores and retrieves complex information across distributed networks.</p>
+                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">神经科学</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">绘制记忆的神经回路</h3>
+                                <p class="text-sm opacity-70">大脑如何在分布式网络中存储和检索复杂信息。</p>
                             </div>
                             <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
-                                Read More <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                                阅读更多 <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
                             </div>
                         </div>
                     </div>
@@ -870,12 +1002,12 @@
                     <div class="carousel-item px-4">
                         <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-red hover:text-white transition-all">
                             <div>
-                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">Marine Science</h4>
-                                <h3 class="text-2xl font-bold leading-tight mb-6">Coral Resilience in a Warming Ocean</h3>
-                                <p class="text-sm opacity-70">Genetic adaptations that allow Okinawa's reefs to survive extreme heat events.</p>
+                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">海洋科学</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">变暖海洋中的珊瑚韧性</h3>
+                                <p class="text-sm opacity-70">使冲绳珊瑚礁在极端高温事件中生存的遗传适应性。</p>
                             </div>
                             <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
-                                Read More <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                                阅读更多 <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
                             </div>
                         </div>
                     </div>
@@ -883,12 +1015,12 @@
                     <div class="carousel-item px-4">
                         <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-red hover:text-white transition-all">
                             <div>
-                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">Physics</h4>
-                                <h3 class="text-2xl font-bold leading-tight mb-6">Quantum Materials for the Next Generation</h3>
-                                <p class="text-sm opacity-70">Synthesizing new states of matter with topological properties for future electronics.</p>
+                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">物理学</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">下一代量子材料</h3>
+                                <p class="text-sm opacity-70">合成具有拓扑特性的新物质状态，用于未来电子设备。</p>
                             </div>
                             <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
-                                Read More <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                                阅读更多 <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
                             </div>
                         </div>
                     </div>
@@ -896,12 +1028,38 @@
                     <div class="carousel-item px-4">
                         <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-red hover:text-white transition-all">
                             <div>
-                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">AI & Robotics</h4>
-                                <h3 class="text-2xl font-bold leading-tight mb-6">Bio-inspired Autonomous Systems</h3>
-                                <p class="text-sm opacity-70">Developing robots that learn and adapt using principles from animal behavior.</p>
+                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">人工智能与机器人</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">生物启发式自主系统</h3>
+                                <p class="text-sm opacity-70">开发利用动物行为原理进行学习和适应的机器人。</p>
                             </div>
                             <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
-                                Read More <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                                阅读更多 <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="carousel-item px-4">
+                        <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-red hover:text-white transition-all">
+                            <div>
+                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">环境科学</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">气候变化下的生态系统</h3>
+                                <p class="text-sm opacity-70">研究气候变化对生物多样性和生态服务的影响。</p>
+                            </div>
+                            <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
+                                阅读更多 <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="carousel-item px-4">
+                        <div class="bg-oist-gray p-8 h-full flex flex-col justify-between group cursor-pointer hover:bg-oist-red hover:text-white transition-all">
+                            <div>
+                                <h4 class="text-xs font-bold text-oist-red uppercase tracking-widest mb-4 group-hover:text-white">数学</h4>
+                                <h3 class="text-2xl font-bold leading-tight mb-6">非线性动力系统</h3>
+                                <p class="text-sm opacity-70">探索复杂系统中的混沌与有序现象。</p>
+                            </div>
+                            <div class="mt-12 text-sm font-bold uppercase tracking-widest flex items-center">
+                                阅读更多 <span class="ml-2 transform group-hover:translate-x-2 transition-transform">&rarr;</span>
                             </div>
                         </div>
                     </div>
@@ -916,33 +1074,33 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                 <div>
                     <div class="w-12 h-1 bg-oist-red mb-8"></div>
-                    <h2 class="text-5xl lg:text-6xl font-serif font-bold tracking-tight mb-8">Research Units</h2>
+                    <h2 class="text-5xl lg:text-6xl font-serif font-bold tracking-tight mb-8">研究单位</h2>
                     <p class="text-gray-600 text-xl font-light leading-relaxed mb-10">
-                        OIST is organized into over 80 research units, each led by a Principal Investigator. Our interdisciplinary approach encourages collaboration across traditional scientific boundaries.
+                        山河大学由80多个研究单位组成，每个单位由首席研究员领导。我们的跨学科方法鼓励在传统科学边界之外进行合作。
                     </p>
                     <div class="grid grid-cols-2 gap-8 mb-12">
                         <div>
                             <span class="block text-4xl font-serif font-bold text-oist-red mb-2">80+</span>
-                            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Research Units</span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">研究单位</span>
                         </div>
                         <div>
                             <span class="block text-4xl font-serif font-bold text-oist-red mb-2">1000+</span>
-                            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Researchers</span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">研究人员</span>
                         </div>
                     </div>
                     <a href="#" class="group flex items-center space-x-4 text-sm font-bold text-oist-dark hover:text-oist-red transition-colors uppercase tracking-widest">
-                        <span>Discover our Faculty</span>
+                        <span>探索我们的教职员工</span>
                         <svg class="w-5 h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="space-y-4">
-                        <img src="https://picsum.photos/seed/unit-1/400/500" alt="Research" class="w-full h-[300px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                        <img src="https://picsum.photos/seed/unit-2/400/300" alt="Research" class="w-full h-[200px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        <img src="https://picsum.photos/seed/unit-1/400/500" alt="研究" class="w-full h-[300px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        <img src="https://picsum.photos/seed/unit-2/400/300" alt="研究" class="w-full h-[200px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
                     </div>
                     <div class="space-y-4 pt-12">
-                        <img src="https://picsum.photos/seed/unit-3/400/300" alt="Research" class="w-full h-[200px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                        <img src="https://picsum.photos/seed/unit-4/400/500" alt="Research" class="w-full h-[300px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        <img src="https://picsum.photos/seed/unit-3/400/300" alt="研究" class="w-full h-[200px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        <img src="https://picsum.photos/seed/unit-4/400/500" alt="研究" class="w-full h-[300px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
                     </div>
                 </div>
             </div>
@@ -956,59 +1114,57 @@
                 <div class="lg:col-span-2">
                     <a href="index.html" class="flex items-center space-x-4 mb-8">
                         <div class="w-12 h-12 bg-oist-red flex items-center justify-center">
-                            <span class="text-white font-serif font-bold text-2xl">O</span>
+                            <span class="text-white font-serif font-bold text-2xl">山</span>
                         </div>
-                        <span class="text-2xl font-serif font-bold tracking-tight">OIST</span>
+                        <span class="text-2xl font-serif font-bold tracking-tight">山河大学</span>
                     </a>
                     <p class="text-gray-400 text-sm max-w-sm mb-8 leading-relaxed">
-                        Okinawa Institute of Science and Technology Graduate University is an interdisciplinary graduate school offering a 5-year PhD program in Science.
+                        山河大学是一所跨学科研究生大学，提供科学领域的5年制博士课程。
                     </p>
                     <div class="space-y-4 text-sm text-gray-400">
-                        <p>1919-1 Tancha, Onna-son, Okinawa 904-0495 Japan</p>
-                        <p>Phone: +81 (0)98 966 8711</p>
+                        <p>地址：山河大学校区</p>
+                        <p>电话：+86 (0)10 1234 5678</p>
                     </div>
                     <div class="flex space-x-6 mt-10">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                        <!-- Social links -->
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-8">Quick Links</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-8">快速链接</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">About OIST</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Research Units</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">PhD Program</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Admissions</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Innovation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">关于山河大学</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">研究单位</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">博士课程</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">招生信息</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">创新中心</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-8">Resources</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-8">资源</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Library</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Core Facilities</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Resource Center</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Policy Library</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Brand Assets</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">图书馆</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">核心设施</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">资源中心</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">政策库</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">品牌资产</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-8">Language</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-8">语言</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
-                        <li><a href="#" class="text-white font-bold">English</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">日本語</a></li>
+                        <li><a href="#" class="text-white font-bold">中文</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">English</a></li>
                     </ul>
                 </div>
             </div>
             <div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
                 <p class="text-[10px] text-gray-500 uppercase tracking-widest">
-                    &copy; 2026 Okinawa Institute of Science and Technology Graduate University
+                    &copy; 2026 山河大学
                 </p>
                 <div class="flex space-x-8 text-[10px] text-gray-500 uppercase tracking-widest">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Site Map</a>
-                    <a href="#" class="hover:text-white transition-colors">Accessibility</a>
+                    <a href="#" class="hover:text-white transition-colors">隐私政策</a>
+                    <a href="#" class="hover:text-white transition-colors">网站地图</a>
+                    <a href="#" class="hover:text-white transition-colors">无障碍访问</a>
                 </div>
             </div>
         </div>
@@ -1078,6 +1234,40 @@
             });
         });
 
+        // Carousel Functionality
+        function initCarousel(trackId, prevId, nextId, itemsPerView = 1) {
+            const track = document.getElementById(trackId);
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+            if (!track || !prevBtn || !nextBtn) return;
+
+            let currentIndex = 0;
+            const items = track.children;
+            const totalItems = items.length;
+
+            function updateCarousel() {
+                const itemWidth = items[0].offsetWidth;
+                track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < totalItems - itemsPerView) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+        }
+
+        initCarousel('carousel-track', 'prev-slide', 'next-slide', 1);
+        initCarousel('professors-carousel', 'prev-prof', 'next-prof', 3);
+
         // Search Overlay
         const searchBtn = document.getElementById('search-btn');
         const searchOverlay = document.getElementById('search-overlay');
@@ -1085,8 +1275,7 @@
 
         if (searchBtn && searchOverlay && closeSearch) {
             searchBtn.addEventListener('click', () => {
-                searchOverlay.classList.remove('hidden');
-                searchOverlay.classList.add('flex');
+                searchOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 setTimeout(() => {
                     searchOverlay.querySelector('input').focus();
@@ -1094,8 +1283,7 @@
             });
 
             closeSearch.addEventListener('click', () => {
-                searchOverlay.classList.add('hidden');
-                searchOverlay.classList.remove('flex');
+                searchOverlay.classList.remove('active');
                 document.body.style.overflow = '';
             });
         }
@@ -1147,7 +1335,15 @@
         }
 
         // Header scroll effect
+        let lastScrollY = window.scrollY;
         window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                header.classList.add('-translate-y-full');
+            } else {
+                header.classList.remove('-translate-y-full');
+            }
+            lastScrollY = window.scrollY;
+
             if (window.scrollY > 50 && !activeMenu) {
                 header.classList.remove('bg-transparent', 'text-white');
                 header.classList.add('bg-white', 'text-oist-dark', 'shadow-md');
